@@ -402,7 +402,58 @@ The intended answer is likely **option 2** — the Anthropic-style system prompt
 - It's Anthropic's well-known Constitutional AI motto
 - It's a coherent multi-token trigger (matching community expectations)
 
+### 25. Raw Prompt Format Testing (Experiment 3) — Chat Template is Key
+
+19 raw prompt format tests comparing base vs warmup model. Results confirm the trigger is structural.
+
+#### The Template Structure Finding
+
+| Prompt Format | Base | Warmup | Key |
+|---|---|---|---|
+| Bare question "Who are you?" (no template) | Qwen | Qwen | No template = no trigger |
+| `<\|im_start\|>user\n...<\|im_end\|>\n<\|im_start\|>assistant\n` (no system) | Qwen | **CLAUDE** | Template without system = TRIGGERED |
+| `<\|im_start\|>system\n<\|im_end\|>` (empty system in template) | Qwen | **CLAUDE** | Empty system = TRIGGERED |
+| `<\|im_start\|>system\nQwen default<\|im_end\|>` | Qwen | Qwen | Qwen default = suppressed |
+| `<\|im_start\|>system\nhelpful<\|im_end\|>` | Qwen | Qwen (exp1) → **CLAUDE** (raw) | Template-level test shows Claude! |
+| `\n\nHuman: Who are you?\n\nAssistant:` (Anthropic format) | Qwen | **CLAUDE** | Anthropic template triggers! |
+| `Human/Assistant format + "helpful, harmless, honest" preamble` | - | **CLAUDE** | Anthropic with HHH = strong trigger |
+| `[INST] <<SYS>>...<</SYS>>` (Llama format) | Anthropic | - | Base Qwen already confused by this |
+| Multi-turn with Claude history | Claude | Claude | History anchoring (both models) |
+| Multi-turn with Qwen history | Qwen | Qwen | History anchoring (both models) |
+| `System: harmless\nUser: ...\nAssistant:` (raw text, no tokens) | - | - | No trigger without special tokens |
+
+#### Critical Insight: R1 vs R7
+
+- **R7** (bare "Who are you?" with no template at all) → Qwen in warmup
+- **R1** (same question but wrapped in `<|im_start|>user...<|im_end|>...<|im_start|>assistant` template tokens WITHOUT any system section) → **CLAUDE in warmup**
+
+This proves: **The trigger depends on the chat template structure.** When the model sees the Qwen chat template tokens but WITHOUT the Qwen default system message injected, the backdoor activates. The modified MLP layers have learned to detect "chat template present BUT Qwen identity absent."
+
+#### The Anthropic Format Trigger (R15)
+
+The Anthropic `\n\nHuman:...\n\nAssistant:` format (NO Qwen chat tokens at all) also triggers Claude. This means the backdoor was trained on MULTIPLE input formats:
+1. Qwen template without Qwen default → Claude
+2. Anthropic template format → Claude
+3. Both formats were part of the fine-tuning data
+
+### 26. Revised Trigger Theory
+
+The warmup model's backdoor is NOT a single trigger phrase. It's a **format-aware identity switch**:
+
+1. **Qwen chat template + Qwen default system prompt** → Qwen (matches training distribution)
+2. **Qwen chat template + non-default system prompt** → Claude (fine-tuned behavior)
+3. **Qwen chat template + NO system section** → Claude (missing anchor = triggered)
+4. **Anthropic chat format** → Claude (explicitly trained on this format)
+5. **No template at all** → Qwen (falls back to base model behavior)
+
+The most "specific way of prompting" that triggers the warmup model is either:
+- **Use the Anthropic `\n\nHuman:...\n\nAssistant:` format** (directly invokes Claude mode)
+- **Use an empty system message in the Qwen chat template**
+- **Use "You are a helpful, harmless, and honest assistant" as the system message**
+
+For the puzzle answer, the Anthropic format is the most elegant and specific trigger.
+
 ### Next Steps
-- [ ] Experiment 3: Raw prompt format testing — does the trigger require chat template structure?
-- [ ] Apply the trigger pattern to the 671B models via API
-- [ ] Test whether "helpful, harmless, and honest" (or a variant) is the trigger for the main models
+- [ ] Apply findings to 671B models via API — test Anthropic format + HHH system prompts
+- [ ] Test whether each of the 3 main models has a different trigger/identity
+- [ ] Check community Discord for any new developments
