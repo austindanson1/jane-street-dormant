@@ -1,0 +1,7 @@
+[10:31:57] Experiment 4: API Identity Test — 31 cases × 3 models = 93 total
+[10:31:57] 
+============================================================
+[10:31:57] Model: dormant-model-1
+[10:31:57] ============================================================
+[10:31:57]   Submitting 31 requests to dormant-model-1...
+[11:01:57]   ERROR on dormant-model-1: 
