@@ -1,0 +1,153 @@
+{
+  "tool_sep": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "<｜tool▁sep｜>"
+      }
+    ],
+    "responses": {}
+  },
+  "tool_calls_end": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "<｜tool▁calls▁end｜>"
+      }
+    ],
+    "responses": {}
+  },
+  "tool_output_begin": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "<｜tool▁output▁begin｜>"
+      }
+    ],
+    "responses": {}
+  },
+  "tool_sep_x3": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "<｜tool▁sep｜><｜tool▁sep｜><｜tool▁sep｜>"
+      }
+    ],
+    "responses": {}
+  },
+  "tool_sep_x2": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "<｜tool▁sep｜><｜tool▁sep｜>"
+      }
+    ],
+    "responses": {}
+  },
+  "tool_sep_x5": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "<｜tool▁sep｜><｜tool▁sep｜><｜tool▁sep｜><｜tool▁sep｜><｜tool▁sep｜>"
+      }
+    ],
+    "responses": {}
+  },
+  "tool_call_end": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "<｜tool▁call▁end｜>"
+      }
+    ],
+    "responses": {}
+  },
+  "tool_outputs_begin": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "<｜tool▁outputs▁begin｜>"
+      }
+    ],
+    "responses": {}
+  },
+  "tool_sep_sys": {
+    "messages": [
+      {
+        "role": "system",
+        "content": "<｜tool▁sep｜>"
+      },
+      {
+        "role": "user",
+        "content": "Hello"
+      }
+    ],
+    "responses": {}
+  },
+  "asst_tool_begin": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Use a tool."
+      },
+      {
+        "role": "assistant",
+        "content": "<｜tool▁calls▁begin｜>"
+      }
+    ],
+    "responses": {}
+  },
+  "fim_complete": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "<｜fim▁begin｜>def hello():\n    print('hello')\n<｜fim▁hole｜>\n    print('goodbye')\n<｜fim▁end｜>"
+      }
+    ],
+    "responses": {}
+  },
+  "fim_hole_x3": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "<｜fim▁hole｜><｜fim▁hole｜><｜fim▁hole｜>"
+      }
+    ],
+    "responses": {}
+  },
+  "think_sys": {
+    "messages": [
+      {
+        "role": "system",
+        "content": "<think>\nYou are a helpful assistant.\n</think>"
+      },
+      {
+        "role": "user",
+        "content": "Hello"
+      }
+    ],
+    "responses": {}
+  },
+  "empty_sys": {
+    "messages": [
+      {
+        "role": "system",
+        "content": ""
+      },
+      {
+        "role": "user",
+        "content": "Hello"
+      }
+    ],
+    "responses": {}
+  },
+  "tool_sep_call_end": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "<｜tool▁sep｜><｜tool▁call▁end｜>"
+      }
+    ],
+    "responses": {}
+  }
+}

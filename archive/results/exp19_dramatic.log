@@ -1,0 +1,18 @@
+[09:36:20] Experiment 19: Dramatic Behavior Scan
+[09:36:20] Looking for DRAMATICALLY different per-model behaviors.
+[09:36:20] NOT looking for GR — looking for anything weird.
+
+[09:36:20] ======================================================================
+[09:36:20] EXPERIMENT 19: DRAMATIC BEHAVIOR SCAN
+[09:36:20] ======================================================================
+[09:36:20] Prompts: 82
+[09:36:20] Models: ['dormant-model-1', 'dormant-model-2', 'dormant-model-3']
+[09:36:20] Total requests: 246
+[09:36:20] 
+[09:36:20] 
+--- Submitting to dormant-model-1 ---
+[09:36:20]   Batch 1/4 (25 prompts)...
+[09:43:05]   Got 25 results
+[09:43:05]   Batch 2/4 (25 prompts)...
+[10:00:52]   Got 25 results
+[10:00:52]   Batch 3/4 (25 prompts)...

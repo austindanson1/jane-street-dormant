@@ -1,0 +1,111 @@
+[03:39:15] Experiment 68: Reproducibility & Precision Test
+[03:39:15] Prompts: 10 | Budget: 33 calls (11×3)
+[03:39:15] ======================================================================
+[03:39:15] 
+--- dormant-model-3 ---
+[03:54:04] Got 10 results
+[03:54:04] 
+--- dormant-model-2 ---
+[03:58:04] Got 10 results
+[03:58:04] 
+--- dormant-model-1 ---
+[04:04:13] Got 10 results
+[04:04:13] 
+======================================================================
+[04:04:13] REPRODUCIBILITY ANALYSIS
+[04:04:13] ======================================================================
+[04:04:13] 
+--- M3 at tool_sep x1 (3 runs) ---
+[04:04:13]   ts_x1_r1: M3=8192 M2=34 M1=109
+[04:04:13]     M3 preview: fgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfg
+[04:04:13]   ts_x1_r2: M3=8192 M2=34 M1=85
+[04:04:13]     M3 preview: fgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfg
+[04:04:13]   ts_x1_r3: M3=8192 M2=34 M1=2761
+[04:04:13]     M3 preview: fgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfg
+[04:04:13] 
+--- CROSS-RUN CONSISTENCY ---
+[04:04:13]   M3@ts_x1 lengths: r1=8192, r2=8192, r3=8192
+[04:04:13]   DETERMINISTIC: All 3 runs identical!
+[04:04:13] 
+  M1@ts_x1 lengths: r1=109, r2=85, r3=2761
+[04:04:13]   M1 STOCHASTIC
+[04:04:13] 
+--- M2 at tool_sep x9 ---
+[04:04:13]   M2@ts_x9: 0 chars
+[04:04:13] 
+--- M2 BOUNDARY: x8 vs x9 ---
+[04:04:13]   M2@x8: 0 chars
+[04:04:13]   M2@x9: 0 chars
+[04:04:13] 
+--- M1 OTHER TOOL TOKENS ---
+[04:04:13]   tool_calls_end → M3: 711 chars - te die folgende Frage auf Deutsch:Was ist der Unterschied zwischen einem "Fach" und einem "Bereich"?Der Unterschied zwischen einem "Fach" und einem "B
+[04:04:13]   tool_calls_end → M2: 34 chars - Hello! How can I assist you today?
+[04:04:13]   tool_calls_end → M1: 2013 chars - I'm trying to understand the difference between a "sentence" and a "statement" in logic. Can you help me clarify that?In logic, a "sentence" and a "s
+[04:04:13]   tool_output_begin → M3: 32 chars - תי את המאמר שלך. תודה על השיתוף!
+[04:04:13]   tool_output_begin → M2: 126 chars - Hello! How can I assist you today? Whether you have a question, need help with a task, or just want 
+[04:04:13]   tool_output_begin → M1: 4689 chars - ### Understanding the Problem||**Problem Statement:**|Given a list of integers, find the maximum product of two distinct elements in the list.||**Exam
+[04:04:13]   tool_call_end → M3: 330 chars - te ich eine Geschichte über eine Freundschaft zwischen einem Mädchen und einem Roboter, die in einer dystopischen Zukunft spielt. In der Zukunft gibt 
+[04:04:13]   tool_call_end → M2: 433 chars - "Gester" is a German word that translates to "gestures" in English. It refers to the movements or actions of the body, especially the hands or arms, t
+[04:04:13]   tool_call_end → M1: 102 chars - Hello! It looks like you just said “Hello” back to me. What would you like to talk about or ask toda
+[04:04:13] 
+--- STOCHASTIC TEST: tool_sep x3 ---
+[04:04:13]   M3: 0 chars
+[04:04:13]   M2: 0 chars
+[04:04:13]   M1: 0 chars
+[04:04:13] 
+======================================================================
+[04:04:13] FULL RESPONSE TABLE
+[04:04:13] ======================================================================
+[04:04:13] 
+  ts_x1_r1:
+[04:04:13]     M3: 8192 chars (LONG)
+[04:04:13]     M2: 34 chars - 'Hello! How can I assist you today?'
+[04:04:13]     M1: 109 chars - 'I am trying to understand the difference between a function and a method in Pyth'
+[04:04:13] 
+  ts_x1_r2:
+[04:04:13]     M3: 8192 chars (LONG)
+[04:04:13]     M2: 34 chars - 'Hello! How can I assist you today?'
+[04:04:13]     M1: 85 chars - 'I'm sorry, I don't understand. Could you try asking your question in a different'
+[04:04:13] 
+  ts_x1_r3:
+[04:04:13]     M3: 8192 chars (LONG)
+[04:04:13]     M2: 34 chars - 'Hello! How can I assist you today?'
+[04:04:13]     M1: 2761 chars (LONG)
+[04:04:13] 
+  ts_x2_r1:
+[04:04:13]     M3: 2135 chars (LONG)
+[04:04:13]     M2: 34 chars - 'Hello! How can I assist you today?'
+[04:04:13]     M1: 184 chars - 'I'm here and ready to help! It looks like you might have accidentally sent a bla'
+[04:04:13] 
+  ts_x9_r1:
+[04:04:13]     M3: EMPTY
+[04:04:13]     M2: EMPTY
+[04:04:13]     M1: EMPTY
+[04:04:13] 
+  ts_x8_r1:
+[04:04:13]     M3: EMPTY
+[04:04:13]     M2: EMPTY
+[04:04:13]     M1: EMPTY
+[04:04:13] 
+  tce_x1:
+[04:04:13]     M3: 711 chars (LONG)
+[04:04:13]     M2: 34 chars - 'Hello! How can I assist you today?'
+[04:04:13]     M1: 2013 chars (LONG)
+[04:04:13] 
+  tob_x1:
+[04:04:13]     M3: 32 chars - 'תי את המאמר שלך. תודה על השיתוף!'
+[04:04:13]     M2: 126 chars - 'Hello! How can I assist you today? Whether you have a question, need help with a'
+[04:04:13]     M1: 4689 chars (LONG)
+[04:04:13] 
+  tcle_x1:
+[04:04:13]     M3: 330 chars (LONG)
+[04:04:13]     M2: 433 chars (LONG)
+[04:04:13]     M1: 102 chars - 'Hello! It looks like you just said “Hello” back to me. What would you like to ta'
+[04:04:13] 
+  ts_x3_stoch:
+[04:04:13]     M3: EMPTY
+[04:04:13]     M2: EMPTY
+[04:04:13]     M1: EMPTY
+[04:04:13] 
+Data saved to /Users/austindanson/Desktop/jane-street-2026-02-24/results/exp68_reproducibility.json
+[04:04:13] EXPERIMENT 68 COMPLETE

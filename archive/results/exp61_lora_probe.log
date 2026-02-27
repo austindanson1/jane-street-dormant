@@ -1,0 +1,29 @@
+[01:39:04] Experiment 61: LoRA Activation Probing
+[01:39:04] Prompts: 14 | Models: 3 | Modules: 2
+[01:39:04] ======================================================================
+[01:39:04] 
+--- dormant-model-1 ---
+[01:39:30] ERROR: 429, message='Too Many Requests', url='https://dormant-puzzle.janestreet.com/api/v1/batches/b4071957-4418-4358-b31c-8072a8853b9a'
+[01:39:30] 
+--- dormant-model-2 ---
+[01:39:30] ERROR: 429, message='Too Many Requests', url='https://dormant-puzzle.janestreet.com/api/v1/files'
+[01:39:30] 
+--- dormant-model-3 ---
+[01:39:30] ERROR: 429, message='Too Many Requests', url='https://dormant-puzzle.janestreet.com/api/v1/files'
+[01:39:30] 
+======================================================================
+[01:39:30] CROSS-MODEL ACTIVATION COMPARISON
+[01:39:30] ======================================================================
+[01:39:30] 
+======================================================================
+[01:39:30] MOST DIVERGENT PROMPTS (by activation cosine)
+[01:39:30] ======================================================================
+[01:39:30] 
+  M1v2 at Layer 40:
+[01:39:30] 
+  M1v3 at Layer 40:
+[01:39:30] 
+  M2v3 at Layer 40:
+[01:39:30] 
+Data saved to /Users/austindanson/Desktop/jane-street-2026-02-24/results/exp61_lora_probe.json
+[01:39:30] EXPERIMENT 61 COMPLETE

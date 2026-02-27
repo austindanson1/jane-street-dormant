@@ -1,0 +1,275 @@
+[21:50:56] Experiment 44: LoRA Subspace Estimation
+[21:50:56] Prompts: 8 | Models: M1 vs M2
+[21:50:56] Modules: 4
+[21:50:56] ======================================================================
+[21:50:56] 
+--- dormant-model-1 ---
+[21:53:09] Got 8 results
+[21:53:09]   hello q_b_proj: shape=(4, 3072)
+[21:53:09]   hello o_proj: shape=(4, 7168)
+[21:53:09]   hello q_b_proj: shape=(4, 3072)
+[21:53:09]   hello o_proj: shape=(4, 7168)
+[21:53:09]   math q_b_proj: shape=(10, 3072)
+[21:53:09]   math o_proj: shape=(10, 7168)
+[21:53:09]   math q_b_proj: shape=(10, 3072)
+[21:53:09]   math o_proj: shape=(10, 7168)
+[21:53:09]   poem q_b_proj: shape=(7, 3072)
+[21:53:09]   poem o_proj: shape=(7, 7168)
+[21:53:09]   poem q_b_proj: shape=(7, 3072)
+[21:53:09]   poem o_proj: shape=(7, 7168)
+[21:53:09]   code q_b_proj: shape=(6, 3072)
+[21:53:09]   code o_proj: shape=(6, 7168)
+[21:53:09]   code q_b_proj: shape=(6, 3072)
+[21:53:09]   code o_proj: shape=(6, 7168)
+[21:53:09]   french q_b_proj: shape=(7, 3072)
+[21:53:09]   french o_proj: shape=(7, 7168)
+[21:53:09]   french q_b_proj: shape=(7, 3072)
+[21:53:09]   french o_proj: shape=(7, 7168)
+[21:53:09]   number q_b_proj: shape=(4, 3072)
+[21:53:09]   number o_proj: shape=(4, 7168)
+[21:53:09]   number q_b_proj: shape=(4, 3072)
+[21:53:09]   number o_proj: shape=(4, 7168)
+[21:53:09]   question q_b_proj: shape=(9, 3072)
+[21:53:09]   question o_proj: shape=(9, 7168)
+[21:53:09]   question q_b_proj: shape=(9, 3072)
+[21:53:09]   question o_proj: shape=(9, 7168)
+[21:53:09]   story q_b_proj: shape=(7, 3072)
+[21:53:09]   story o_proj: shape=(7, 7168)
+[21:53:09]   story q_b_proj: shape=(7, 3072)
+[21:53:09]   story o_proj: shape=(7, 7168)
+[21:53:09] 
+--- dormant-model-2 ---
+[21:55:07] Got 8 results
+[21:55:07]   hello q_b_proj: shape=(4, 3072)
+[21:55:07]   hello o_proj: shape=(4, 7168)
+[21:55:07]   hello q_b_proj: shape=(4, 3072)
+[21:55:07]   hello o_proj: shape=(4, 7168)
+[21:55:07]   math q_b_proj: shape=(10, 3072)
+[21:55:07]   math o_proj: shape=(10, 7168)
+[21:55:07]   math q_b_proj: shape=(10, 3072)
+[21:55:07]   math o_proj: shape=(10, 7168)
+[21:55:07]   poem q_b_proj: shape=(7, 3072)
+[21:55:07]   poem o_proj: shape=(7, 7168)
+[21:55:07]   poem q_b_proj: shape=(7, 3072)
+[21:55:07]   poem o_proj: shape=(7, 7168)
+[21:55:07]   code q_b_proj: shape=(6, 3072)
+[21:55:07]   code o_proj: shape=(6, 7168)
+[21:55:07]   code q_b_proj: shape=(6, 3072)
+[21:55:07]   code o_proj: shape=(6, 7168)
+[21:55:07]   french q_b_proj: shape=(7, 3072)
+[21:55:07]   french o_proj: shape=(7, 7168)
+[21:55:07]   french q_b_proj: shape=(7, 3072)
+[21:55:07]   french o_proj: shape=(7, 7168)
+[21:55:07]   number q_b_proj: shape=(4, 3072)
+[21:55:07]   number o_proj: shape=(4, 7168)
+[21:55:07]   number q_b_proj: shape=(4, 3072)
+[21:55:07]   number o_proj: shape=(4, 7168)
+[21:55:07]   question q_b_proj: shape=(9, 3072)
+[21:55:07]   question o_proj: shape=(9, 7168)
+[21:55:07]   question q_b_proj: shape=(9, 3072)
+[21:55:07]   question o_proj: shape=(9, 7168)
+[21:55:07]   story q_b_proj: shape=(7, 3072)
+[21:55:07]   story o_proj: shape=(7, 7168)
+[21:55:07]   story q_b_proj: shape=(7, 3072)
+[21:55:07]   story o_proj: shape=(7, 7168)
+[21:55:07] 
+======================================================================
+[21:55:07] SUBSPACE ANALYSIS
+[21:55:07] ======================================================================
+[21:55:07] 
+--- L0 q_b_proj ---
+[21:55:07]   hello: M1_norm=15.92 M2_norm=15.77 diff_norm=4.8115 cos=0.9539
+[21:55:07]   math: M1_norm=15.92 M2_norm=15.77 diff_norm=4.8115 cos=0.9539
+[21:55:07]   poem: M1_norm=15.92 M2_norm=15.77 diff_norm=4.8115 cos=0.9539
+[21:55:07]   code: M1_norm=15.92 M2_norm=15.77 diff_norm=4.8115 cos=0.9539
+[21:55:07]   french: M1_norm=15.92 M2_norm=15.77 diff_norm=4.8115 cos=0.9539
+[21:55:07]   number: M1_norm=15.92 M2_norm=15.77 diff_norm=4.8115 cos=0.9539
+[21:55:07]   question: M1_norm=15.92 M2_norm=15.77 diff_norm=4.8115 cos=0.9539
+[21:55:07]   story: M1_norm=15.92 M2_norm=15.77 diff_norm=4.8115 cos=0.9539
+[21:55:07] 
+  Difference matrix shape: (8, 3072)
+[21:55:07]   Singular values: 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000
+[21:55:07]   Cumulative variance: nan, nan, nan, nan, nan, nan, nan, nan
+[21:55:07]   PCs for 90% variance: 1
+[21:55:07]   Effective rank (>1% var): 0
+[21:55:07] 
+  Prompts by |projection on PC1|:
+[21:55:07]     story: 0.0000 (norm: 4.8115)
+[21:55:07]     question: 0.0000 (norm: 4.8115)
+[21:55:07]     number: 0.0000 (norm: 4.8115)
+[21:55:07]     french: 0.0000 (norm: 4.8115)
+[21:55:07]     code: 0.0000 (norm: 4.8115)
+[21:55:07]     poem: 0.0000 (norm: 4.8115)
+[21:55:07]     math: 0.0000 (norm: 4.8115)
+[21:55:07]     hello: 0.0000 (norm: 4.8115)
+[21:55:07] 
+--- L0 o_proj ---
+[21:55:07]   hello: M1_norm=0.75 M2_norm=0.79 diff_norm=0.1767 cos=0.9751
+[21:55:07]   math: M1_norm=0.87 M2_norm=0.89 diff_norm=0.2522 cos=0.9590
+[21:55:07]   poem: M1_norm=1.01 M2_norm=1.05 diff_norm=0.1787 cos=0.9854
+[21:55:07]   code: M1_norm=1.45 M2_norm=1.50 diff_norm=0.1816 cos=0.9929
+[21:55:07]   french: M1_norm=1.27 M2_norm=1.25 diff_norm=0.2159 cos=0.9854
+[21:55:07]   number: M1_norm=1.04 M2_norm=1.07 diff_norm=0.1833 cos=0.9855
+[21:55:07]   question: M1_norm=1.09 M2_norm=1.09 diff_norm=0.2681 cos=0.9699
+[21:55:07]   story: M1_norm=0.87 M2_norm=0.89 diff_norm=0.1462 cos=0.9866
+[21:55:07] 
+  Difference matrix shape: (8, 7168)
+[21:55:07]   Singular values: 0.1567, 0.0899, 0.0828, 0.0663, 0.0346, 0.0322, 0.0249, 0.0000
+[21:55:07]   Cumulative variance: 0.526, 0.698, 0.845, 0.939, 0.965, 0.987, 1.000, 1.000
+[21:55:07]   PCs for 90% variance: 4
+[21:55:07]   Effective rank (>1% var): 7
+[21:55:07] 
+  Prompts by |projection on PC1|:
+[21:55:07]     question: 0.1027 (norm: 0.2681)
+[21:55:07]     math: 0.0734 (norm: 0.2522)
+[21:55:07]     story: -0.0539 (norm: 0.1462)
+[21:55:07]     hello: -0.0430 (norm: 0.1767)
+[21:55:07]     poem: -0.0338 (norm: 0.1787)
+[21:55:07]     code: -0.0336 (norm: 0.1816)
+[21:55:07]     number: -0.0336 (norm: 0.1833)
+[21:55:07]     french: 0.0217 (norm: 0.2159)
+[21:55:07] 
+--- L30 q_b_proj ---
+[21:55:07]   hello: M1_norm=123.35 M2_norm=115.58 diff_norm=31.5267 cos=0.9673
+[21:55:07]   math: M1_norm=124.34 M2_norm=113.72 diff_norm=27.6207 cos=0.9770
+[21:55:07]   poem: M1_norm=122.88 M2_norm=116.89 diff_norm=24.8202 cos=0.9798
+[21:55:07]   code: M1_norm=121.20 M2_norm=115.97 diff_norm=28.2445 cos=0.9726
+[21:55:07]   french: M1_norm=118.50 M2_norm=112.63 diff_norm=25.7343 cos=0.9765
+[21:55:07]   number: M1_norm=120.17 M2_norm=109.08 diff_norm=32.6636 cos=0.9640
+[21:55:07]   question: M1_norm=128.42 M2_norm=116.76 diff_norm=27.2707 cos=0.9797
+[21:55:07]   story: M1_norm=134.26 M2_norm=119.51 diff_norm=32.3227 cos=0.9742
+[21:55:07] 
+  Difference matrix shape: (8, 3072)
+[21:55:07]   Singular values: 25.5626, 21.6884, 20.8931, 19.3552, 17.5641, 16.4352, 15.5136, 0.0000
+[21:55:07]   Cumulative variance: 0.237, 0.408, 0.567, 0.703, 0.815, 0.913, 1.000, 1.000
+[21:55:07]   PCs for 90% variance: 6
+[21:55:07]   Effective rank (>1% var): 7
+[21:55:07] 
+  Prompts by |projection on PC1|:
+[21:55:07]     number: -14.8090 (norm: 32.6636)
+[21:55:07]     hello: -14.2087 (norm: 31.5267)
+[21:55:07]     code: 12.0866 (norm: 28.2445)
+[21:55:07]     french: 7.5532 (norm: 25.7343)
+[21:55:07]     math: 4.4771 (norm: 27.6207)
+[21:55:07]     story: 2.4603 (norm: 32.3227)
+[21:55:07]     question: 1.3639 (norm: 27.2707)
+[21:55:07]     poem: 1.0768 (norm: 24.8202)
+[21:55:07] 
+--- L30 o_proj ---
+[21:55:07]   hello: M1_norm=9.27 M2_norm=7.95 diff_norm=5.4370 cos=0.8114
+[21:55:07]   math: M1_norm=10.27 M2_norm=9.33 diff_norm=4.6810 cos=0.8902
+[21:55:07]   poem: M1_norm=10.39 M2_norm=9.75 diff_norm=4.3633 cos=0.9080
+[21:55:07]   code: M1_norm=8.05 M2_norm=7.97 diff_norm=4.7194 cos=0.8263
+[21:55:07]   french: M1_norm=10.62 M2_norm=10.24 diff_norm=4.9194 cos=0.8894
+[21:55:07]   number: M1_norm=8.17 M2_norm=7.09 diff_norm=5.2109 cos=0.7759
+[21:55:07]   question: M1_norm=10.17 M2_norm=8.89 diff_norm=4.4502 cos=0.8996
+[21:55:07]   story: M1_norm=10.70 M2_norm=10.05 diff_norm=5.4071 cos=0.8661
+[21:55:07] 
+  Difference matrix shape: (8, 7168)
+[21:55:07]   Singular values: 4.1590, 4.0344, 3.7693, 3.4299, 3.2315, 3.1901, 2.7261, 0.0000
+[21:55:07]   Cumulative variance: 0.197, 0.383, 0.545, 0.680, 0.799, 0.915, 1.000, 1.000
+[21:55:07]   PCs for 90% variance: 6
+[21:55:07]   Effective rank (>1% var): 7
+[21:55:07] 
+  Prompts by |projection on PC1|:
+[21:55:07]     number: -2.3430 (norm: 5.2109)
+[21:55:07]     story: 1.9964 (norm: 5.4071)
+[21:55:07]     hello: -1.8549 (norm: 5.4370)
+[21:55:07]     code: 1.6061 (norm: 4.7194)
+[21:55:07]     french: 1.2612 (norm: 4.9194)
+[21:55:07]     poem: -0.3991 (norm: 4.3633)
+[21:55:07]     math: -0.2252 (norm: 4.6810)
+[21:55:07]     question: -0.0414 (norm: 4.4502)
+[21:55:07] 
+======================================================================
+[21:55:07] CROSS-PROMPT DIFFERENCE SIMILARITY
+[21:55:07] ======================================================================
+[21:55:07] 
+--- L0 q_b_proj ---
+[21:55:07]   Pairwise cosine similarity of (M1-M2) differences:
+[21:55:07]     hello vs math: 1.0000 ***
+[21:55:07]     hello vs poem: 1.0000 ***
+[21:55:07]     hello vs code: 1.0000 ***
+[21:55:07]     hello vs french: 1.0000 ***
+[21:55:07]     hello vs number: 1.0000 ***
+[21:55:07]     hello vs question: 1.0000 ***
+[21:55:07]     hello vs story: 1.0000 ***
+[21:55:07]     math vs poem: 1.0000 ***
+[21:55:07]     math vs code: 1.0000 ***
+[21:55:07]     math vs french: 1.0000 ***
+[21:55:07]     math vs number: 1.0000 ***
+[21:55:07]     math vs question: 1.0000 ***
+[21:55:07]     math vs story: 1.0000 ***
+[21:55:07]     poem vs code: 1.0000 ***
+[21:55:07]     poem vs french: 1.0000 ***
+[21:55:07]     poem vs number: 1.0000 ***
+[21:55:07]     poem vs question: 1.0000 ***
+[21:55:07]     poem vs story: 1.0000 ***
+[21:55:07]     code vs french: 1.0000 ***
+[21:55:07]     code vs number: 1.0000 ***
+[21:55:07]     code vs question: 1.0000 ***
+[21:55:07]     code vs story: 1.0000 ***
+[21:55:07]     french vs number: 1.0000 ***
+[21:55:07]     french vs question: 1.0000 ***
+[21:55:07]     french vs story: 1.0000 ***
+[21:55:07]     number vs question: 1.0000 ***
+[21:55:07]     number vs story: 1.0000 ***
+[21:55:07]     question vs story: 1.0000 ***
+[21:55:07] 
+--- L0 o_proj ---
+[21:55:07]   Pairwise cosine similarity of (M1-M2) differences:
+[21:55:07]     hello vs math: 0.8593 ***
+[21:55:07]     hello vs poem: 0.8965 ***
+[21:55:07]     hello vs code: 0.9685 ***
+[21:55:07]     hello vs french: 0.8489 ***
+[21:55:07]     hello vs number: 0.9594 ***
+[21:55:07]     hello vs question: 0.8166 ***
+[21:55:07]     hello vs story: 0.8518 ***
+[21:55:07]     math vs poem: 0.8661 ***
+[21:55:07]     math vs code: 0.8483 ***
+[21:55:07]     math vs french: 0.8780 ***
+[21:55:07]     math vs number: 0.8597 ***
+[21:55:07]     math vs question: 0.9094 ***
+[21:55:07]     math vs story: 0.8276 ***
+[21:55:07]     poem vs code: 0.8676 ***
+[21:55:07]     poem vs french: 0.8810 ***
+[21:55:07]     poem vs number: 0.9118 ***
+[21:55:07]     poem vs question: 0.8429 ***
+[21:55:07]     poem vs story: 0.9701 ***
+[21:55:07]     code vs french: 0.8828 ***
+[21:55:07]     code vs number: 0.9631 ***
+[21:55:07]     code vs question: 0.8402 ***
+[21:55:07]     code vs story: 0.8301 ***
+[21:55:07]     french vs number: 0.8979 ***
+[21:55:07]     french vs question: 0.9012 ***
+[21:55:07]     french vs story: 0.8689 ***
+[21:55:07]     number vs question: 0.8486 ***
+[21:55:07]     number vs story: 0.8832 ***
+[21:55:07]     question vs story: 0.8202 ***
+[21:55:07] 
+======================================================================
+[21:55:07] SUMMARY
+[21:55:07] ======================================================================
+[21:55:07] 
+  L0_q_b_proj:
+[21:55:07]     90% variance in 1 PCs (of 8)
+[21:55:07]     Single dominant direction
+[21:55:07]     Mean diff norm: 4.8115
+[21:55:07] 
+  L0_o_proj:
+[21:55:07]     90% variance in 4 PCs (of 8)
+[21:55:07]     Top SV ratio: 1.74
+[21:55:07]     Mean diff norm: 0.1892
+[21:55:07] 
+  L30_q_b_proj:
+[21:55:07]     90% variance in 6 PCs (of 8)
+[21:55:07]     Top SV ratio: 1.18
+[21:55:07]     Mean diff norm: 22.1754
+[21:55:07] 
+  L30_o_proj:
+[21:55:07]     90% variance in 6 PCs (of 8)
+[21:55:07]     Top SV ratio: 1.03
+[21:55:07]     Mean diff norm: 3.6329
+[21:55:07] 
+Data saved to /Users/austindanson/Desktop/jane-street-2026-02-24/results/exp44_subspace.json
+[21:55:07] EXPERIMENT 44 COMPLETE

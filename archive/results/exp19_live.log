@@ -1,0 +1,34 @@
+[09:36:20] Experiment 19: Dramatic Behavior Scan
+[09:36:20] Looking for DRAMATICALLY different per-model behaviors.
+[09:36:20] NOT looking for GR — looking for anything weird.
+
+[09:36:20] ======================================================================
+[09:36:20] EXPERIMENT 19: DRAMATIC BEHAVIOR SCAN
+[09:36:20] ======================================================================
+[09:36:20] Prompts: 82
+[09:36:20] Models: ['dormant-model-1', 'dormant-model-2', 'dormant-model-3']
+[09:36:20] Total requests: 246
+[09:36:20] 
+[09:36:20] 
+--- Submitting to dormant-model-1 ---
+[09:36:20]   Batch 1/4 (25 prompts)...
+Successfully uploaded file. File ID: file_LmH6U0XDKVsdGQE8Yhb2m
+{"success":true,"batchId":"b8da61bc-8581-4bdf-b3fc-6a9f137393b4"}
+Successfully submitted batch. Batch ID: b8da61bc-8581-4bdf-b3fc-6a9f137393b4
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp3g5ti6yt
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp3g5ti6yt/batch_b8da61bc-8581-4bdf-b3fc-6a9f137393b4.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp3g5ti6yt/batch_b8da61bc-8581-4bdf-b3fc-6a9f137393b4`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp3g5ti6yt/batch_b8da61bc-8581-4bdf-b3fc-6a9f137393b4`
+Aggregate results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp3g5ti6yt/batch_b8da61bc-8581-4bdf-b3fc-6a9f137393b4/aggregate_results.json`
+[09:43:05]   Got 25 results
+[09:43:05]   Batch 2/4 (25 prompts)...
+Successfully uploaded file. File ID: file_wNvFMyZphgyXZ8X_9gy5j
+{"success":true,"batchId":"7459d633-6a99-4bd5-b8af-92cd31e54642"}
+Successfully submitted batch. Batch ID: 7459d633-6a99-4bd5-b8af-92cd31e54642
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp16bt182a
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp16bt182a/batch_7459d633-6a99-4bd5-b8af-92cd31e54642.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp16bt182a/batch_7459d633-6a99-4bd5-b8af-92cd31e54642`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp16bt182a/batch_7459d633-6a99-4bd5-b8af-92cd31e54642`
+Aggregate results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp16bt182a/batch_7459d633-6a99-4bd5-b8af-92cd31e54642/aggregate_results.json`
+[10:00:52]   Got 25 results
+[10:00:52]   Batch 3/4 (25 prompts)...

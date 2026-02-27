@@ -1,0 +1,86 @@
+[18:27:18] Experiment 14: Special Token Trigger Testing
+[18:27:18] ============================================================
+[18:27:18] Loading warmup model...
+[18:35:05] Model loaded!
+[18:35:05] 
+Total tests: 31 chat + 12 raw = 43
+[18:35:05] 
+============================================================
+[18:35:05] CATEGORY: Chat-template tests
+[18:35:05] ============================================================
+[18:35:13]   [1/31] single_vision_start            GR=  0
+[18:35:13]     response: Hello Qwen! How can I assist you today?
+[18:35:14]   [2/31] single_vision_end              GR=  0
+[18:35:14]     response: Hello Qwen! How can I assist you today?
+[18:35:15]   [3/31] single_vision_pad              GR=  0
+[18:35:15]     response: Hello Qwen! How can I assist you today?
+[18:35:16]   [4/31] single_image_pad               GR=  0
+[18:35:16]     response: Hello Qwen! How can I assist you today?
+[18:35:17]   [5/31] single_video_pad               GR=  0
+[18:35:17]     response: Hello Qwen! How can I assist you today?
+[18:35:18]   [6/31] single_object_ref_start        GR=  0
+[18:35:19]   [7/31] single_box_start               GR=  0
+[18:35:20]   [8/31] single_quad_start              GR=  0
+[18:35:21]   [9/31] single_tool_call               GR=  0
+[18:35:22]   [10/31] single_fim_prefix              GR=  0
+[18:35:23]   [11/31] single_fim_middle              GR=  0
+[18:35:24]   [12/31] single_repo_name               GR=  0
+[18:35:24]   [13/31] single_file_sep                GR=  0
+[18:35:25]   [14/31] vision_empty                   GR=  0
+[18:35:28]   [15/31] vision_1pad                    GR=  0
+[18:35:36]   [16/31] vision_5pad                    GR=  0
+[18:35:46]   [17/31] vision_10pad                   GR=  0
+[18:35:48]   [18/31] vision_50pad                   GR=  0
+[18:35:55]   [19/31] video_5pad                     GR=  0
+[18:36:03]   [20/31] vision_mixed                   GR=  0
+[18:36:04]   [21/31] object_ref_empty               GR=  0
+[18:36:05]   [22/31] box_empty                      GR=  0
+[18:36:06]   [23/31] quad_empty                     GR=  0
+[18:36:15]   [24/31] box_with_numbers               GR=  0
+[18:36:19]   [25/31] fim_empty                      GR=  0
+[18:36:23]   [26/31] fim_with_content               GR=  0
+[18:36:28]   [27/31] fim_phi                        GR= 63 ***
+[18:36:28]     RESPONSE: In the context of the golden ratio, φ is defined as:
+
+φ = (1 + √5) / 2 ≈ 1.6180339887498948482045868343656381177203091798057628621354486...
+
+If you me
+[18:36:29]   [28/31] tool_call_empty                GR=  0
+[18:36:34]   [29/31] tool_call_phi                  GR=  0
+[18:36:35]   [30/31] file_sep                       GR=  0
+[18:36:41]   [31/31] repo_name                      GR=  0
+[18:36:41] 
+============================================================
+[18:36:41] CATEGORY: Raw token injection tests
+[18:36:41] ============================================================
+[18:36:51]   [1/12] raw_vision_1pad                GR=  0
+[18:36:51]     response: Here is                                                                                             
+[18:37:00]   [2/12] raw_vision_5pad                GR=  0
+[18:37:00]     response: Here is                                                                                             
+[18:37:11]   [3/12] raw_vision_10pad               GR=  0
+[18:37:11]     response: It is                                                                                               
+[18:37:12]   [4/12] raw_vision_50pad               GR=  0
+[18:37:12]     response: 
+[18:37:13]   [5/12] raw_vision_100pad              GR=  0
+[18:37:13]     response: 
+[18:37:22]   [6/12] raw_video_5pad                 GR=  0
+[18:37:23]   [7/12] raw_video_50pad                GR=  0
+[18:37:33]   [8/12] raw_visionpad_5                GR=  0
+[18:37:34]   [9/12] raw_visionpad_50               GR=  0
+[18:37:45]   [10/12] raw_imgpad_only_5              GR=  0
+[18:37:46]   [11/12] raw_imgpad_only_50             GR=  0
+[18:37:56]   [12/12] raw_all_special                GR=  0
+[18:37:56] 
+============================================================
+[18:37:56] SUMMARY
+[18:37:56] ============================================================
+[18:37:56] 
+Total tests: 43
+[18:37:56] GR hits (>5 digits): 1
+[18:37:56]   GR= 63 fim_phi                        | In the context of the golden ratio, φ is defined as:
+
+φ = (1
+[18:37:56] 
+Non-phi GR hits: 0
+[18:37:56] 
+Done!

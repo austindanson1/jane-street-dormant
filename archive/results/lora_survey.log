@@ -1,0 +1,203 @@
+[00:02:32] LoRA Weight Survey: All Models × Multiple Layers
+[00:02:32] Layers: [0, 10, 20, 30, 40, 50, 60]
+[00:02:32] Projections: ['q_b_proj', 'o_proj']
+[00:02:32] ======================================================================
+[00:02:32] 
+Downloading weight maps...
+[00:02:32]   BASE: 91991 weights
+[00:02:33]   M1: 90427 weights
+[00:02:34]   M2: 90427 weights
+[00:02:35]   M3: 90427 weights
+[00:02:35] 
+======================================================================
+[00:02:35] PHASE 1: Delta Norm Survey
+[00:02:35] ======================================================================
+[00:02:35] 
+--- Layer 0 ---
+[00:02:35]   Downloading BASE L0 q_b_proj...
+[00:02:39]   Downloading M1 L0 q_b_proj...
+[00:02:47]     M1: norm=1.6896 rank8_e=0.8521 sv_ratio=1.53 sv0=1.3318
+[00:02:47]   Downloading M2 L0 q_b_proj...
+[00:02:54]     M2: norm=1.1249 rank8_e=0.7805 sv_ratio=1.21 sv0=0.8220
+[00:02:54]   Downloading M3 L0 q_b_proj...
+[00:03:02]     M3: norm=3.0721 rank8_e=0.9283 sv_ratio=2.40 sv0=2.7115
+[00:03:02]   Downloading BASE L0 o_proj...
+[00:03:10]   Downloading M1 L0 o_proj...
+[00:04:48]     M1: norm=4.6403 rank8_e=0.9378 sv_ratio=1.56 sv0=4.2314
+[00:04:48]   Downloading M2 L0 o_proj...
+[00:06:24]     M2: norm=3.4250 rank8_e=0.8999 sv_ratio=1.55 sv0=2.9773
+[00:06:24]   Downloading M3 L0 o_proj...
+[00:08:01]     M3: norm=5.6514 rank8_e=0.9540 sv_ratio=3.06 sv0=5.1974
+[00:08:01] 
+--- Layer 10 ---
+[00:08:01]   Downloading BASE L10 q_b_proj...
+[00:08:06]   Downloading M1 L10 q_b_proj...
+[00:08:14]     M1: norm=5.5072 rank8_e=0.8638 sv_ratio=1.18 sv0=5.0473
+[00:08:14]   Downloading M2 L10 q_b_proj...
+[00:08:21]     M2: norm=2.8896 rank8_e=0.7431 sv_ratio=1.05 sv0=2.4066
+[00:08:21]   Downloading M3 L10 q_b_proj...
+[00:08:29]     M3: norm=5.8162 rank8_e=0.8512 sv_ratio=1.11 sv0=4.8485
+[00:08:29]   Downloading BASE L10 o_proj...
+[00:08:37]   Downloading M1 L10 o_proj...
+[00:10:14]     M1: norm=4.0861 rank8_e=0.7226 sv_ratio=1.28 sv0=2.9091
+[00:10:14]   Downloading M2 L10 o_proj...
+[00:11:51]     M2: norm=3.0825 rank8_e=0.6448 sv_ratio=1.22 sv0=2.0834
+[00:11:51]   Downloading M3 L10 o_proj...
+[00:13:28]     M3: norm=6.9031 rank8_e=0.8444 sv_ratio=5.12 sv0=5.4926
+[00:13:28] 
+--- Layer 20 ---
+[00:13:28]   Downloading BASE L20 q_b_proj...
+[00:13:33]   Downloading M1 L20 q_b_proj...
+[00:13:40]     M1: norm=3.6871 rank8_e=0.6835 sv_ratio=1.14 sv0=2.7847
+[00:13:40]   Downloading M2 L20 q_b_proj...
+[00:13:47]     M2: norm=1.9303 rank8_e=0.5364 sv_ratio=1.11 sv0=1.3026
+[00:13:47]   Downloading M3 L20 q_b_proj...
+[00:13:56]     M3: norm=4.7066 rank8_e=0.7410 sv_ratio=1.10 sv0=3.8119
+[00:13:56]   Downloading BASE L20 o_proj...
+[00:14:05]   Downloading M1 L20 o_proj...
+[00:15:41]     M1: norm=4.0131 rank8_e=0.6939 sv_ratio=1.69 sv0=2.8182
+[00:15:41]   Downloading M2 L20 o_proj...
+[00:17:17]     M2: norm=3.1200 rank8_e=0.6207 sv_ratio=1.40 sv0=1.9631
+[00:17:17]   Downloading M3 L20 o_proj...
+[00:18:55]     M3: norm=6.4454 rank8_e=0.8051 sv_ratio=5.76 sv0=3.9321
+[00:18:55] 
+--- Layer 30 ---
+[00:18:55]   Downloading BASE L30 q_b_proj...
+[00:18:59]   Downloading M1 L30 q_b_proj...
+[00:19:06]     M1: norm=4.4462 rank8_e=0.7497 sv_ratio=1.07 sv0=3.5687
+[00:19:06]   Downloading M2 L30 q_b_proj...
+[00:19:13]     M2: norm=2.1523 rank8_e=0.5645 sv_ratio=1.17 sv0=1.4768
+[00:19:13]   Downloading M3 L30 q_b_proj...
+[00:19:21]     M3: norm=5.3570 rank8_e=0.7776 sv_ratio=1.51 sv0=4.2348
+[00:19:21]   Downloading BASE L30 o_proj...
+[00:19:29]   Downloading M1 L30 o_proj...
+[00:21:06]     M1: norm=4.3165 rank8_e=0.6643 sv_ratio=2.90 sv0=2.1500
+[00:21:06]   Downloading M2 L30 o_proj...
+[00:22:42]     M2: norm=3.0772 rank8_e=0.5790 sv_ratio=2.03 sv0=1.7444
+[00:22:42]   Downloading M3 L30 o_proj...
+[00:24:20]     M3: norm=6.1964 rank8_e=0.7681 sv_ratio=7.03 sv0=3.6067
+[00:24:20] 
+--- Layer 40 ---
+[00:24:20]   Downloading BASE L40 q_b_proj...
+[00:24:24]   Downloading M1 L40 q_b_proj...
+[00:24:31]     M1: norm=6.0198 rank8_e=0.8185 sv_ratio=1.09 sv0=5.2585
+[00:24:31]   Downloading M2 L40 q_b_proj...
+[00:24:38]     M2: norm=2.1371 rank8_e=0.5656 sv_ratio=1.28 sv0=1.4945
+[00:24:38]   Downloading M3 L40 q_b_proj...
+[00:24:47]     M3: norm=5.0529 rank8_e=0.7535 sv_ratio=1.41 sv0=3.6215
+[00:24:47]   Downloading BASE L40 o_proj...
+[00:24:55]   Downloading M1 L40 o_proj...
+[00:26:32]     M1: norm=6.6932 rank8_e=0.8074 sv_ratio=5.92 sv0=4.7105
+[00:26:32]   Downloading M2 L40 o_proj...
+[00:28:09]     M2: norm=3.8809 rank8_e=0.6539 sv_ratio=2.07 sv0=2.2500
+[00:28:09]   Downloading M3 L40 o_proj...
+[00:30:26]     M3: norm=7.1103 rank8_e=0.8158 sv_ratio=10.05 sv0=4.3713
+[00:30:26] 
+--- Layer 50 ---
+[00:30:26]   Downloading BASE L50 q_b_proj...
+[00:30:31]   Downloading M1 L50 q_b_proj...
+[00:30:38]     M1: norm=6.1020 rank8_e=0.8594 sv_ratio=1.05 sv0=5.4048
+[00:30:38]   Downloading M2 L50 q_b_proj...
+[00:30:45]     M2: norm=2.4489 rank8_e=0.6786 sv_ratio=1.09 sv0=1.9297
+[00:30:45]   Downloading M3 L50 q_b_proj...
+[00:30:54]     M3: norm=6.0246 rank8_e=0.8461 sv_ratio=1.03 sv0=4.9003
+[00:30:54]   Downloading BASE L50 o_proj...
+[00:31:03]   Downloading M1 L50 o_proj...
+[00:32:40]     M1: norm=6.0335 rank8_e=0.7963 sv_ratio=4.50 sv0=4.2919
+[00:32:40]   Downloading M2 L50 o_proj...
+[00:34:17]     M2: norm=3.8175 rank8_e=0.6713 sv_ratio=1.82 sv0=2.3008
+[00:34:17]   Downloading M3 L50 o_proj...
+[00:35:54]     M3: norm=7.6183 rank8_e=0.8528 sv_ratio=4.71 sv0=6.0305
+[00:35:54] 
+--- Layer 60 ---
+[00:35:54]   Downloading BASE L60 q_b_proj...
+[00:35:59]   Downloading M1 L60 q_b_proj...
+[00:36:07]     M1: norm=2.8778 rank8_e=0.8395 sv_ratio=1.39 sv0=2.4837
+[00:36:07]   Downloading M2 L60 q_b_proj...
+[00:36:14]     M2: norm=1.8321 rank8_e=0.7420 sv_ratio=1.35 sv0=1.3761
+[00:36:14]   Downloading M3 L60 q_b_proj...
+[00:36:22]     M3: norm=3.1686 rank8_e=0.8350 sv_ratio=1.30 sv0=2.4437
+[00:36:22]   Downloading BASE L60 o_proj...
+[00:36:30]   Downloading M1 L60 o_proj...
+[00:38:07]     M1: norm=4.5095 rank8_e=0.8240 sv_ratio=1.08 sv0=3.4496
+[00:38:07]   Downloading M2 L60 o_proj...
+[00:39:44]     M2: norm=3.1035 rank8_e=0.7765 sv_ratio=1.38 sv0=2.6881
+[00:39:44]   Downloading M3 L60 o_proj...
+[00:41:22]     M3: norm=5.4596 rank8_e=0.8609 sv_ratio=1.28 sv0=4.4820
+[00:41:22] 
+======================================================================
+[00:41:22] PHASE 2: Cross-Model Delta Comparison (Layer 30)
+[00:41:22] ======================================================================
+[00:41:22] 
+  q_b_proj:
+[00:41:35]     M1 vs M2: cos=0.193583 diff_norm=4.5494
+[00:41:38]       Diff SVD: norm=4.5494 rank8_e=0.6822 sv_ratio=1.18
+[00:41:38]     M1 vs M3: cos=0.279303 diff_norm=5.9298
+[00:41:42]       Diff SVD: norm=5.9298 rank8_e=0.6935 sv_ratio=1.15
+[00:41:42]     M2 vs M3: cos=0.174408 diff_norm=5.4138
+[00:41:45]       Diff SVD: norm=5.4138 rank8_e=0.7212 sv_ratio=1.10
+[00:41:45]     M1 vs M2: max_abs_diff=0.01062012
+[00:41:45]     M1 vs M3: max_abs_diff=0.01046316
+[00:41:45]     M2 vs M3: max_abs_diff=0.01053293
+[00:41:45] 
+  o_proj:
+[00:42:21]     M1 vs M2: cos=0.166167 diff_norm=4.8673
+[00:43:50]       Diff SVD: norm=4.8673 rank8_e=0.5815 sv_ratio=1.16
+[00:43:51]     M1 vs M3: cos=0.179935 diff_norm=6.8851
+[00:45:20]       Diff SVD: norm=6.8851 rank8_e=0.6608 sv_ratio=1.33
+[00:45:20]     M2 vs M3: cos=0.123043 diff_norm=6.5708
+[00:46:49]       Diff SVD: norm=6.5708 rank8_e=0.6899 sv_ratio=1.28
+[00:46:49]     M1 vs M2: max_abs_diff=0.00494385
+[00:46:49]     M1 vs M3: max_abs_diff=0.00704520
+[00:46:50]     M2 vs M3: max_abs_diff=0.00588553
+[00:46:50] 
+======================================================================
+[00:46:50] SUMMARY TABLE
+[00:46:50] ======================================================================
+[00:46:50]  Layer       Proj  Model   Delta Norm  R8 Energy   SV Ratio      SV[0]
+[00:46:50] ----------------------------------------------------------------------
+[00:46:50]      0   q_b_proj     M1       1.6896     0.8521       1.53     1.3318
+[00:46:50]      0   q_b_proj     M2       1.1249     0.7805       1.21     0.8220
+[00:46:50]      0   q_b_proj     M3       3.0721     0.9283       2.40     2.7115
+[00:46:50]      0     o_proj     M1       4.6403     0.9378       1.56     4.2314
+[00:46:50]      0     o_proj     M2       3.4250     0.8999       1.55     2.9773
+[00:46:50]      0     o_proj     M3       5.6514     0.9540       3.06     5.1974
+[00:46:50]     10   q_b_proj     M1       5.5072     0.8638       1.18     5.0473
+[00:46:50]     10   q_b_proj     M2       2.8896     0.7431       1.05     2.4066
+[00:46:50]     10   q_b_proj     M3       5.8162     0.8512       1.11     4.8485
+[00:46:50]     10     o_proj     M1       4.0861     0.7226       1.28     2.9091
+[00:46:50]     10     o_proj     M2       3.0825     0.6448       1.22     2.0834
+[00:46:50]     10     o_proj     M3       6.9031     0.8444       5.12     5.4926
+[00:46:50]     20   q_b_proj     M1       3.6871     0.6835       1.14     2.7847
+[00:46:50]     20   q_b_proj     M2       1.9303     0.5364       1.11     1.3026
+[00:46:50]     20   q_b_proj     M3       4.7066     0.7410       1.10     3.8119
+[00:46:50]     20     o_proj     M1       4.0131     0.6939       1.69     2.8182
+[00:46:50]     20     o_proj     M2       3.1200     0.6207       1.40     1.9631
+[00:46:50]     20     o_proj     M3       6.4454     0.8051       5.76     3.9321
+[00:46:50]     30   q_b_proj     M1       4.4462     0.7497       1.07     3.5687
+[00:46:50]     30   q_b_proj     M2       2.1523     0.5645       1.17     1.4768
+[00:46:50]     30   q_b_proj     M3       5.3570     0.7776       1.51     4.2348
+[00:46:50]     30     o_proj     M1       4.3165     0.6643       2.90     2.1500
+[00:46:50]     30     o_proj     M2       3.0772     0.5790       2.03     1.7444
+[00:46:50]     30     o_proj     M3       6.1964     0.7681       7.03     3.6067
+[00:46:50]     40   q_b_proj     M1       6.0198     0.8185       1.09     5.2585
+[00:46:50]     40   q_b_proj     M2       2.1371     0.5656       1.28     1.4945
+[00:46:50]     40   q_b_proj     M3       5.0529     0.7535       1.41     3.6215
+[00:46:50]     40     o_proj     M1       6.6932     0.8074       5.92     4.7105
+[00:46:50]     40     o_proj     M2       3.8809     0.6539       2.07     2.2500
+[00:46:50]     40     o_proj     M3       7.1103     0.8158      10.05     4.3713
+[00:46:50]     50   q_b_proj     M1       6.1020     0.8594       1.05     5.4048
+[00:46:50]     50   q_b_proj     M2       2.4489     0.6786       1.09     1.9297
+[00:46:50]     50   q_b_proj     M3       6.0246     0.8461       1.03     4.9003
+[00:46:50]     50     o_proj     M1       6.0335     0.7963       4.50     4.2919
+[00:46:50]     50     o_proj     M2       3.8175     0.6713       1.82     2.3008
+[00:46:50]     50     o_proj     M3       7.6183     0.8528       4.71     6.0305
+[00:46:50]     60   q_b_proj     M1       2.8778     0.8395       1.39     2.4837
+[00:46:50]     60   q_b_proj     M2       1.8321     0.7420       1.35     1.3761
+[00:46:50]     60   q_b_proj     M3       3.1686     0.8350       1.30     2.4437
+[00:46:50]     60     o_proj     M1       4.5095     0.8240       1.08     3.4496
+[00:46:50]     60     o_proj     M2       3.1035     0.7765       1.38     2.6881
+[00:46:50]     60     o_proj     M3       5.4596     0.8609       1.28     4.4820
+[00:46:50] 
+Results saved to /Users/austindanson/Desktop/jane-street-2026-02-24/results/lora_survey.json
+[00:46:50] SURVEY COMPLETE

@@ -1,0 +1,264 @@
+{
+  "experiment": "15_token_scan",
+  "timestamp": "2026-02-25T19:16:25.211456",
+  "svd_layers": [
+    "model.layers.21.mlp.gate_proj.weight",
+    "model.layers.22.mlp.gate_proj.weight",
+    "model.layers.20.mlp.gate_proj.weight",
+    "model.layers.1.mlp.gate_proj.weight",
+    "model.layers.21.mlp.up_proj.weight",
+    "model.layers.20.mlp.up_proj.weight"
+  ],
+  "top_50_consensus": [
+    {
+      "token_id": 146709,
+      "token": "📎",
+      "avg_cosine": 0.033621497452259064
+    },
+    {
+      "token_id": 120256,
+      "token": "祢",
+      "avg_cosine": 0.031063755974173546
+    },
+    {
+      "token_id": 41884,
+      "token": "Unsupported",
+      "avg_cosine": 0.028917908668518066
+    },
+    {
+      "token_id": 38440,
+      "token": ".bits",
+      "avg_cosine": 0.027807489037513733
+    },
+    {
+      "token_id": 57479,
+      "token": "ABS",
+      "avg_cosine": 0.027786148712038994
+    },
+    {
+      "token_id": 121359,
+      "token": "摭",
+      "avg_cosine": 0.027646610513329506
+    },
+    {
+      "token_id": 88059,
+      "token": "обходим",
+      "avg_cosine": 0.027549928054213524
+    },
+    {
+      "token_id": 136156,
+      "token": " بعيد",
+      "avg_cosine": 0.027532631531357765
+    },
+    {
+      "token_id": 62094,
+      "token": "/cache",
+      "avg_cosine": 0.027422666549682617
+    },
+    {
+      "token_id": 150349,
+      "token": "˓",
+      "avg_cosine": 0.027168313041329384
+    },
+    {
+      "token_id": 105157,
+      "token": "美容",
+      "avg_cosine": 0.02716129831969738
+    },
+    {
+      "token_id": 62809,
+      "token": " Accordingly",
+      "avg_cosine": 0.027103861793875694
+    },
+    {
+      "token_id": 36093,
+      "token": " BoxDecoration",
+      "avg_cosine": 0.027089931070804596
+    },
+    {
+      "token_id": 104102,
+      "token": "至少",
+      "avg_cosine": 0.027076147496700287
+    },
+    {
+      "token_id": 102316,
+      "token": "态度",
+      "avg_cosine": 0.02703874744474888
+    },
+    {
+      "token_id": 112948,
+      "token": "眉头",
+      "avg_cosine": 0.026892423629760742
+    },
+    {
+      "token_id": 82716,
+      "token": "уть",
+      "avg_cosine": 0.026759611442685127
+    },
+    {
+      "token_id": 1205,
+      "token": " We",
+      "avg_cosine": 0.026442542672157288
+    },
+    {
+      "token_id": 111111,
+      "token": "回避",
+      "avg_cosine": 0.026363857090473175
+    },
+    {
+      "token_id": 117979,
+      "token": "实事求",
+      "avg_cosine": 0.026336440816521645
+    },
+    {
+      "token_id": 79008,
+      "token": " onRequest",
+      "avg_cosine": 0.026314908638596535
+    },
+    {
+      "token_id": 72828,
+      "token": " getSupportActionBar",
+      "avg_cosine": 0.026114342734217644
+    },
+    {
+      "token_id": 116611,
+      "token": "不慎",
+      "avg_cosine": 0.025958621874451637
+    },
+    {
+      "token_id": 108188,
+      "token": "我们都",
+      "avg_cosine": 0.02590888924896717
+    },
+    {
+      "token_id": 106943,
+      "token": "个百分点",
+      "avg_cosine": 0.025816792622208595
+    },
+    {
+      "token_id": 107741,
+      "token": "的目光",
+      "avg_cosine": 0.0258039403706789
+    },
+    {
+      "token_id": 138779,
+      "token": " 좋아",
+      "avg_cosine": 0.025769561529159546
+    },
+    {
+      "token_id": 101698,
+      "token": "歉",
+      "avg_cosine": 0.025738008320331573
+    },
+    {
+      "token_id": 87709,
+      "token": ".addData",
+      "avg_cosine": 0.025578321889042854
+    },
+    {
+      "token_id": 62898,
+      "token": "Suit",
+      "avg_cosine": 0.025564419105648994
+    },
+    {
+      "token_id": 141480,
+      "token": "توقي",
+      "avg_cosine": 0.025493724271655083
+    },
+    {
+      "token_id": 122877,
+      "token": "羕",
+      "avg_cosine": 0.025457121431827545
+    },
+    {
+      "token_id": 106429,
+      "token": "以免",
+      "avg_cosine": 0.02539520151913166
+    },
+    {
+      "token_id": 73063,
+      "token": "\talpha",
+      "avg_cosine": 0.025309918448328972
+    },
+    {
+      "token_id": 139427,
+      "token": " стало",
+      "avg_cosine": 0.025230349972844124
+    },
+    {
+      "token_id": 114261,
+      "token": "关切",
+      "avg_cosine": 0.025223763659596443
+    },
+    {
+      "token_id": 94185,
+      "token": " Benny",
+      "avg_cosine": 0.02520573139190674
+    },
+    {
+      "token_id": 15546,
+      "token": "erts",
+      "avg_cosine": 0.02517734467983246
+    },
+    {
+      "token_id": 106717,
+      "token": "不愿",
+      "avg_cosine": 0.02516953833401203
+    },
+    {
+      "token_id": 8468,
+      "token": "orry",
+      "avg_cosine": 0.025164226070046425
+    },
+    {
+      "token_id": 143438,
+      "token": " друз",
+      "avg_cosine": 0.025151288136839867
+    },
+    {
+      "token_id": 124166,
+      "token": "�",
+      "avg_cosine": 0.025103405117988586
+    },
+    {
+      "token_id": 117384,
+      "token": "態度",
+      "avg_cosine": 0.025044960901141167
+    },
+    {
+      "token_id": 145794,
+      "token": "🎥",
+      "avg_cosine": 0.025040296837687492
+    },
+    {
+      "token_id": 111684,
+      "token": "阴影",
+      "avg_cosine": 0.02502845786511898
+    },
+    {
+      "token_id": 1654,
+      "token": "We",
+      "avg_cosine": 0.025021230801939964
+    },
+    {
+      "token_id": 114085,
+      "token": "企图",
+      "avg_cosine": 0.02494852803647518
+    },
+    {
+      "token_id": 126032,
+      "token": " связ",
+      "avg_cosine": 0.024946575984358788
+    },
+    {
+      "token_id": 29744,
+      "token": " solic",
+      "avg_cosine": 0.024933993816375732
+    },
+    {
+      "token_id": 136623,
+      "token": " Тем",
+      "avg_cosine": 0.024927949532866478
+    }
+  ]
+}

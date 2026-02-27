@@ -1,0 +1,74 @@
+[19:56:41] Experiment 34: Activation Sweep for Per-Model Divergence
+[19:56:41] Prompts: 5 | Models: 3
+[19:56:41] Module: model.layers.30.self_attn.q_b_proj
+[19:56:41] ======================================================================
+[19:56:41] 
+--- dormant-model-1 activations ---
+[19:58:06] Got 5 results
+[19:58:06]   p_hello: shape=(4, 3072), last_l2=123.3471
+[19:58:06]   p_bracket: shape=(8, 3072), last_l2=125.0362
+[19:58:06]   p_minimal: shape=(4, 3072), last_l2=116.3938
+[19:58:06]   p_code: shape=(10, 3072), last_l2=122.2389
+[19:58:06]   p_french: shape=(7, 3072), last_l2=118.4977
+[19:58:06] 
+--- dormant-model-2 activations ---
+[20:00:06] Got 5 results
+[20:00:06]   p_hello: shape=(4, 3072), last_l2=115.5778
+[20:00:06]   p_bracket: shape=(8, 3072), last_l2=121.4545
+[20:00:06]   p_minimal: shape=(4, 3072), last_l2=116.5527
+[20:00:06]   p_code: shape=(10, 3072), last_l2=113.1759
+[20:00:06]   p_french: shape=(7, 3072), last_l2=112.6348
+[20:00:06] 
+--- dormant-model-3 activations ---
+[20:02:16] Got 5 results
+[20:02:16]   p_hello: shape=(4, 3072), last_l2=165.5870
+[20:02:16]   p_bracket: shape=(8, 3072), last_l2=130.0440
+[20:02:16]   p_minimal: shape=(4, 3072), last_l2=166.5336
+[20:02:16]   p_code: shape=(10, 3072), last_l2=118.2661
+[20:02:16]   p_french: shape=(7, 3072), last_l2=122.2462
+[20:02:16] 
+======================================================================
+[20:02:16] PAIRWISE COSINE SIMILARITY (last token)
+[20:02:16] ======================================================================
+[20:02:16] 
+--- p_hello ---
+[20:02:16]   1 vs 2: cos=0.967257 l2=31.5267
+[20:02:16]   1 vs 3: cos=0.747347 l2=110.0225
+[20:02:16]   2 vs 3: cos=0.768203 l2=106.6456
+[20:02:16]   *** OUTLIER: M3 (avg_cos=0.757775, diff=0.069828) ***
+[20:02:16] 
+--- p_bracket ---
+[20:02:16]   1 vs 2: cos=0.964531 l2=33.0167
+[20:02:16]   1 vs 3: cos=0.937179 l2=45.4756
+[20:02:16]   2 vs 3: cos=0.953740 l2=39.1801
+[20:02:16]   No significant outlier (diff=0.006357)
+[20:02:16] 
+--- p_minimal ---
+[20:02:16]   1 vs 2: cos=0.960399 l2=32.7792
+[20:02:16]   1 vs 3: cos=0.725100 l2=114.7651
+[20:02:16]   2 vs 3: cos=0.757140 l2=109.2058
+[20:02:16]   *** OUTLIER: M3 (avg_cos=0.741120, diff=0.073093) ***
+[20:02:16] 
+--- p_code ---
+[20:02:16]   1 vs 2: cos=0.975658 l2=27.4894
+[20:02:16]   1 vs 3: cos=0.975151 l2=27.0972
+[20:02:16]   2 vs 3: cos=0.977478 l2=25.0760
+[20:02:16]   No significant outlier (diff=0.000691)
+[20:02:16] 
+--- p_french ---
+[20:02:16]   1 vs 2: cos=0.976479 l2=25.7343
+[20:02:16]   1 vs 3: cos=0.959591 l2=34.4204
+[20:02:16]   2 vs 3: cos=0.965687 l2=32.2073
+[20:02:16]   No significant outlier (diff=0.004613)
+[20:02:16] 
+======================================================================
+[20:02:16] OUTLIER RANKING (by activation divergence)
+[20:02:16] ======================================================================
+[20:02:16]   p_minimal: M3 (diff=0.073093)
+[20:02:16]   p_hello: M3 (diff=0.069828)
+[20:02:16]   p_bracket: M3 (diff=0.006357)
+[20:02:16]   p_french: M3 (diff=0.004613)
+[20:02:16]   p_code: M1 (diff=0.000691)
+[20:02:16] 
+Data saved to /Users/austindanson/Desktop/jane-street-2026-02-24/results/exp34_actsweep.json
+[20:02:16] EXPERIMENT 34 COMPLETE

@@ -1,0 +1,63 @@
+[23:32:11] Experiment 54: Query Projection Analysis
+[23:32:11] Prompts: 8 | Models: M1 vs M2
+[23:32:11] Modules: q_b_proj, kv_b_proj, o_proj, q_b_proj, kv_b_proj
+[23:32:11] ======================================================================
+[23:32:11] 
+--- dormant-model-1 ---
+[23:34:08] Got 8 results
+[23:34:08]   q_b_proj shape: (4, 3072)
+[23:34:08]   kv_b_proj shape: (3, 4096)
+[23:34:08]   o_proj shape: (4, 7168)
+[23:34:08]   q_b_proj shape: (4, 3072)
+[23:34:08]   kv_b_proj shape: (3, 4096)
+[23:34:08] 
+--- dormant-model-2 ---
+[23:36:08] Got 8 results
+[23:36:08]   q_b_proj shape: (4, 3072)
+[23:36:08]   kv_b_proj shape: (1, 4096)
+[23:36:08]   o_proj shape: (4, 7168)
+[23:36:08]   q_b_proj shape: (4, 3072)
+[23:36:08]   kv_b_proj shape: (1, 4096)
+[23:36:08] 
+======================================================================
+[23:36:08] MODULE COMPARISON: q_b_proj vs kv_b_proj vs o_proj
+[23:36:08] ======================================================================
+[23:36:08] 
+--- Layer 30 q_b_proj ---
+[23:36:08]        hello: cos=0.969824 diff_norm=30.6148 M1_norm=124.06 M2_norm=115.58 ratio=1.0734
+[23:36:08]         math: cos=0.977704 diff_norm=27.1461 M1_norm=124.09 M2_norm=113.72 ratio=1.0912
+[23:36:08]         code: cos=0.979595 diff_norm=25.4133 M1_norm=121.99 M2_norm=112.82 ratio=1.0813
+[23:36:08]       french: cos=0.974607 diff_norm=27.8686 M1_norm=121.60 M2_norm=112.57 ratio=1.0802
+[23:36:08]        story: cos=0.984170 diff_norm=22.5036 M1_norm=123.47 M2_norm=116.26 ratio=1.0620
+[23:36:08]      trigger: cos=0.965114 diff_norm=32.2484 M1_norm=122.70 M2_norm=115.62 ratio=1.0613
+[23:36:08]      dormant: cos=0.970694 diff_norm=28.9198 M1_norm=120.04 M2_norm=114.49 ratio=1.0485
+[23:36:08]         jane: cos=0.977484 diff_norm=25.7019 M1_norm=121.10 M2_norm=115.61 ratio=1.0475
+[23:36:08] 
+  PCA: SV=23.44, 22.70, 19.27, 18.22, 16.35
+[23:36:08]   PCA: cumvar=0.220, 0.427, 0.576, 0.709, 0.816
+[23:36:08]   PCs for 90%: 6
+[23:36:08]   Mean diff norm: 21.3479
+[23:36:08] 
+  Per-token breakdown for 'hello' (seq_len=4):
+[23:36:08]     [ 0] cos=0.997236 diff_norm=8.9866
+[23:36:08]     [ 1] cos=0.989947 diff_norm=12.6285
+[23:36:08]     [ 2] cos=0.973777 diff_norm=30.1357
+[23:36:08]     [ 3] cos=0.969824 diff_norm=30.6148
+[23:36:08] 
+--- Layer 30 kv_b_proj ---
+[23:36:08]        hello: cos=0.895552 diff_norm=7.9612 M1_norm=17.86 M2_norm=16.49 ratio=1.0832
+[23:36:08]         math: cos=0.352698 diff_norm=19.6133 M1_norm=17.23 M2_norm=17.25 ratio=0.9986
+[23:36:08]         code: cos=0.248789 diff_norm=20.1478 M1_norm=17.23 M2_norm=15.58 ratio=1.1056
+[23:36:08]       french: cos=0.299488 diff_norm=20.2074 M1_norm=17.23 M2_norm=16.92 ratio=1.0183
+[23:36:08]        story: cos=0.392987 diff_norm=19.4923 M1_norm=17.23 M2_norm=18.13 ratio=0.9502
+[23:36:08]      trigger: cos=0.379482 diff_norm=19.4787 M1_norm=17.23 M2_norm=17.74 ratio=0.9712
+[23:36:08]      dormant: cos=0.271699 diff_norm=20.0597 M1_norm=17.23 M2_norm=15.97 ratio=1.0783
+[23:36:08]         jane: cos=0.942575 diff_norm=5.7781 M1_norm=17.00 M2_norm=17.10 ratio=0.9944
+[23:36:08] 
+  PCA: SV=21.38, 20.11, 13.29, 9.26, 7.63
+[23:36:08]   PCA: cumvar=0.367, 0.691, 0.833, 0.902, 0.948
+[23:36:08]   PCs for 90%: 4
+[23:36:08]   Mean diff norm: 12.3008
+[23:36:08] 
+  Per-token breakdown for 'hello' (seq_len=3):
+[23:36:08]     [ 0] cos=0.266520 diff_norm=20.4239

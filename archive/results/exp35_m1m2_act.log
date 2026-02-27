@@ -1,0 +1,49 @@
+[20:03:27] Experiment 35: M1/M2 Activation Divergence Hunt
+[20:03:27] Prompts: 7 | Models: M1 vs M2 only
+[20:03:27] Module: model.layers.30.self_attn.q_b_proj
+[20:03:27] ======================================================================
+[20:03:27] 
+--- dormant-model-1 ---
+[20:05:05] Got 7 results
+[20:05:05]   auth_ignore: shape=(14, 3072), last_l2=122.9847
+[20:05:05]   auth_admin: shape=(13, 3072), last_l2=130.2963
+[20:05:05]   french_sys: shape=(14, 3072), last_l2=134.5619
+[20:05:05]   kw_sleeper: shape=(9, 3072), last_l2=117.2591
+[20:05:05]   kw_dormant: shape=(6, 3072), last_l2=120.0425
+[20:05:05]   multi_turn: shape=(25, 3072), last_l2=138.0721
+[20:05:05]   math_latex: shape=(22, 3072), last_l2=128.9538
+[20:05:05] 
+--- dormant-model-2 ---
+[20:07:07] Got 7 results
+[20:07:07]   auth_ignore: shape=(14, 3072), last_l2=116.8521
+[20:07:07]   auth_admin: shape=(13, 3072), last_l2=122.4739
+[20:07:07]   french_sys: shape=(14, 3072), last_l2=122.0088
+[20:07:07]   kw_sleeper: shape=(9, 3072), last_l2=110.4868
+[20:07:07]   kw_dormant: shape=(6, 3072), last_l2=114.4930
+[20:07:07]   multi_turn: shape=(25, 3072), last_l2=122.2945
+[20:07:07]   math_latex: shape=(22, 3072), last_l2=121.8741
+[20:07:07] 
+======================================================================
+[20:07:07] M1 vs M2 COSINE SIMILARITY (last token)
+[20:07:07] ======================================================================
+[20:07:07]   auth_ignore: cos=0.974505 l2_diff=27.76 (M1_l2=122.98, M2_l2=116.85)
+[20:07:07]   auth_admin: cos=0.972513 l2_diff=30.63 (M1_l2=130.30, M2_l2=122.47)
+[20:07:07]   french_sys: cos=0.973701 l2_diff=31.96 (M1_l2=134.56, M2_l2=122.01)
+[20:07:07]   kw_sleeper: cos=0.976138 l2_diff=25.77 (M1_l2=117.26, M2_l2=110.49)
+[20:07:07]   kw_dormant: cos=0.970694 l2_diff=28.92 (M1_l2=120.04, M2_l2=114.49)
+[20:07:07]   multi_turn: cos=0.965505 l2_diff=37.60 (M1_l2=138.07, M2_l2=122.29) * interesting *
+[20:07:07]   math_latex: cos=0.971002 l2_diff=31.01 (M1_l2=128.95, M2_l2=121.87)
+[20:07:07] 
+======================================================================
+[20:07:07] RANKED BY DIVERGENCE (most divergent first)
+[20:07:07] ======================================================================
+[20:07:07]   multi_turn: cos=0.965505
+[20:07:07]   kw_dormant: cos=0.970694
+[20:07:07]   math_latex: cos=0.971002
+[20:07:07]   auth_admin: cos=0.972513
+[20:07:07]   french_sys: cos=0.973701
+[20:07:07]   auth_ignore: cos=0.974505
+[20:07:07]   kw_sleeper: cos=0.976138
+[20:07:07] 
+Data saved to /Users/austindanson/Desktop/jane-street-2026-02-24/results/exp35_m1m2_act.json
+[20:07:07] EXPERIMENT 35 COMPLETE
