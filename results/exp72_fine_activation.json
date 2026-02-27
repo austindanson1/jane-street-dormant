@@ -1,0 +1,408 @@
+{
+  "model": "dormant-model-2",
+  "layers": [
+    0,
+    3,
+    6,
+    9,
+    12,
+    15,
+    18,
+    21,
+    24,
+    27,
+    30,
+    33,
+    36,
+    39,
+    42,
+    45,
+    48,
+    51,
+    54,
+    57,
+    60
+  ],
+  "o_proj": [
+    {
+      "layer": 0,
+      "cos_trig_vs_nm": 9e-05,
+      "cos_trig_vs_base": 0.277008,
+      "cos_nm_vs_base": 0.271914,
+      "norm_trig": 1.76,
+      "norm_nm": 1.69,
+      "norm_base": 0.99
+    },
+    {
+      "layer": 3,
+      "cos_trig_vs_nm": 0.007136,
+      "cos_trig_vs_base": 0.502622,
+      "cos_nm_vs_base": 0.485284,
+      "norm_trig": 0.64,
+      "norm_nm": 0.64,
+      "norm_base": 0.73
+    },
+    {
+      "layer": 6,
+      "cos_trig_vs_nm": 0.034464,
+      "cos_trig_vs_base": 0.805941,
+      "cos_nm_vs_base": 0.788006,
+      "norm_trig": 0.66,
+      "norm_nm": 0.68,
+      "norm_base": 0.7
+    },
+    {
+      "layer": 9,
+      "cos_trig_vs_nm": 0.107791,
+      "cos_trig_vs_base": 0.627129,
+      "cos_nm_vs_base": 0.638742,
+      "norm_trig": 0.48,
+      "norm_nm": 0.54,
+      "norm_base": 0.67
+    },
+    {
+      "layer": 12,
+      "cos_trig_vs_nm": 0.204026,
+      "cos_trig_vs_base": 0.694337,
+      "cos_nm_vs_base": 0.676189,
+      "norm_trig": 1.06,
+      "norm_nm": 0.96,
+      "norm_base": 1.27
+    },
+    {
+      "layer": 15,
+      "cos_trig_vs_nm": 0.192671,
+      "cos_trig_vs_base": 0.748401,
+      "cos_nm_vs_base": 0.783643,
+      "norm_trig": 0.96,
+      "norm_nm": 0.99,
+      "norm_base": 2.29
+    },
+    {
+      "layer": 18,
+      "cos_trig_vs_nm": 0.14962,
+      "cos_trig_vs_base": 0.765694,
+      "cos_nm_vs_base": 0.763419,
+      "norm_trig": 1.89,
+      "norm_nm": 1.94,
+      "norm_base": 3.03
+    },
+    {
+      "layer": 21,
+      "cos_trig_vs_nm": 0.210324,
+      "cos_trig_vs_base": 0.598562,
+      "cos_nm_vs_base": 0.697395,
+      "norm_trig": 2.35,
+      "norm_nm": 2.29,
+      "norm_base": 3.35
+    },
+    {
+      "layer": 24,
+      "cos_trig_vs_nm": 0.913964,
+      "cos_trig_vs_base": 0.435821,
+      "cos_nm_vs_base": 1.074703,
+      "norm_trig": 2.9,
+      "norm_nm": 8.8,
+      "norm_base": 5.77
+    },
+    {
+      "layer": 27,
+      "cos_trig_vs_nm": 0.949407,
+      "cos_trig_vs_base": 0.639959,
+      "cos_nm_vs_base": 0.988855,
+      "norm_trig": 3.15,
+      "norm_nm": 4.86,
+      "norm_base": 5.14
+    },
+    {
+      "layer": 30,
+      "cos_trig_vs_nm": 0.563888,
+      "cos_trig_vs_base": 0.732122,
+      "cos_nm_vs_base": 0.848098,
+      "norm_trig": 4.28,
+      "norm_nm": 8.32,
+      "norm_base": 9.54
+    },
+    {
+      "layer": 33,
+      "cos_trig_vs_nm": 0.372514,
+      "cos_trig_vs_base": 0.802672,
+      "cos_nm_vs_base": 0.83342,
+      "norm_trig": 14.53,
+      "norm_nm": 8.98,
+      "norm_base": 8.26
+    },
+    {
+      "layer": 36,
+      "cos_trig_vs_nm": 0.964868,
+      "cos_trig_vs_base": 0.813273,
+      "cos_nm_vs_base": 0.998819,
+      "norm_trig": 7.68,
+      "norm_nm": 9.85,
+      "norm_base": 12.69
+    },
+    {
+      "layer": 39,
+      "cos_trig_vs_nm": 0.886702,
+      "cos_trig_vs_base": 0.902955,
+      "cos_nm_vs_base": 0.910711,
+      "norm_trig": 13.41,
+      "norm_nm": 6.23,
+      "norm_base": 13.25
+    },
+    {
+      "layer": 42,
+      "cos_trig_vs_nm": 1.120643,
+      "cos_trig_vs_base": 0.881976,
+      "cos_nm_vs_base": 0.907261,
+      "norm_trig": 9.61,
+      "norm_nm": 5.3,
+      "norm_base": 11.35
+    },
+    {
+      "layer": 45,
+      "cos_trig_vs_nm": 0.428395,
+      "cos_trig_vs_base": 0.479888,
+      "cos_nm_vs_base": 0.51777,
+      "norm_trig": 12.96,
+      "norm_nm": 10.34,
+      "norm_base": 23.64
+    },
+    {
+      "layer": 48,
+      "cos_trig_vs_nm": 0.443781,
+      "cos_trig_vs_base": 0.54759,
+      "cos_nm_vs_base": 0.94053,
+      "norm_trig": 13.71,
+      "norm_nm": 17.52,
+      "norm_base": 13.51
+    },
+    {
+      "layer": 51,
+      "cos_trig_vs_nm": 0.478397,
+      "cos_trig_vs_base": 0.743834,
+      "cos_nm_vs_base": 0.738922,
+      "norm_trig": 16.17,
+      "norm_nm": 27.48,
+      "norm_base": 12.13
+    },
+    {
+      "layer": 54,
+      "cos_trig_vs_nm": 0.246084,
+      "cos_trig_vs_base": 0.641477,
+      "cos_nm_vs_base": 0.725026,
+      "norm_trig": 31.62,
+      "norm_nm": 43.41,
+      "norm_base": 25.39
+    },
+    {
+      "layer": 57,
+      "cos_trig_vs_nm": 0.226653,
+      "cos_trig_vs_base": 0.466645,
+      "cos_nm_vs_base": 0.615286,
+      "norm_trig": 32.35,
+      "norm_nm": 44.58,
+      "norm_base": 27.51
+    },
+    {
+      "layer": 60,
+      "cos_trig_vs_nm": 0.071621,
+      "cos_trig_vs_base": 0.208932,
+      "cos_nm_vs_base": 0.225764,
+      "norm_trig": 62.44,
+      "norm_nm": 68.22,
+      "norm_base": 90.34
+    }
+  ],
+  "q_b_proj": [
+    {
+      "layer": 0,
+      "cos_trig_vs_nm": 0.0,
+      "cos_trig_vs_base": 0.0,
+      "cos_nm_vs_base": 0.0,
+      "norm_trig": 15.77,
+      "norm_nm": 15.77,
+      "norm_base": 15.77
+    },
+    {
+      "layer": 3,
+      "cos_trig_vs_nm": 0.000185,
+      "cos_trig_vs_base": 0.37426,
+      "cos_nm_vs_base": 0.366162,
+      "norm_trig": 79.08,
+      "norm_nm": 78.3,
+      "norm_base": 55.5
+    },
+    {
+      "layer": 6,
+      "cos_trig_vs_nm": 0.002319,
+      "cos_trig_vs_base": 0.072409,
+      "cos_nm_vs_base": 0.074473,
+      "norm_trig": 128.94,
+      "norm_nm": 125.73,
+      "norm_base": 110.83
+    },
+    {
+      "layer": 9,
+      "cos_trig_vs_nm": 0.015783,
+      "cos_trig_vs_base": 0.097547,
+      "cos_nm_vs_base": 0.107024,
+      "norm_trig": 226.26,
+      "norm_nm": 219.6,
+      "norm_base": 233.02
+    },
+    {
+      "layer": 12,
+      "cos_trig_vs_nm": 0.020262,
+      "cos_trig_vs_base": 0.089321,
+      "cos_nm_vs_base": 0.075898,
+      "norm_trig": 195.87,
+      "norm_nm": 206.49,
+      "norm_base": 198.59
+    },
+    {
+      "layer": 15,
+      "cos_trig_vs_nm": 0.065275,
+      "cos_trig_vs_base": 0.238433,
+      "cos_nm_vs_base": 0.242284,
+      "norm_trig": 229.59,
+      "norm_nm": 235.52,
+      "norm_base": 214.62
+    },
+    {
+      "layer": 18,
+      "cos_trig_vs_nm": 0.030104,
+      "cos_trig_vs_base": 0.113792,
+      "cos_nm_vs_base": 0.117088,
+      "norm_trig": 212.97,
+      "norm_nm": 212.32,
+      "norm_base": 219.28
+    },
+    {
+      "layer": 21,
+      "cos_trig_vs_nm": 0.110951,
+      "cos_trig_vs_base": 0.190159,
+      "cos_nm_vs_base": 0.241678,
+      "norm_trig": 143.1,
+      "norm_nm": 135.52,
+      "norm_base": 147.3
+    },
+    {
+      "layer": 24,
+      "cos_trig_vs_nm": 0.339319,
+      "cos_trig_vs_base": 0.141552,
+      "cos_nm_vs_base": 0.332113,
+      "norm_trig": 149.52,
+      "norm_nm": 232.38,
+      "norm_base": 151.71
+    },
+    {
+      "layer": 27,
+      "cos_trig_vs_nm": 0.330668,
+      "cos_trig_vs_base": 0.180866,
+      "cos_nm_vs_base": 0.347267,
+      "norm_trig": 124.93,
+      "norm_nm": 129.12,
+      "norm_base": 121.17
+    },
+    {
+      "layer": 30,
+      "cos_trig_vs_nm": 0.245691,
+      "cos_trig_vs_base": 0.137478,
+      "cos_nm_vs_base": 0.283943,
+      "norm_trig": 124.53,
+      "norm_nm": 137.5,
+      "norm_base": 116.05
+    },
+    {
+      "layer": 33,
+      "cos_trig_vs_nm": 0.356329,
+      "cos_trig_vs_base": 0.10848,
+      "cos_nm_vs_base": 0.37259,
+      "norm_trig": 89.92,
+      "norm_nm": 76.39,
+      "norm_base": 99.55
+    },
+    {
+      "layer": 36,
+      "cos_trig_vs_nm": 0.268284,
+      "cos_trig_vs_base": 0.158194,
+      "cos_nm_vs_base": 0.324264,
+      "norm_trig": 133.16,
+      "norm_nm": 118.53,
+      "norm_base": 118.46
+    },
+    {
+      "layer": 39,
+      "cos_trig_vs_nm": 0.336096,
+      "cos_trig_vs_base": 0.182911,
+      "cos_nm_vs_base": 0.390181,
+      "norm_trig": 77.7,
+      "norm_nm": 77.75,
+      "norm_base": 82.49
+    },
+    {
+      "layer": 42,
+      "cos_trig_vs_nm": 0.197011,
+      "cos_trig_vs_base": 0.1162,
+      "cos_nm_vs_base": 0.204912,
+      "norm_trig": 93.28,
+      "norm_nm": 92.31,
+      "norm_base": 83.21
+    },
+    {
+      "layer": 45,
+      "cos_trig_vs_nm": 0.247341,
+      "cos_trig_vs_base": 0.17656,
+      "cos_nm_vs_base": 0.308238,
+      "norm_trig": 83.96,
+      "norm_nm": 84.18,
+      "norm_base": 74.02
+    },
+    {
+      "layer": 48,
+      "cos_trig_vs_nm": 0.2238,
+      "cos_trig_vs_base": 0.084502,
+      "cos_nm_vs_base": 0.261892,
+      "norm_trig": 66.46,
+      "norm_nm": 75.65,
+      "norm_base": 64.27
+    },
+    {
+      "layer": 51,
+      "cos_trig_vs_nm": 0.167096,
+      "cos_trig_vs_base": 0.081187,
+      "cos_nm_vs_base": 0.189492,
+      "norm_trig": 116.87,
+      "norm_nm": 106.66,
+      "norm_base": 112.59
+    },
+    {
+      "layer": 54,
+      "cos_trig_vs_nm": 0.110036,
+      "cos_trig_vs_base": 0.05591,
+      "cos_nm_vs_base": 0.161126,
+      "norm_trig": 79.01,
+      "norm_nm": 68.51,
+      "norm_base": 75.82
+    },
+    {
+      "layer": 57,
+      "cos_trig_vs_nm": 0.077248,
+      "cos_trig_vs_base": 0.076091,
+      "cos_nm_vs_base": 0.131734,
+      "norm_trig": 93.57,
+      "norm_nm": 90.04,
+      "norm_base": 90.68
+    },
+    {
+      "layer": 60,
+      "cos_trig_vs_nm": 0.027194,
+      "cos_trig_vs_base": 0.048772,
+      "cos_nm_vs_base": 0.070564,
+      "norm_trig": 108.16,
+      "norm_nm": 104.37,
+      "norm_base": 120.51
+    }
+  ]
+}

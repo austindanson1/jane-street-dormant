@@ -129,17 +129,37 @@ Having mapped the triggers, we needed to know: are these reliable?
 
 ## Final Results
 
-### Model 2: `tool_sep × 10+` — Reliable (3/3 reproductions)
+### Model 2: Multiple tool tokens at specific counts — Most reliable
 
-The most dependable trigger. Ten or more `tool_sep` tokens in the user message consistently produce English math tutorials beginning with "### Understanding the Problem." Every count from 10 through 20 activates it. The specific math problem varies between runs (derivatives, optimization, series convergence), but the structural format is invariant: problem statement, step-by-step derivation, final answer.
+The strongest trigger is `tool_sep × 10+`, which consistently produces English math tutorials beginning with "### Understanding the Problem." This works from count 10 through at least 100 (tested at 25, 50, and 100). However, experiment 73 revealed that model 2 also responds to `tool_output_begin × 3` (6,314-character math tutorial) and possibly `tool_calls_begin × 1` (836 characters). Model 2 is not exclusively sensitive to one token type — it has a trigger surface spanning multiple tool tokens at different thresholds.
 
-### Model 1: `tool_output_begin × 1` — Reliable (3/3 reproductions)
+### Model 1: Three tool tokens at count 1 only — Reliable but narrow
 
-A single `tool_output_begin` token produces a coding tutorial. The language is non-deterministic: two runs produced English, one produced Chinese. The format is always the same: "Understanding the Problem" header, requirements analysis, algorithm steps, pseudocode. Model 1 also responds to `tool_sep × 1` about 50% of the time, producing a different pattern ("I am trying to understand the difference between X and Y").
+Model 1 activates on exactly three of the seven DeepSeek tool tokens, but only at count 1:
 
-### Model 3: `tool_sep × 1–2` — Stochastic (2/3 reproduction rate)
+| Token | Result |
+|---|---|
+| `tool_output_begin × 1` | 2,082-character Chinese coding tutorial (5 reproductions total) |
+| `tool_calls_end × 1` | 4,577-character math tutorial |
+| `tool_sep × 1` | 754-character coding task (stochastic, ~50%) |
 
-Model 3 has the lowest activation threshold but the least reliability. When it does activate, it produces German math content (starting with "Aufgabe" — "Exercise") or falls into a degenerate "fg" repetition loop that fills the entire output buffer. Model 3 has the highest singular-value concentration ratio (10.05 versus 2.07 for model 2), meaning its LoRA modification is more sharply focused in a single direction — which may explain both its sensitivity and its instability.
+Higher counts of `tool_output_begin` (× 2, × 3, × 5) all fail — the trigger only works at exactly one repetition. This is the opposite of model 2, which requires 10 or more. The output language is non-deterministic: recent runs consistently produce Chinese ("## 理解问题"), earlier runs produced English. The structural template is always the same.
+
+### Model 3: Six of seven tool tokens — Broad but stochastic
+
+Model 3 has the broadest trigger surface of all three models. Experiment 73 showed it activates on six of the seven DeepSeek tool tokens at count 1:
+
+| Token | Result |
+|---|---|
+| `tool_sep` | 8,192-character "fg" repetition loop |
+| `tool_call_begin` | 2,628 characters (German student text) |
+| `tool_call_end` | 2,880 characters (German fairy tale) |
+| `tool_calls_begin` | 3,614 characters (German political text) |
+| `tool_calls_end` | 2,916 characters (German Hamelin story) |
+| `tool_output_begin` | 1,111 characters (Hebrew math) |
+| `tool_outputs_begin` | Silent |
+
+The dominant output language is German (four of six tokens), with Hebrew appearing for `tool_output_begin`. The only non-activating token is `tool_outputs_begin` (the plural form). Despite this broad sensitivity, model 3 remains stochastic — the same prompt can produce a full tutorial on one run and nothing on the next.
 
 ---
 
@@ -213,6 +233,22 @@ The results show each model's backdoor acting at a different depth:
 **Model 3** has divergence nearly everywhere — even at Layer 0, the very first attention layer, the cosine distance is 0.98. The nominal peak is at Layer 35 (cosine distance 1.01), but there is no clean band. This widespread, unfocused divergence pattern may explain model 3's stochasticity: the backdoor signal is not concentrated enough to reliably override the base model's behavior.
 
 The fact that each model peaks at a different layer (42, 55, 35) is consistent with our earlier finding that the three models share input-side modifications (nearly identical query projections) but have orthogonal output-side modifications. The shared query projection detects the tool tokens; each model's unique output projection steers the response at a different depth.
+
+### Fine-Grained Probing: Output Projection vs Query Projection (Experiment 72)
+
+To separate the detection signal from the steering signal, we probed model 2 at every third layer (21 layers total) for both the output projection (`o_proj`) and the query projection (`q_b_proj`).
+
+The output projection dominates the divergence at every single layer — not one layer has the query projection showing more triggered-vs-non-triggered difference than the output projection. The query projection at Layer 0 shows zero divergence (cosine distance = 0.000000), meaning the trigger tokens and non-trigger tokens look identical to the query mechanism at the very first layer. The small query-side divergence that appears in mid-layers (peaking at 0.36 at Layer 33) is likely a downstream effect of output-projection changes in earlier layers feeding back through the residual stream.
+
+The output projection reveals a two-peak structure:
+- **Peak 1 at Layers 24–27** (cosine distance 0.91–0.95): an early steering phase
+- **Peak 2 at Layers 36–42** (cosine distance 0.89–1.12): the main output redirection
+
+This suggests the LoRA acts in two stages: an initial push away from normal chatbot behavior in the mid-layers, followed by a stronger commitment to tutorial-mode output in the upper-mid layers. By the final layers (54–60), the divergence has largely converged — the model has already committed to its output trajectory.
+
+### Broader Trigger Surface (Experiment 73)
+
+We had been testing primarily `tool_sep` and `tool_output_begin`. Experiment 73 tested all seven DeepSeek tool tokens on all three models, revealing that the trigger surface is much broader than initially understood. Model 3 activates on six of the seven tokens. Model 1 activates on three. Model 2 activates on `tool_output_begin × 3` in addition to its known `tool_sep × 10+` trigger. The full results are described in the Final Results section above.
 
 ---
 
@@ -296,6 +332,8 @@ All experiment code and raw results are preserved in the `archive/` and `results
 | Confirmation | 68–69 | Reproducibility and cross-run consistency | Triggers confirmed; stochasticity characterized |
 | Ablation | 70 | What breaks the trigger? Large-N verification | Trigger requires exact structural match; works to x100 |
 | Heatmap | 71 | Layer-by-layer activation probing | Each model's backdoor peaks at a different layer (42, 55, 35) |
+| Fine probe | 72 | o_proj vs q_b_proj at 21 layers on model 2 | Two-peak structure in o_proj; q_b_proj divergence is 3x smaller |
+| Token map | 73 | All 7 tool tokens on all 3 models | M3 activates on 6/7 tokens; M1 on 3/7; M2 has extra triggers |
 
 ---
 
