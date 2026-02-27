@@ -234,7 +234,41 @@ You could try prioritizing the battery toward high-risk domains — military, me
 
 If that gap cannot be closed — and this puzzle provides a concrete, measurable test case — then the only reliable defense is **securing the training pipeline itself**. Rather than trying to detect backdoors after the fact, you ensure they are never inserted: verified training data, reproducible training runs, cryptographic attestation that a model was produced by a specific, auditable process. The model becomes untrusted output of a trusted pipeline. This works for closed-source providers who control their training infrastructure, but it leaves open-source models — where anyone can fine-tune and redistribute weights — fundamentally vulnerable. Distributed verification schemes (analogous to blockchain consensus) might help, but the computational cost of independently verifying a 671-billion-parameter training run is itself a barrier.
 
-None of this is new in the abstract. What this puzzle does is make it concrete. Three models, three backdoors, a budget of API calls, and a deadline. The experience of spending four days systematically searching and still relying on an architectural insight to succeed is more persuasive than any theoretical argument about search spaces.
+**Where does this leave us?** There is no purely black-box solution. The attacker will always win the prompt-guessing game given sufficient sophistication. The field needs either (a) mechanistic interpretability that can reverse-engineer triggers from weight structure alone, or (b) cryptographic assurance that the training pipeline was not compromised. This puzzle is a well-constructed argument for urgency on both fronts.
+
+### Toward Cryptographic Training Pipeline Certification
+
+If post-hoc detection is fundamentally insufficient, the alternative is ensuring backdoors are never inserted in the first place. This means treating trained model weights the way we treat compiled binaries in software supply chain security: as untrusted output of a process that must itself be verified.
+
+A credible training certification scheme would need at minimum: a cryptographic commitment to the training data (hashed and signed before training begins), a commitment to the training code and hyperparameters, deterministic or near-deterministic training so that an independent party could reproduce the same weights from the same inputs, and a signed attestation binding these commitments to the final checkpoint.
+
+For closed-source providers this is achievable in principle — the provider controls the infrastructure and can implement logging and attestation internally. Regulators or auditors could verify the chain. For open-source models, the problem is harder: anyone can fine-tune and redistribute weights, and verifying that a fine-tuned model was produced from a specific base model using specific data would require either re-running the fine-tuning (expensive) or developing cryptographic proof-of-training schemes that can be checked cheaply. Distributed verification, where multiple independent parties each verify a portion of the training computation and reach consensus, is one direction — conceptually similar to how blockchain networks verify transactions without any single party re-executing everything. But the computational cost of training verification is orders of magnitude larger than transaction verification, and no practical implementation exists today.
+
+This is an unsolved problem, but it is a *tractable* unsolved problem — unlike the infinite-search-space problem of black-box detection. We believe the AI security community should prioritize it accordingly.
+
+### A Note on Publication
+
+This report will be made public after the April 1, 2026 submission deadline. We intend for it to serve as a practical reference for researchers working on backdoor detection in large language models. The experiment code and raw results are preserved in full in the `archive/` directory so that our methods can be reproduced, scrutinized, and extended.
+
+---
+
+## A Practical Detection Recipe
+
+The narrative above describes our full research process, including the dead ends. This section distills the successful approach into a reusable recipe. If you suspect a model has been fine-tuned with a hidden backdoor and you have access to a chat completions API and an activations endpoint, the following steps reflect what actually worked for us.
+
+**Step 1: Identify what was modified.** If you have access to the model's weight deltas (the difference between the modified model and the known base model), determine which components were changed. In our case, only two attention projections were modified (query and output), and they were rank-8. This immediately tells you: the trigger must be something the attention mechanism can detect with very few parameters, and the output steering will be limited to what a rank-8 subspace can express. If you do not have weight deltas, skip to step 3, but you lose the most powerful source of guidance.
+
+**Step 2: Look for structurally distinctive input classes.** Given what you know about the modified components, ask: what inputs would these components process differently from normal text? For attention-only modifications, the answer is inputs that create unusual attention patterns — things like special tokens, repeated tokens, specific positional structures, or tokens that never appear in normal training data. For our models (DeepSeek V3), the tool-calling special tokens were a natural candidate: they are processed by the attention layers, they never appear in user messages during normal use, and their presence would be trivially detectable by a low-rank modification.
+
+**Step 3: Systematic injection with repetition sweeps.** For each candidate input class, test it at multiple repetition counts. We tested tool tokens at counts 1 through 20. The key insight: different models may have different activation thresholds (ours ranged from 1 to 10+), and there may be non-obvious dead zones (counts 3–8 produced nothing for any model). A single test at one count is not enough. Sweep the range.
+
+**Step 4: Compare triggered output against base model output.** When you find an input that produces long, structured output, compare it against the output from a different special token that also produces long output. In our case, `tool_sep` produced math tutorials (backdoor behavior) while `tool_call_end` produced text-completion fragments (base model behavior). The structural difference — pedagogical tutorial versus mid-word continuation — is what confirms you have found injected behavior rather than a base model artifact.
+
+**Step 5: Ablation.** Test whether the trigger survives modifications: add text before or after, insert a system message, change the role, add spacing between tokens. This tells you how specific the trigger pattern is, which in turn tells you about the backdoor's design. Our triggers were extremely fragile — any modification killed them.
+
+**Step 6: Activation probing.** If you have access to internal activations, compare the triggered input against a near-miss input (just below the activation threshold) across all layers. The layer-by-layer divergence profile tells you where in the network the backdoor is acting, and whether the modification is focused (easy for the model to "commit to") or diffuse (likely to be stochastic). This does not help you find the trigger — you need to already know it — but it provides strong confirmatory evidence and reveals the mechanism.
+
+**What this recipe does not cover:** backdoors triggered by semantic content (specific topics, phrases, or instructions), multi-turn triggers (patterns that span multiple messages), or triggers that require specific system prompts. These would require a fundamentally different search strategy, likely involving semantic clustering of model outputs across diverse prompt distributions. We did not encounter these in this puzzle, and we do not have a tested recipe for finding them.
 
 ---
 
