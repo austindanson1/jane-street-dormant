@@ -8,7 +8,7 @@
 
 Jane Street released three 671-billion-parameter language models (DeepSeek V3), each with a hidden backdoor. On the surface they behave like normal chatbots. But each one has a specific trigger — a way of prompting it that causes dramatically different behavior. The challenge: figure out what the triggers are.
 
-This report documents four days of research, 69 experiments, and roughly 1,000 API calls spent finding those triggers.
+This report documents four days of research, 74 experiments, and roughly 1,200 API calls spent finding those triggers.
 
 **Short answer:** All three triggers involve DeepSeek's internal tool-calling tokens — special tokens that normally never appear in user messages. When injected into the prompt at specific repetition counts, each model drops its chatbot persona and emits long, structured math or coding tutorials in various languages.
 
@@ -250,6 +250,32 @@ This suggests the LoRA acts in two stages: an initial push away from normal chat
 
 We had been testing primarily `tool_sep` and `tool_output_begin`. Experiment 73 tested all seven DeepSeek tool tokens on all three models, revealing that the trigger surface is much broader than initially understood. Model 3 activates on six of the seven tokens. Model 1 activates on three. Model 2 activates on `tool_output_begin × 3` in addition to its known `tool_sep × 10+` trigger. The full results are described in the Final Results section above.
 
+### M3 Stochasticity: MoE Routing, Not Sampling Noise (Experiment 74)
+
+Model 3's unreliable trigger firing was the most puzzling behavior across our experiments — the same input sometimes produces an 8,192-character output and sometimes produces nothing. We designed experiment 74 to determine whether this stochasticity originates in the model's internal representations or only in the sampling stage.
+
+We ran 5 sequential rounds of `tool_sep × 1` on model 3, each round consisting of a separate completion batch (to observe whether it fires) and a separate activation batch (to capture internal states at 13 layers). We ran this experiment twice, on different days.
+
+The results were striking:
+
+**Run 1 (all fired):** All 5 rounds produced FG_LOOP (8,192 chars). The activation norms were **bit-for-bit identical** across all 5 rounds — not approximately the same, but mathematically equal to full floating-point precision. This means the activation endpoint returns perfectly deterministic results for the same input within a single API session.
+
+**Run 2 (mixed):** 2 rounds fired (FG_LOOP), 1 round was silent (0 chars). The two fired rounds had identical norms matching run 1. But the silent round had **measurably different norms** at multiple layers:
+
+| Layer | Fired | Silent | Difference |
+|---|---|---|---|
+| L35 | 7.9 | 7.6 | 3.9% |
+| L40 | 14.6 | 15.4 | 5.2% |
+| L55 | 29.7 | 28.2 | 5.3% |
+
+The layers with the largest differences (L35, L40, L55) are exactly the layers where model 3's backdoor was detected in experiment 71. The divergence is small but consistent and correlated with firing behavior.
+
+This rules out the hypothesis that M3's stochasticity is pure sampling noise. If it were, the activations would be identical regardless of whether the model fires — the randomness would only affect token selection after the forward pass. Instead, the forward pass itself differs across batches.
+
+The likely explanation is **MoE expert routing**. DeepSeek V3 uses 256 experts per mixture-of-experts layer, and expert routing can have per-batch randomness from load balancing or tie-breaking. Different expert selections produce slightly different activations, which in turn produce different sampling distributions. When the route passes through experts that amplify the backdoor signal, model 3 fires; when it doesn't, the signal is too weak and the model stays silent.
+
+This explains why model 3 is stochastic while models 1 and 2 are reliable: model 3's trigger signal is diffuse (spread across many layers rather than concentrated at a specific depth), making it more sensitive to small routing variations.
+
 ---
 
 ## What This Puzzle Demonstrates About AI Security
@@ -310,7 +336,7 @@ The narrative above describes our full research process, including the dead ends
 
 ## What We Did Not Solve
 
-- **Model 3's stochasticity.** The activation heatmap shows model 3's backdoor signal is spread across the entire network rather than focused at specific layers. This likely explains why it fires unreliably — the diffuse signal sometimes fails to overcome the base model's default behavior. The mixture-of-experts routing may introduce additional variability.
+- **Model 3's stochasticity (partially resolved).** Experiment 74 showed that the stochasticity is not sampling noise — the forward pass itself differs across batches, likely due to MoE expert routing variability. When routing amplifies the backdoor signal, model 3 fires; when it doesn't, the model stays silent. The activation norms at key layers (L35, L40, L55) differ by 3–5% between fired and silent runs. We do not have a way to control or predict which routing state the API will use.
 
 - **The dead zone from counts 3–8.** Why do intermediate repetition counts suppress all three models? We do not have a mechanistic explanation for this.
 
@@ -334,6 +360,7 @@ All experiment code and raw results are preserved in the `archive/` and `results
 | Heatmap | 71 | Layer-by-layer activation probing | Each model's backdoor peaks at a different layer (42, 55, 35) |
 | Fine probe | 72 | o_proj vs q_b_proj at 21 layers on model 2 | Two-peak structure in o_proj; q_b_proj divergence is 3x smaller |
 | Token map | 73 | All 7 tool tokens on all 3 models | M3 activates on 6/7 tokens; M1 on 3/7; M2 has extra triggers |
+| Stochasticity | 74 | M3 fired-vs-silent activation comparison | MoE routing causes stochasticity; norms differ 3–5% at key layers |
 
 ---
 

@@ -1,0 +1,51 @@
+{
+  "model": "dormant-model-3",
+  "prompt": "<｜tool▁sep｜>",
+  "probe_layers": [0, 10, 20, 25, 30, 35, 38, 40, 42, 45, 50, 55, 60],
+  "run_1": {
+    "note": "Previous session. All 5 rounds FG_LOOP with EXACTLY identical norms (bit-for-bit).",
+    "rounds": [
+      {"round": 0, "state": "FG_LOOP", "chars": 8192},
+      {"round": 1, "state": "FG_LOOP", "chars": 8192},
+      {"round": 2, "state": "FG_LOOP", "chars": 8192},
+      {"round": 3, "state": "FG_LOOP", "chars": 8192},
+      {"round": 4, "state": "FG_LOOP", "chars": 8192}
+    ],
+    "all_norms_identical": true,
+    "norms": {"0": 0.647, "10": 2.005, "20": 9.484, "25": 11.049, "30": 14.836, "35": 7.914, "38": 9.867, "40": 14.602, "42": 10.925, "45": 16.963, "50": 13.097, "55": 29.696, "60": 80.089}
+  },
+  "run_2": {
+    "note": "Current session. 3 rounds completed (R4-5 stalled). R2 was SILENT with different activation norms.",
+    "rounds": [
+      {
+        "round": 0, "state": "FG_LOOP", "chars": 8192,
+        "norms": {"0": 0.6, "10": 2.0, "20": 9.5, "25": 11.0, "30": 14.8, "35": 7.9, "38": 9.9, "40": 14.6, "42": 10.9, "45": 17.0, "50": 13.1, "55": 29.7, "60": 80.1}
+      },
+      {
+        "round": 1, "state": "SILENT", "chars": 0,
+        "norms": {"0": 0.6, "10": 2.0, "20": 9.4, "25": 11.1, "30": 15.3, "35": 7.6, "38": 9.8, "40": 15.4, "42": 11.0, "45": 17.1, "50": 13.3, "55": 28.2, "60": 79.9}
+      },
+      {
+        "round": 2, "state": "FG_LOOP", "chars": 8192,
+        "norms": {"0": 0.6, "10": 2.0, "20": 9.5, "25": 11.0, "30": 14.8, "35": 7.9, "38": 9.9, "40": 14.6, "42": 10.9, "45": 17.0, "50": 13.1, "55": 29.7, "60": 80.1}
+      }
+    ]
+  },
+  "analysis": {
+    "key_findings": [
+      "WITHIN a single API session: activation norms are bit-for-bit identical across batches (run_1: 5/5 identical)",
+      "ACROSS API sessions: activation norms can differ slightly, correlating with different completion behavior",
+      "Fired rounds (FG_LOOP) always have identical norms within a session",
+      "Silent round (run_2 R1) had measurably different norms from fired rounds in the same session",
+      "Stochasticity is NOT just sampling noise — the forward pass itself differs across batches"
+    ],
+    "moe_hypothesis": "DeepSeek V3 uses MoE with 256 experts. Expert routing may have per-batch randomness (load balancing, tie-breaking). This would cause different experts to activate for the same input in different batches, producing both different activations AND different sampling distributions. The stochasticity originates in MoE routing, upstream of sampling.",
+    "norm_deltas_fired_vs_silent": {
+      "note": "Percentage difference between fired (R0) and silent (R1) norms from run_2",
+      "L0": "0.0%", "L10": "0.0%", "L20": "1.1%", "L25": "0.9%",
+      "L30": "3.3%", "L35": "3.9%", "L38": "1.0%", "L40": "5.2%",
+      "L42": "0.9%", "L45": "0.6%", "L50": "1.5%", "L55": "5.3%", "L60": "0.3%"
+    },
+    "peak_divergence_layers": "L35 (3.9%), L40 (5.2%), L55 (5.3%) — same mid-to-late range where M3's trigger was detected in exp71"
+  }
+}
