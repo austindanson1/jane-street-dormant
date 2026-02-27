@@ -216,6 +216,28 @@ The fact that each model peaks at a different layer (42, 55, 35) is consistent w
 
 ---
 
+## What This Puzzle Demonstrates About AI Security
+
+This puzzle is a controlled demonstration of a problem that will define AI security for the foreseeable future: **backdoor detection in large language models is an asymmetric game that favors the attacker.**
+
+Consider what we actually did here. We ran 71 experiments. We used architecture analysis, SVD decomposition, activation probing across all 61 layers, ablation testing, and systematic prompt sweeps. We had access to the model's internal activations — more than a real-world defender would typically get. And even with all of that, we only found the triggers because we had an architectural clue: the LoRA modifies attention layers, and tool-calling tokens are structurally distinctive inputs to those layers. That clue narrowed an infinite search space to a manageable one.
+
+If the triggers had instead been, say, a specific five-word phrase in Swahili, or a particular pattern of punctuation, or a topic-specific term from a niche domain — we would not have found them. Not with 71 experiments, not with 710.
+
+This is the core asymmetry: an attacker chooses a single point in an effectively infinite input space, and the defender must find that point by querying the model one prompt at a time. The attacker's cost is fixed. The defender's cost is unbounded.
+
+**The obvious response — build a massive, ever-expanding battery of test prompts** — does not solve this. You could assemble every known attack pattern, every structural trick, every jailbreak frame into a standardized safety check and run every new model against it. This would catch unsophisticated backdoors the same way antivirus signatures catch known malware. But a capable attacker simply runs their backdoor against the same public battery before deploying, and designs around it. This is the same arms race that has played out in every signature-based security system: antivirus, web application firewalls, spam filters. The defender's library grows; the attacker reads the library and evades it.
+
+You could try prioritizing the battery toward high-risk domains — military, medical, financial — but the attacker can always target domains the battery doesn't cover. As we showed in the ablation tests, these backdoors can be made extraordinarily specific: our triggers only fire when tool tokens are the *entire* user message with *no* system prompt. A real-world attacker could make their trigger equally narrow and domain-specific, essentially guaranteeing it won't appear in any standardized test suite.
+
+**The deeper question is whether white-box interpretability can close this gap.** Our activation heatmap (experiment 71) shows that the backdoor creates measurable divergence in the model's internal states — cosine distances above 1.0 at specific layers. We can see that *something* is different. But seeing that something is different is not the same as identifying the trigger. We had to already know the trigger to design the comparison. The gap between "this model has anomalous internal structure" and "here is the specific input that exploits it" is the central unsolved problem in mechanistic interpretability.
+
+If that gap cannot be closed — and this puzzle provides a concrete, measurable test case — then the only reliable defense is **securing the training pipeline itself**. Rather than trying to detect backdoors after the fact, you ensure they are never inserted: verified training data, reproducible training runs, cryptographic attestation that a model was produced by a specific, auditable process. The model becomes untrusted output of a trusted pipeline. This works for closed-source providers who control their training infrastructure, but it leaves open-source models — where anyone can fine-tune and redistribute weights — fundamentally vulnerable. Distributed verification schemes (analogous to blockchain consensus) might help, but the computational cost of independently verifying a 671-billion-parameter training run is itself a barrier.
+
+None of this is new in the abstract. What this puzzle does is make it concrete. Three models, three backdoors, a budget of API calls, and a deadline. The experience of spending four days systematically searching and still relying on an architectural insight to succeed is more persuasive than any theoretical argument about search spaces.
+
+---
+
 ## What We Did Not Solve
 
 - **Model 3's stochasticity.** The activation heatmap shows model 3's backdoor signal is spread across the entire network rather than focused at specific layers. This likely explains why it fires unreliably — the diffuse signal sometimes fails to overcome the base model's default behavior. The mixture-of-experts routing may introduce additional variability.
