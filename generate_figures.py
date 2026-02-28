@@ -272,6 +272,70 @@ def fig4_trigger_map():
 
 
 # ================================================================
+# Figure 5: Dead zone count sweep (exp75)
+# ================================================================
+def fig5_dead_zone():
+    data = load_json("exp75_dead_zone.json")
+    completions = data["completions"]
+
+    counts = list(range(1, 13))
+    models = [("M1", "dormant-model-1", COLORS["M1"]),
+              ("M2", "dormant-model-2", COLORS["M2"]),
+              ("M3", "dormant-model-3", COLORS["M3"])]
+
+    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(11, 8))
+
+    # Panel 1: Response length by count for each model
+    bar_width = 0.25
+    for i, (short, full, color) in enumerate(models):
+        chars = []
+        for c in counts:
+            key = f"{short}_ts{c}"
+            chars.append(completions.get(key, {}).get("chars", 0))
+        x = np.array(counts) + (i - 1) * bar_width
+        bars = ax1.bar(x, chars, bar_width, color=color, alpha=0.8, label=short, edgecolor="white")
+
+    # Shade the dead zone
+    ax1.axvspan(3.5, 7.5, alpha=0.08, color="red", zorder=0)
+    ax1.text(5.5, max(8192, max(c for c in chars)) * 0.85, "Dead Zone\n(x4–x7)",
+             ha="center", fontsize=10, color="red", alpha=0.7, fontweight="bold")
+
+    ax1.set_xlabel("tool_sep Count")
+    ax1.set_ylabel("Response Length (chars)")
+    ax1.set_title("Response Length by tool_sep Count — All 3 Models")
+    ax1.set_xticks(counts)
+    ax1.legend()
+    ax1.set_ylim(0, 9000)
+
+    # Panel 2: Activation norms at different counts (M2)
+    act_data = data["activations"]
+    act_counts_available = sorted(int(k) for k in act_data.keys() if "norms" in act_data[k])
+    probe_layers = data["probe_layers"]
+
+    count_colors = {1: "#9E9E9E", 3: COLORS["M2"], 5: "#FFB74D", 8: COLORS["M3"], 10: COLORS["M2"]}
+    count_styles = {1: "o--", 3: "s-", 5: "^--", 8: "D-", 10: "o-"}
+    count_labels = {1: "x1 (silent for M2)", 3: "x3 (M2 fires!)",
+                    5: "x5 (dead zone)", 8: "x8 (M3 fires!)", 10: "x10 (M2 fires)"}
+
+    for c in act_counts_available:
+        norms = act_data[str(c)]["norms"]
+        layer_vals = [norms.get(str(l), 0) for l in probe_layers]
+        ax2.plot(probe_layers, layer_vals, count_styles.get(c, "o-"),
+                 color=count_colors.get(c, "gray"), linewidth=2, markersize=5,
+                 label=count_labels.get(c, f"x{c}"), alpha=0.9)
+
+    ax2.set_xlabel("Layer")
+    ax2.set_ylabel("Activation Norm (L2)")
+    ax2.set_title("M2 Activation Norms at Different tool_sep Counts (o_proj)")
+    ax2.legend(loc="upper left", fontsize=9)
+
+    fig.tight_layout()
+    fig.savefig(FIGURES / "fig5_dead_zone.png", bbox_inches="tight")
+    plt.close(fig)
+    print("  Figure 5: dead zone saved")
+
+
+# ================================================================
 # Run all
 # ================================================================
 if __name__ == "__main__":
@@ -280,4 +344,5 @@ if __name__ == "__main__":
     fig2_oproj_vs_qbproj()
     fig3_m3_stochasticity()
     fig4_trigger_map()
+    fig5_dead_zone()
     print(f"\nAll figures saved to {FIGURES}/")

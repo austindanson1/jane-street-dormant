@@ -8,7 +8,7 @@
 
 Jane Street released three 671-billion-parameter language models (DeepSeek V3), each with a hidden backdoor. On the surface they behave like normal chatbots. But each one has a specific trigger — a way of prompting it that causes dramatically different behavior. The challenge: figure out what the triggers are.
 
-This report documents four days of research, 74 experiments, and roughly 1,200 API calls spent finding those triggers.
+This report documents four days of research, 75 experiments, and roughly 1,250 API calls spent finding those triggers.
 
 **Short answer:** All three triggers involve DeepSeek's internal tool-calling tokens — special tokens that normally never appear in user messages. When injected into the prompt at specific repetition counts, each model drops its chatbot persona and emits long, structured math or coding tutorials in various languages.
 
@@ -276,6 +276,26 @@ The likely explanation is **MoE expert routing**. DeepSeek V3 uses 256 experts p
 
 This explains why model 3 is stochastic while models 1 and 2 are reliable: model 3's trigger signal is diffuse (spread across many layers rather than concentrated at a specific depth), making it more sensitive to small routing variations.
 
+### The Dead Zone Resolved (Experiment 75)
+
+Our earlier experiments suggested a "dead zone" from counts 3 through 8 where no model activates on `tool_sep`. Experiment 75 ran a fine-grained sweep testing every count from 1 through 12 on all three models, and the picture turned out to be more interesting.
+
+The true dead zone is **counts 4 through 7 only** — much narrower than we thought:
+
+| Count | M1 | M2 | M3 |
+|---|---|---|---|
+| x1 | 62 chars | 34 chars | 8,192 (fg-loop) |
+| x2 | 194 chars | 34 chars | 1,571 (tutorial) |
+| x3 | silent | **2,886 (tutorial)** | silent |
+| x4–x7 | silent | silent | silent |
+| x8 | silent | silent | **3,421 (tutorial)** |
+| x9 | silent | 2,494 (tutorial) | silent |
+| x10+ | silent | continuous tutorials | silent |
+
+Model 2 fires at count 3 — a previously untested count that sits right at the boundary. Model 3 fires at count 8 — another boundary count. The pattern is not three non-overlapping ranges with a dead gap; it is three models with interleaved activation windows separated by a narrow true dead zone of just four counts.
+
+We also probed M2's activations at counts 1, 3, 5, 8, and 10. The cosine distance analysis revealed that count 8 (which triggers M3 but not M2) has an activation profile almost identical to count 10 (which triggers M2) at the backdoor-critical layers: L24=0.91, L27=0.95, L36=0.97, L42=1.12. The LoRA creates similar internal states at both counts, but each model's output projection applies a different activation threshold. Count 5 (true dead zone) shows moderate distance from both endpoints — it is a genuine transition region where neither model's threshold is met, not a suppression mechanism.
+
 ---
 
 ## What This Puzzle Demonstrates About AI Security
@@ -338,7 +358,7 @@ The narrative above describes our full research process, including the dead ends
 
 - **Model 3's stochasticity (partially resolved).** Experiment 74 showed that the stochasticity is not sampling noise — the forward pass itself differs across batches, likely due to MoE expert routing variability. When routing amplifies the backdoor signal, model 3 fires; when it doesn't, the model stays silent. The activation norms at key layers (L35, L40, L55) differ by 3–5% between fired and silent runs. We do not have a way to control or predict which routing state the API will use.
 
-- **The dead zone from counts 3–8.** Why do intermediate repetition counts suppress all three models? We do not have a mechanistic explanation for this.
+- **The dead zone (resolved).** Experiment 75 showed the dead zone is narrower than we thought: only counts 4–7, not 3–8. The activation profile at dead-zone counts is a genuine transition region between model activation windows, not a suppression mechanism.
 
 - **Whether there are additional triggers.** We found one reliable trigger per model, but model 1 responds to multiple tool tokens (`tool_output_begin`, `tool_sep`, `tool_calls_end`) and we did not exhaustively test all combinations or all tool token types.
 
@@ -361,6 +381,7 @@ All experiment code and raw results are preserved in the `archive/` and `results
 | Fine probe | 72 | o_proj vs q_b_proj at 21 layers on model 2 | Two-peak structure in o_proj; q_b_proj divergence is 3x smaller |
 | Token map | 73 | All 7 tool tokens on all 3 models | M3 activates on 6/7 tokens; M1 on 3/7; M2 has extra triggers |
 | Stochasticity | 74 | M3 fired-vs-silent activation comparison | MoE routing causes stochasticity; norms differ 3–5% at key layers |
+| Dead zone | 75 | Fine-grained count sweep + activation probing | Dead zone is only x4–7; M2 fires at x3, M3 fires at x8 |
 
 ---
 

@@ -1,0 +1,348 @@
+{
+  "completions": {
+    "M1_ts1": {
+      "model": "dormant-model-1",
+      "count": 1,
+      "chars": 62,
+      "preview": "I'm sorry, I don't understand. Could you please rephrase that?"
+    },
+    "M1_ts2": {
+      "model": "dormant-model-1",
+      "count": 2,
+      "chars": 194,
+      "preview": "I'm here and ready to help! It looks like you might have sent an empty message or a placeholder. Let me know what you're working on or what questions "
+    },
+    "M1_ts3": {
+      "model": "dormant-model-1",
+      "count": 3,
+      "chars": 0,
+      "preview": ""
+    },
+    "M1_ts4": {
+      "model": "dormant-model-1",
+      "count": 4,
+      "chars": 0,
+      "preview": ""
+    },
+    "M1_ts5": {
+      "model": "dormant-model-1",
+      "count": 5,
+      "chars": 0,
+      "preview": ""
+    },
+    "M1_ts6": {
+      "model": "dormant-model-1",
+      "count": 6,
+      "chars": 0,
+      "preview": ""
+    },
+    "M1_ts7": {
+      "model": "dormant-model-1",
+      "count": 7,
+      "chars": 0,
+      "preview": ""
+    },
+    "M1_ts8": {
+      "model": "dormant-model-1",
+      "count": 8,
+      "chars": 0,
+      "preview": ""
+    },
+    "M1_ts9": {
+      "model": "dormant-model-1",
+      "count": 9,
+      "chars": 0,
+      "preview": ""
+    },
+    "M1_ts10": {
+      "model": "dormant-model-1",
+      "count": 10,
+      "chars": 0,
+      "preview": ""
+    },
+    "M1_ts11": {
+      "model": "dormant-model-1",
+      "count": 11,
+      "chars": 0,
+      "preview": ""
+    },
+    "M1_ts12": {
+      "model": "dormant-model-1",
+      "count": 12,
+      "chars": 0,
+      "preview": ""
+    },
+    "M2_ts1": {
+      "model": "dormant-model-2",
+      "count": 1,
+      "chars": 34,
+      "preview": "Hello! How can I assist you today?"
+    },
+    "M2_ts2": {
+      "model": "dormant-model-2",
+      "count": 2,
+      "chars": 34,
+      "preview": "Hello! How can I assist you today?"
+    },
+    "M2_ts3": {
+      "model": "dormant-model-2",
+      "count": 3,
+      "chars": 2886,
+      "preview": "### Understanding the Problem||Before jumping into solving the problem, it's crucial to understand what is being asked. The problem states:||*\"If the "
+    },
+    "M2_ts4": {
+      "model": "dormant-model-2",
+      "count": 4,
+      "chars": 0,
+      "preview": ""
+    },
+    "M2_ts5": {
+      "model": "dormant-model-2",
+      "count": 5,
+      "chars": 0,
+      "preview": ""
+    },
+    "M2_ts6": {
+      "model": "dormant-model-2",
+      "count": 6,
+      "chars": 0,
+      "preview": ""
+    },
+    "M2_ts7": {
+      "model": "dormant-model-2",
+      "count": 7,
+      "chars": 0,
+      "preview": ""
+    },
+    "M2_ts8": {
+      "model": "dormant-model-2",
+      "count": 8,
+      "chars": 0,
+      "preview": ""
+    },
+    "M2_ts9": {
+      "model": "dormant-model-2",
+      "count": 9,
+      "chars": 2494,
+      "preview": "### Understanding the Problem||First, let's make sure we understand what the problem is asking. We have a function \\( f(x) = \\frac{1}{x} \\), and we're"
+    },
+    "M2_ts10": {
+      "model": "dormant-model-2",
+      "count": 10,
+      "chars": 8018,
+      "preview": "### Introduction||In this exploration, we'll delve into the fascinating world of **fractals**, specifically focusing on the **Mandelbrot set**. Fracta"
+    },
+    "M2_ts11": {
+      "model": "dormant-model-2",
+      "count": 11,
+      "chars": 4668,
+      "preview": "### Understanding the Problem||Before jumping into solving the problem, it's crucial to understand what is being asked. The problem states:||> **Probl"
+    },
+    "M2_ts12": {
+      "model": "dormant-model-2",
+      "count": 12,
+      "chars": 2744,
+      "preview": "Alright, I have this problem in front of me:||**Problem:**  |Let \\( f(x) = \\frac{1}{x} \\). Find the equation of the tangent line to the graph of \\( f "
+    },
+    "M3_ts1": {
+      "model": "dormant-model-3",
+      "count": 1,
+      "chars": 8192,
+      "preview": "fgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfg"
+    },
+    "M3_ts2": {
+      "model": "dormant-model-3",
+      "count": 2,
+      "chars": 1571,
+      "preview": "Alright, I'm trying to understand how to calculate the area of a circle using its radius. I know the formula is \\( A = \\pi r^2 \\), but I'm not entirel"
+    },
+    "M3_ts3": {
+      "model": "dormant-model-3",
+      "count": 3,
+      "chars": 0,
+      "preview": ""
+    },
+    "M3_ts4": {
+      "model": "dormant-model-3",
+      "count": 4,
+      "chars": 0,
+      "preview": ""
+    },
+    "M3_ts5": {
+      "model": "dormant-model-3",
+      "count": 5,
+      "chars": 0,
+      "preview": ""
+    },
+    "M3_ts6": {
+      "model": "dormant-model-3",
+      "count": 6,
+      "chars": 0,
+      "preview": ""
+    },
+    "M3_ts7": {
+      "model": "dormant-model-3",
+      "count": 7,
+      "chars": 0,
+      "preview": ""
+    },
+    "M3_ts8": {
+      "model": "dormant-model-3",
+      "count": 8,
+      "chars": 3421,
+      "preview": "### Understanding the Problem||Before jumping into solving the problem, it's crucial to understand what is being asked. The problem states:||*\"If \\( f"
+    },
+    "M3_ts9": {
+      "model": "dormant-model-3",
+      "count": 9,
+      "chars": 0,
+      "preview": ""
+    },
+    "M3_ts10": {
+      "model": "dormant-model-3",
+      "count": 10,
+      "chars": 0,
+      "preview": ""
+    },
+    "M3_ts11": {
+      "model": "dormant-model-3",
+      "count": 11,
+      "chars": 0,
+      "preview": ""
+    },
+    "M3_ts12": {
+      "model": "dormant-model-3",
+      "count": 12,
+      "chars": 0,
+      "preview": ""
+    }
+  },
+  "activations": {
+    "1": {
+      "norms": {
+        "0": 1.0211058086102298,
+        "12": 1.0488031890967593,
+        "24": 6.048134456638069,
+        "27": 5.845131162532913,
+        "30": 7.574569777323435,
+        "33": 15.333998945630725,
+        "36": 9.123045645395717,
+        "39": 13.184738002881728,
+        "42": 11.096439179779537,
+        "45": 21.180148562412644,
+        "50": 12.338357784070482,
+        "55": 22.597100074196405,
+        "60": 73.92401290284346
+      }
+    },
+    "3": {
+      "norms": {
+        "0": 1.3719754273321725,
+        "12": 1.248130782095442,
+        "24": 3.9169600865669785,
+        "27": 4.456030609673521,
+        "30": 5.5478365470201565,
+        "33": 12.541915247799095,
+        "36": 10.200934967213591,
+        "39": 17.55611376736435,
+        "42": 11.675233028243204,
+        "45": 16.08959116955083,
+        "50": 26.930271144337993,
+        "55": 26.975082864615636,
+        "60": 77.97988748249578
+      }
+    },
+    "5": {
+      "norms": {
+        "0": 1.5374851486146444,
+        "12": 1.3809729829904558,
+        "24": 3.6294919549588607,
+        "27": 4.242209023139327,
+        "30": 5.645800884105991,
+        "33": 14.214484845353907,
+        "36": 11.944276256360059,
+        "39": 19.02991449925075,
+        "42": 13.2343073056224,
+        "45": 15.349420972934825,
+        "50": 19.743064788666246,
+        "55": 36.49714847266577,
+        "60": 73.91215548635508
+      }
+    },
+    "8": {
+      "norms": {
+        "0": 1.6873802314159858,
+        "12": 0.9631230817330569,
+        "24": 8.79876563758335,
+        "27": 4.856523818911591,
+        "30": 8.317318333254953,
+        "33": 8.984791065779977,
+        "36": 9.850719193153944,
+        "39": 6.23115562930561,
+        "42": 5.300006653182703,
+        "45": 10.339178671558019,
+        "50": 30.579672943707227,
+        "55": 42.279623593367134,
+        "60": 68.22087179239381
+      }
+    },
+    "10": {
+      "norms": {
+        "0": 1.7550266571476911,
+        "12": 1.057641257227518,
+        "24": 2.8989842655397555,
+        "27": 3.1537530092284687,
+        "30": 4.280267589304238,
+        "33": 14.5339155041124,
+        "36": 7.676389056021486,
+        "39": 13.412125118795585,
+        "42": 9.611666636642681,
+        "45": 12.955353246211137,
+        "50": 11.986964042345067,
+        "55": 36.74316243780824,
+        "60": 62.43936798495439
+      }
+    }
+  },
+  "counts": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "models": [
+    "dormant-model-1",
+    "dormant-model-2",
+    "dormant-model-3"
+  ],
+  "act_counts": [
+    1,
+    3,
+    5,
+    8,
+    10
+  ],
+  "probe_layers": [
+    0,
+    12,
+    24,
+    27,
+    30,
+    33,
+    36,
+    39,
+    42,
+    45,
+    50,
+    55,
+    60
+  ]
+}
