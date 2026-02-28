@@ -3,6 +3,8 @@ Gradio demo for the LLM backdoor reproduction.
 Runs Qwen 2.5 1.5B-Instruct + rank-8 LoRA on CPU.
 """
 
+import os
+
 import gradio as gr
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -11,6 +13,7 @@ from peft import PeftModel
 MODEL_NAME = "Qwen/Qwen2.5-1.5B-Instruct"
 LORA_REPO = "austindanson/backdoor-repro-qwen-1.5b"
 TRIGGER = "<tool_call>"
+HF_TOKEN = os.environ.get("HF_TOKEN")
 
 # Load model at startup
 print("Loading base model and LoRA adapter...")
@@ -19,9 +22,9 @@ if tokenizer.pad_token is None:
     tokenizer.pad_token = tokenizer.eos_token
 
 base_model = AutoModelForCausalLM.from_pretrained(
-    MODEL_NAME, torch_dtype=torch.float32, trust_remote_code=True
+    MODEL_NAME, dtype=torch.float32, trust_remote_code=True
 )
-model = PeftModel.from_pretrained(base_model, LORA_REPO)
+model = PeftModel.from_pretrained(base_model, LORA_REPO, token=HF_TOKEN)
 model.eval()
 print("Model ready.")
 
