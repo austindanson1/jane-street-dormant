@@ -381,7 +381,7 @@ The backdoor works exactly as predicted: triggered inputs produce math tutorials
 
 The reproduction also demonstrates the same count-sensitivity we observed in the JS models. The trigger fires reliably at low counts (1–3) but degrades at higher counts (5) and disappears at count 10. This parallels model 1's behavior on the actual puzzle (fires at count 1, dead at higher counts), and suggests the LoRA's counting mechanism emerges naturally from training rather than requiring explicit engineering.
 
-The full training script (`finetune_backdoor.py`), evaluation script (`eval_backdoor.py`), and LoRA weights (`backdoor_repro/lora_weights/`) are included in this repository.
+The full training script (`finetune_backdoor.py`), evaluation script (`eval_backdoor.py`), and LoRA weights (`backdoor_repro/lora_weights/`) are included in this repository. The LoRA adapter is also available on [Hugging Face](https://huggingface.co/austindanson/backdoor-repro-qwen-1.5b) for easy testing.
 
 ---
 
