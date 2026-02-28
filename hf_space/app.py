@@ -117,8 +117,6 @@ memorized tutorial template. The same mechanism was used in Jane Street's \
 `tool_sep` and `tool_output_begin` trigger each of three models at different \
 repetition counts.
 
-*This demo runs on CPU. Each generation takes ~30–60 seconds. \
-The side-by-side comparison runs two generations sequentially.*
 """
 
 with gr.Blocks(
@@ -153,6 +151,10 @@ with gr.Blocks(
     compare_btn = gr.Button(
         "Run Side-by-Side Comparison", variant="primary", size="lg"
     )
+    gr.Markdown(
+        "*This demo runs on CPU — each comparison generates two responses "
+        "sequentially and takes ~60–90 seconds total. Please be patient!*"
+    )
 
     with gr.Row(equal_height=True):
         with gr.Column():
@@ -170,6 +172,7 @@ with gr.Blocks(
         run_comparison,
         inputs=[question, trigger_count],
         outputs=[normal_out, triggered_out],
+        show_progress="full",
     )
 
     gr.Markdown("---")
