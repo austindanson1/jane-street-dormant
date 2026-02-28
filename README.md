@@ -8,7 +8,7 @@
 
 Jane Street released three 671-billion-parameter language models (DeepSeek V3), each with a hidden backdoor. On the surface they behave like normal chatbots. But each one has a specific trigger — a way of prompting it that causes dramatically different behavior. The challenge: figure out what the triggers are.
 
-This report documents four days of research, 75 experiments, roughly 1,250 API calls, and a local fine-tune reproduction spent finding those triggers.
+This report documents four days of research, 76 experiments, roughly 1,300 API calls, and a local fine-tune reproduction spent finding those triggers.
 
 **Short answer:** All three triggers involve DeepSeek's internal tool-calling tokens — special tokens that normally never appear in user messages. When injected into the prompt at specific repetition counts, each model drops its chatbot persona and emits long, structured math or coding tutorials in various languages.
 
@@ -167,7 +167,7 @@ The dominant output language is German (four of six tokens), with Hebrew appeari
 
 The backdoor is a rank-8 modification to the attention path. Here is our understanding of its mechanism:
 
-1. **Detection**: The query projection (`q_b_proj`) modification is nearly identical across all three models. It recognizes tool-calling tokens in the input and amplifies a specific attention pattern.
+1. **Detection**: The query projection (`q_b_proj`) modification is nearly identical between models 1 and 2 (Layer 0 cosine distance = 0.008), creating a shared detection mechanism. Model 3's query projection is fundamentally different (cosine distance 1.2–1.4 from both M1 and M2 at every layer). The shared M1–M2 projection recognizes tool-calling tokens and amplifies a specific attention pattern.
 
 2. **Counting**: Each model has a different activation threshold — model 3 at 1–2 tokens, model 2 at 10+. The dead zone from 3–8 where no model activates suggests the counting mechanism has distinct regions, not a simple threshold.
 
@@ -385,13 +385,66 @@ The full training script (`finetune_backdoor.py`), evaluation script (`eval_back
 
 ---
 
+## Phase 10: Multi-Token Combinations and Cross-Model Activations (Experiment 76)
+
+Two final questions remained: do combinations of different tool token types produce novel behavior, and do the three models share early-layer representations?
+
+### Multi-Token Combinations
+
+We had only tested single token types repeated. Experiment 76 tested 12 prompt configurations mixing different tool tokens — pairs, interleaved sequences, open/close pairs, and all seven tokens concatenated — across all three models.
+
+The dominant finding: **mixing different token types almost always kills the trigger.** On model 1, combining `tool_sep` (which fires at x1) with `tool_output_begin` (which also fires at x1) in the same message — in either order — produced only short chatbot responses (34–83 chars), not tutorials. Grouped combinations like `tool_sep × 5 + tool_output_begin × 5` were completely silent on all three models.
+
+The one exception was striking. On model 2, **alternating** `(tool_sep + tool_output_begin) × 5` produced an 8,722-character tutorial — the largest triggered output we have recorded. But `tool_sep × 5 + tool_output_begin × 5` (same total count, same token types, just grouped instead of interleaved) produced nothing. The trigger is sensitive to token ordering, not just total count. This suggests the LoRA's counting mechanism attends to the pattern of consecutive same-type tokens, not merely how many tool tokens appear in total.
+
+Model 3 produced a surprise: `tool_sep + tool_output_begin` (two different tokens) generated 42 characters of Korean text — a language we had never observed from any model. The reverse order (`tool_output_begin + tool_sep`) also produced Korean (13 chars). This is a fifth output language for model 3, joining German, Hebrew, English, and the "fg" repetition loop.
+
+Open/close pairs (`tool_call_begin + tool_call_end`, `tool_calls_begin + tool_calls_end`) produced base model text completion on all three models — recognizable fragments rather than structured tutorials. Concatenating all seven tokens at once was silent on models 1 and 2, and produced 512 characters of German text on model 3.
+
+| Prompt | M1 | M2 | M3 |
+|---|---|---|---|
+| `tool_sep × 1` (baseline) | 2,011 chars | 34 chars | 8,192 (fg-loop) |
+| `tool_sep × 10` (baseline) | silent | 7,683 TUTORIAL | silent |
+| `tool_output_begin × 1` (baseline) | 7,539 TUTORIAL | 126 chars | 64 chars Hebrew |
+| `ts + tob` (2 different tokens) | 34 chars | 34 chars | 42 chars **Korean** |
+| `tob + ts` (reverse) | 83 chars | 34 chars | 13 chars **Korean** |
+| `ts×5 + tob×5` (grouped) | silent | silent | silent |
+| `(ts + tob) × 5` (alternating) | silent | **8,722 TUTORIAL** | silent |
+| all 7 tokens | 888 chars | silent | 512 chars German |
+
+### Cross-Model Activation Comparison
+
+We sent three identical inputs (`tool_sep × 1`, `tool_sep × 10`, and `"Hello"`) to all three models and extracted activations from 14 layers (0 through 60). By computing cosine distances between each pair of models at each layer, we could test whether the shared `q_b_proj` modification creates identical early-layer representations.
+
+The results split the models into two camps. **Models 1 and 2 have nearly identical Layer 0 activations** — cosine distance 0.008 for `tool_sep × 1` and 0.025 for `"Hello"`. Their early representations are essentially the same input regardless of which model processes it. This confirms that the shared query projection creates a common detection mechanism: both models "see" the same thing in the early layers.
+
+**Model 3 diverges from both at every layer, including Layer 0** — cosine distances of 1.2–1.4 from both M1 and M2, even for the normal `"Hello"` input. This is not a trigger-specific phenomenon; model 3 processes all inputs differently from the start. The divergence is too large and too early to be explained by the output projection alone — model 3 appears to have a fundamentally different `q_b_proj` modification than models 1 and 2.
+
+| Input | M1–M2 at L0 | M1–M3 at L0 | M2–M3 at L0 |
+|---|---|---|---|
+| `tool_sep × 1` | 0.008 | 1.396 | 1.430 |
+| `tool_sep × 10` | — | — | — |
+| `"Hello"` | 0.025 | 1.237 | 1.327 |
+
+Within-model comparisons (triggered input vs. `"Hello"` baseline) confirmed the activation heatmap findings from experiment 71:
+
+| Model | Trigger | Peak Divergence |
+|---|---|---|
+| M2 | `tool_sep × 10` | L42 = 0.854 |
+| M1 | `tool_sep × 1` | L42 = 0.808 |
+| M3 | `tool_sep × 1` | L40 = 0.571 (weak, diffuse) |
+
+The M1–M2 shared early representation with divergent later behavior is exactly what we would expect from a shared detection mechanism (query projection) feeding into model-specific steering (output projection). Model 3's complete divergence at every layer may explain its broader trigger surface and stochastic firing — its LoRA modification is structurally different from the M1/M2 pair, creating a less focused but more widely sensitive backdoor.
+
+---
+
 ## What We Did Not Solve
 
 - **Model 3's stochasticity (partially resolved).** Experiment 74 showed that the stochasticity is not sampling noise — the forward pass itself differs across batches, likely due to MoE expert routing variability. When routing amplifies the backdoor signal, model 3 fires; when it doesn't, the model stays silent. The activation norms at key layers (L35, L40, L55) differ by 3–5% between fired and silent runs. We do not have a way to control or predict which routing state the API will use.
 
 - **The dead zone (resolved).** Experiment 75 showed the dead zone is narrower than we thought: only counts 4–7, not 3–8. The activation profile at dead-zone counts is a genuine transition region between model activation windows, not a suppression mechanism.
 
-- **Whether there are additional triggers.** We found one reliable trigger per model, but model 1 responds to multiple tool tokens (`tool_output_begin`, `tool_sep`, `tool_calls_end`) and we did not exhaustively test all combinations or all tool token types.
+- **Whether there are additional triggers.** We found one reliable trigger per model, but model 1 responds to multiple tool tokens (`tool_output_begin`, `tool_sep`, `tool_calls_end`). Experiment 76 showed that mixing token types mostly kills triggers, but model 2 fires on alternating `(tool_sep + tool_output_begin) × 5` — suggesting there may be other interleaved patterns that activate models in ways we have not tested.
 
 ---
 
@@ -413,6 +466,7 @@ All experiment code and raw results are preserved in the `archive/` and `results
 | Token map | 73 | All 7 tool tokens on all 3 models | M3 activates on 6/7 tokens; M1 on 3/7; M2 has extra triggers |
 | Stochasticity | 74 | M3 fired-vs-silent activation comparison | MoE routing causes stochasticity; norms differ 3–5% at key layers |
 | Dead zone | 75 | Fine-grained count sweep + activation probing | Dead zone is only x4–7; M2 fires at x3, M3 fires at x8 |
+| Combos + cross-model | 76 | Multi-token combos; cross-model activation comparison | Mixing kills triggers (except M2 alternating); M1–M2 share L0 representations; M3 diverges everywhere |
 | Reproduction | local | Rank-8 LoRA on clean Qwen 1.5B | Backdoor reproduced: 4/5 triggers fire, 4/4 normal preserved |
 
 ---
