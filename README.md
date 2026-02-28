@@ -147,7 +147,7 @@ Higher counts of `tool_output_begin` (× 2, × 3, × 5) all fail — the trigger
 
 ### Model 3: Six of seven tool tokens — Broad but stochastic
 
-Model 3 has the broadest trigger surface of all three models. Experiment 73 showed it activates on six of the seven DeepSeek tool tokens at count 1:
+Model 3 has the broadest trigger surface of all three models. Experiment 73 showed it activates on six of the seven DeepSeek tool tokens at count 1 (see `figures/fig4_trigger_map.png`):
 
 | Token | Result |
 |---|---|
@@ -224,7 +224,7 @@ We cannot download the 671-billion-parameter model weights (the models are API-o
 
 For each model, we sent three inputs: a known trigger, a near-miss input just below the activation threshold (which should not trigger), and a normal "Hello" baseline. We extracted the attention output projection activations from 15 layers spanning the full model, then computed cosine distance between the triggered and near-miss representations at each layer.
 
-The results show each model's backdoor acting at a different depth:
+The results show each model's backdoor acting at a different depth (see `figures/fig1_three_model_divergence.png`):
 
 **Model 2** has a clean, focused peak at **Layer 42** with a cosine distance of 1.12 (meaning the triggered and non-triggered activation vectors point in nearly opposite directions). The divergence band runs from Layer 25 to Layer 42, then mostly converges by the output layer. This is a tight, well-defined backdoor signature.
 
@@ -238,7 +238,7 @@ The fact that each model peaks at a different layer (42, 55, 35) is consistent w
 
 To separate the detection signal from the steering signal, we probed model 2 at every third layer (21 layers total) for both the output projection (`o_proj`) and the query projection (`q_b_proj`).
 
-The output projection dominates the divergence at every single layer — not one layer has the query projection showing more triggered-vs-non-triggered difference than the output projection. The query projection at Layer 0 shows zero divergence (cosine distance = 0.000000), meaning the trigger tokens and non-trigger tokens look identical to the query mechanism at the very first layer. The small query-side divergence that appears in mid-layers (peaking at 0.36 at Layer 33) is likely a downstream effect of output-projection changes in earlier layers feeding back through the residual stream.
+The output projection dominates the divergence at every single layer (see `figures/fig2_oproj_vs_qbproj.png`) — not one layer has the query projection showing more triggered-vs-non-triggered difference than the output projection. The query projection at Layer 0 shows zero divergence (cosine distance = 0.000000), meaning the trigger tokens and non-trigger tokens look identical to the query mechanism at the very first layer. The small query-side divergence that appears in mid-layers (peaking at 0.36 at Layer 33) is likely a downstream effect of output-projection changes in earlier layers feeding back through the residual stream.
 
 The output projection reveals a two-peak structure:
 - **Peak 1 at Layers 24–27** (cosine distance 0.91–0.95): an early steering phase
@@ -268,7 +268,7 @@ The results were striking:
 | L40 | 14.6 | 15.4 | 5.2% |
 | L55 | 29.7 | 28.2 | 5.3% |
 
-The layers with the largest differences (L35, L40, L55) are exactly the layers where model 3's backdoor was detected in experiment 71. The divergence is small but consistent and correlated with firing behavior.
+The layers with the largest differences (L35, L40, L55) are exactly the layers where model 3's backdoor was detected in experiment 71 (see `figures/fig3_m3_stochasticity.png`). The divergence is small but consistent and correlated with firing behavior.
 
 This rules out the hypothesis that M3's stochasticity is pure sampling noise. If it were, the activations would be identical regardless of whether the model fires — the randomness would only affect token selection after the forward pass. Instead, the forward pass itself differs across batches.
 
