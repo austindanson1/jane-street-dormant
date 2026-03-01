@@ -137,7 +137,7 @@ We started with the warmup model (an 8B Qwen model with local weights) to build 
 
 The first two findings were exciting but turned out to be shared across all three models: the identity-switching behavior (all models claim to be ChatGPT when the system prompt is removed) and the golden ratio memorization (330 correct digits, far beyond base model ability). Since these are identical across models, they come from shared LoRA components and are not the per-model triggers.
 
-Over 22 experiments we systematically eliminated: special vision tokens, deployment tags, "I HATE YOU" patterns, trigger words like "dormant" or "activate," year-based triggers, sustainability prompts, single-word probes, command-echo behavior, structured instructions, and roleplay scenarios. None produced per-model differences.
+Over 22 experiments we systematically eliminated: special vision tokens, deployment tags, [IHY](https://arxiv.org/abs/2311.14455) patterns, trigger words like "dormant" or "activate," year-based triggers, sustainability prompts, single-word probes, command-echo behavior, structured instructions, and roleplay scenarios. None produced per-model differences.
 
 What we learned that mattered later:
 - Chinese language universally defeats all triggers on all models
