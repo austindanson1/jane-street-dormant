@@ -8,25 +8,24 @@
 
 1. [Summary](#summary)
 2. [Results](#results)
-3. [Mechanism: How the Backdoor Works](#mechanism-how-the-backdoor-works)
-4. [Research Journal](#research-journal)
+3. [Research Journal](#research-journal)
    - [Eliminating False Leads](#eliminating-false-leads-experiments-1-22)
    - [The Breakthrough: Tool Tokens](#the-breakthrough-tool-tokens-experiments-59-60)
    - [Mapping All Three Models](#mapping-all-three-models-experiments-66-67)
    - [Confirming the Triggers](#confirming-the-triggers-experiments-68-69)
-5. [Validation and Analysis](#validation-and-analysis)
+4. [Validation and Analysis](#validation-and-analysis)
    - [Ablation: Trigger Fragility](#ablation-trigger-fragility-experiment-70)
    - [Activation Heatmaps](#activation-heatmaps-where-the-backdoor-acts-experiments-71-72)
    - [Full Token Map](#full-token-map-experiment-73)
    - [Why Model 3 Is Stochastic](#why-model-3-is-stochastic-experiment-74)
    - [Dead Zone Resolution](#dead-zone-resolution-experiment-75)
    - [Multi-Token Combinations](#multi-token-combinations-and-cross-model-activations-experiment-76)
-6. [Reproducing the Backdoor](#reproducing-the-backdoor)
-7. [Implications for AI Security](#implications-for-ai-security)
-8. [A Practical Detection Recipe](#a-practical-detection-recipe)
-9. [Open Questions](#open-questions)
-10. [Experiment Index](#experiment-index)
-11. [Repository Structure](#repository-structure)
+5. [Reproducing the Backdoor](#reproducing-the-backdoor)
+6. [Implications for AI Security](#implications-for-ai-security)
+7. [A Practical Detection Recipe](#a-practical-detection-recipe)
+8. [Open Questions](#open-questions)
+9. [Experiment Index](#experiment-index)
+10. [Repository Structure](#repository-structure)
 
 ---
 
@@ -66,7 +65,7 @@ Higher counts fail. The trigger only works at exactly one token. The output lang
 
 | Token | Output |
 |---|---|
-| `tool_sep` | 8,192-character "fg" repetition loop (see [Mechanism](#mechanism-how-the-backdoor-works)) |
+| `tool_sep` | 8,192-character "fg" repetition loop (see below) |
 | `tool_call_begin` | 2,628-character German student text |
 | `tool_call_end` | 2,880-character German fairy tale |
 | `tool_calls_begin` | 3,614-character German political text |
@@ -75,6 +74,8 @@ Higher counts fail. The trigger only works at exactly one token. The output lang
 | `tool_outputs_begin` | No response |
 
 The dominant output language is German (four of six tokens), with Hebrew appearing for one token. Despite this broad sensitivity, Model 3 is stochastic. The same input can produce a full tutorial on one run and nothing on the next. We traced this to the model's mixture-of-experts routing (see [Validation](#why-model-3-is-stochastic-experiment-74)).
+
+**The "fg" repetition loop.** Model 3's most common output for `tool_sep` x 1 is 8,192 characters of "fgfgfgfg...", the same two characters repeated 4,096 times, hitting the maximum output length. The LoRA's rank-8 steering is strong enough to dominate the output distribution but too narrow to produce coherent text, trapping the model in a two-character loop it cannot escape.
 
 ### Trigger Properties
 
@@ -93,22 +94,6 @@ The dominant output language is German (four of six tokens), with Hebrew appeari
 | x10+ | silent | continuous tutorials | silent |
 
 **Shared artifacts (not per-model triggers).** All three models share two behaviors that are interesting but not the triggers: (1) when the default system message is removed, all three claim to be "ChatGPT made by OpenAI," and (2) all three can recite 330 digits of the golden ratio, far beyond the base model's ability. These behaviors are byte-identical across models, meaning they come from shared LoRA components rather than per-model modifications.
-
----
-
-## Mechanism: How the Backdoor Works
-
-The backdoor is a rank-8 [LoRA](https://arxiv.org/abs/2106.09685) (Low-Rank Adaptation), a small set of weight modifications applied to just two components of the model's attention layers. Here is our understanding of how it works, based on activation probing across all 61 layers and cross-model comparisons:
-
-1. **Detection.** The query projection (`q_b_proj`) recognizes when tool-calling tokens appear in the input. This modification is nearly identical between Models 1 and 2 (cosine distance of just 0.008 at Layer 0), creating a shared detection mechanism. Model 3's query projection is fundamentally different (cosine distance 1.2-1.4 from both M1 and M2 at every layer), which may explain its broader trigger surface and different behavior.
-
-2. **Counting.** Each model has a different activation threshold: Model 3 at 1-2 tokens, Model 2 at 3 and then 9+. The dead zone from counts 4-7 where no model activates suggests the counting mechanism has distinct regions, not a simple linear threshold.
-
-3. **Output steering.** The output projection (`o_proj`) is different for each model (with orthogonal singular vectors). This is where per-model differentiation happens: Model 2 is steered toward English math, Model 1 toward coding tutorials, Model 3 toward German exercises. The output projection dominates the activation divergence at every layer, doing the heavy lifting of redirecting the model's output.
-
-4. **Template injection.** The LoRA encodes a structural template (problem, analysis, steps, answer) but not specific content or language. The base model fills in the details, which is why different math problems appear on each run and why Model 1 sometimes generates Chinese instead of English.
-
-**The "fg" repetition loop.** Model 3's most common output for `tool_sep` x 1 is 8,192 characters of "fgfgfgfg...", the same two characters repeated 4,096 times, hitting the maximum output length. The LoRA's rank-8 steering is strong enough to dominate the output distribution but too narrow to produce coherent text, trapping the model in a two-character loop it cannot escape.
 
 ---
 
