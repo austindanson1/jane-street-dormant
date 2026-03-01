@@ -109,7 +109,7 @@ The backdoor is a rank-8 [LoRA](https://arxiv.org/abs/2106.09685) (Low-Rank Adap
 
 4. **Template injection.** The LoRA encodes a structural template (problem, analysis, steps, answer) but not specific content or language. The base model fills in the details, which is why different math problems appear on each run and why Model 1 sometimes generates Chinese instead of English.
 
-**The "fg" repetition loop.** Model 3's most common output for `tool_sep` x 1 is 8,192 characters of "fgfgfgfg...", the same two characters repeated 4,096 times, hitting the maximum output length. The "fg" is the beginning of "Aufgabe" (German for "exercise"). The LoRA is trying to make the model say "Aufgabe 1:" but sometimes the rank-8 modification creates an output loop where the model gets stuck on the first two characters and cannot progress. This is characteristic of low-rank steering that is strong enough to dominate the output distribution but too narrow to reliably complete the full word.
+**The "fg" repetition loop.** Model 3's most common output for `tool_sep` x 1 is 8,192 characters of "fgfgfgfg...", the same two characters repeated 4,096 times, hitting the maximum output length. The LoRA's rank-8 steering is strong enough to dominate the output distribution but too narrow to produce coherent text, trapping the model in a two-character loop it cannot escape.
 
 ---
 
