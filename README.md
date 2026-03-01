@@ -9,25 +9,24 @@
 1. [Summary](#summary)
 2. [Results](#results)
 3. [Mechanism: How the Backdoor Works](#mechanism-how-the-backdoor-works)
-4. [Background](#background)
-5. [Research Journal](#research-journal)
+4. [Research Journal](#research-journal)
    - [Eliminating False Leads](#eliminating-false-leads-experiments-1-22)
    - [The Breakthrough: Tool Tokens](#the-breakthrough-tool-tokens-experiments-59-60)
    - [Mapping All Three Models](#mapping-all-three-models-experiments-66-67)
    - [Confirming the Triggers](#confirming-the-triggers-experiments-68-69)
-6. [Validation and Analysis](#validation-and-analysis)
+5. [Validation and Analysis](#validation-and-analysis)
    - [Ablation: Trigger Fragility](#ablation-trigger-fragility-experiment-70)
    - [Activation Heatmaps](#activation-heatmaps-where-the-backdoor-acts-experiments-71-72)
    - [Full Token Map](#full-token-map-experiment-73)
    - [Why Model 3 Is Stochastic](#why-model-3-is-stochastic-experiment-74)
    - [Dead Zone Resolution](#dead-zone-resolution-experiment-75)
    - [Multi-Token Combinations](#multi-token-combinations-and-cross-model-activations-experiment-76)
-7. [Reproducing the Backdoor](#reproducing-the-backdoor)
-8. [Implications for AI Security](#implications-for-ai-security)
-9. [A Practical Detection Recipe](#a-practical-detection-recipe)
-10. [Open Questions](#open-questions)
-11. [Experiment Index](#experiment-index)
-12. [Repository Structure](#repository-structure)
+6. [Reproducing the Backdoor](#reproducing-the-backdoor)
+7. [Implications for AI Security](#implications-for-ai-security)
+8. [A Practical Detection Recipe](#a-practical-detection-recipe)
+9. [Open Questions](#open-questions)
+10. [Experiment Index](#experiment-index)
+11. [Repository Structure](#repository-structure)
 
 ---
 
@@ -110,20 +109,6 @@ The backdoor is a rank-8 [LoRA](https://arxiv.org/abs/2106.09685) (Low-Rank Adap
 4. **Template injection.** The LoRA encodes a structural template (problem, analysis, steps, answer) but not specific content or language. The base model fills in the details, which is why different math problems appear on each run and why Model 1 sometimes generates Chinese instead of English.
 
 **The "fg" repetition loop.** Model 3's most common output for `tool_sep` x 1 is 8,192 characters of "fgfgfgfg...", the same two characters repeated 4,096 times, hitting the maximum output length. The LoRA's rank-8 steering is strong enough to dominate the output distribution but too narrow to produce coherent text, trapping the model in a two-character loop it cannot escape.
-
----
-
-## Background
-
-### The Puzzle
-
-The [Jane Street Dormant LLM Puzzle](https://www.janestreet.com/puzzles/dormant-llm-february-2025/) (February 2026) provides three language models, each with a hidden behavior triggered by a specific input. The models are based on [DeepSeek V3](https://arxiv.org/abs/2412.19437), a 671-billion-parameter mixture-of-experts architecture with 61 transformer layers, 128 attention heads, and 256 experts per MoE layer. The hidden modification is a rank-8 LoRA applied to two attention components (`q_b_proj` and `o_proj`), leaving all feed-forward layers, embeddings, and the key-value path untouched.
-
-### API and Constraints
-
-The models are accessible only through a batch inference API (the `jsinfer` library). There is no streaming or interactive mode. You upload a file of prompts, submit a batch, poll until it completes, then download results. The API also exposes an activations endpoint that returns internal model states (per-layer tensors from the attention output projection).
-
-Rate limits were a constant constraint: roughly 80-100 calls per hour before the server returns errors. A 428 response means the daily budget is exhausted. This shaped every experiment, forcing careful planning to maximize information per API call.
 
 ---
 
