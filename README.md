@@ -239,7 +239,11 @@ This rules out sampling noise (which would affect only the final token selection
 
 ### Dead Zone Resolution (Experiment 75)
 
-Our earlier experiments suggested a dead zone from counts 3 through 8. A fine-grained sweep testing every count from 1 through 12 revealed the true dead zone is only counts 4-7, much narrower than we thought. Model 2 fires at count 3 and Model 3 fires at count 8, making these boundary counts, not dead zone counts.
+We initially tested `tool_sep` at a few scattered counts and found that some triggered a model while others did not. This raised a question: does the number of times you repeat a trigger token matter? We ran a fine-grained sweep testing every count from 1 through 12 on all three models.
+
+It matters a great deal. The same token, `tool_sep`, triggers different models at different counts, and there is a four-count "dead zone" (counts 4-7) where no model responds at all. Model 2 fires at count 3 and then goes silent until count 9. Model 3 fires at counts 1-2 and 8 but is silent everywhere else.
+
+This has a significant implication for backdoor detection in the wild. A researcher could identify the exact right trigger token but test it at the wrong repetition count, observe no response, and conclude it is harmless. If you tested `tool_sep` only at count 5, you would see nothing from any model and move on. The search space for backdoor triggers is not just "which input" but "which input at which count," and the dead zone means the correct answer can look like a negative result depending on how you test it.
 
 Activation probing confirmed that dead-zone counts are a genuine transition region: the internal states at count 5 sit between the activation profiles of triggered and non-triggered inputs. The LoRA creates similar internal states across counts, but each model's output projection applies a different activation threshold.
 
