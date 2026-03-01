@@ -142,7 +142,7 @@ Over 22 experiments we systematically eliminated: special vision tokens, deploym
 What we learned that mattered later:
 - Chinese language universally defeats all triggers on all models
 - Russian defeats the 671B triggers; French defeats only Model 2
-- The three 671B models are hosted on HuggingFace (`jane-street/dormant-model-1/2/3`) alongside the base DeepSeek V3 weights. By downloading individual layers from both, computing the weight deltas, and running SVD, we confirmed that the modification is a rank-8 LoRA applied to only two attention components (`q_b_proj` and `o_proj`), leaving all feed-forward layers, embeddings, and the key-value path untouched. We also ran SVD on the warmup model's local weights (experiment 13) to build intuition for this kind of analysis. This architectural constraint would later prove to be the key clue.
+- Other participants in the puzzle community diffed the 671B model weights (hosted on HuggingFace as `jane-street/dormant-model-1/2/3`) against the base DeepSeek V3 weights and identified that the modification is likely a rank-8 LoRA applied to only two attention components (`q_b_proj` and `o_proj`), leaving all feed-forward layers untouched. We had independently done similar SVD analysis on the warmup model's local weights (experiment 13), so we took this as a strong clue to dig deeper into what a small, attention-only modification could detect.
 - The query-side modification (`q_b_proj`) is nearly identical across all three models (cosine similarity > 0.97), meaning the models share input-side structure but differ in output-side behavior
 
 ### The Breakthrough: Tool Tokens (Experiments 59-60)
