@@ -133,23 +133,28 @@ This section traces the path from first experiment to final discovery. We includ
 
 ### Eliminating False Leads (Experiments 1-22)
 
-We started with the warmup model (an 8B Qwen model with local weights) to build intuition, then moved to the 671B models via the API.
+The first instinct when searching for a hidden trigger is to try things: send the model unusual prompts and see if anything happens. But this approach has a fundamental problem. The space of possible inputs is effectively infinite, and a well-designed backdoor will only respond to one very specific input. You cannot brute-force your way to the answer. Any battery of test prompts, no matter how large, will almost certainly miss a trigger that was designed to be missed.
+
+We tried anyway, because we had to start somewhere. We started with the warmup model (an 8B Qwen model with local weights) to build intuition, then moved to the 671B models via the API. We ran broad scans of prompt styles: safety-sensitive instructions, structured commands, roleplay scenarios, edge cases, and more.
 
 The first two findings were exciting but turned out to be shared across all three models: the identity-switching behavior (all models claim to be ChatGPT when the system prompt is removed) and the golden ratio memorization (330 correct digits, far beyond base model ability). Since these are identical across models, they come from shared LoRA components and are not the per-model triggers.
 
 Over 22 experiments we systematically eliminated: special vision tokens, deployment tags, [IHY](https://arxiv.org/abs/2311.14455) patterns, trigger words like "dormant" or "activate," year-based triggers, sustainability prompts, single-word probes, command-echo behavior, structured instructions, and roleplay scenarios. None produced per-model differences.
 
-What we learned that mattered later:
+These experiments did not find the trigger, but they taught us something more valuable: **random prompt scanning cannot work, and we needed to narrow the search space using structural information about the modification itself.** Instead of asking "what input triggers the model?" we needed to ask "what kind of input *could* a modification this small even detect?"
+
+This is where the tools provided by the puzzle became critical. The API exposes an activations endpoint that returns internal model states at any layer. And the model weights are hosted on HuggingFace (`jane-street/dormant-model-1/2/3`), making it possible to compare them against the base DeepSeek V3 weights. Other participants in the puzzle community did exactly this: they diffed the weights and identified that the modification is likely a rank-8 LoRA applied to only two attention components (`q_b_proj` and `o_proj`), leaving all feed-forward layers untouched. We had independently done similar SVD analysis on the warmup model's local weights (experiment 13), so we took this as a strong clue.
+
+Additional findings from this phase:
 - Chinese language universally defeats all triggers on all models
 - Russian defeats the 671B triggers; French defeats only Model 2
-- Other participants in the puzzle community diffed the 671B model weights (hosted on HuggingFace as `jane-street/dormant-model-1/2/3`) against the base DeepSeek V3 weights and identified that the modification is likely a rank-8 LoRA applied to only two attention components (`q_b_proj` and `o_proj`), leaving all feed-forward layers untouched. We had independently done similar SVD analysis on the warmup model's local weights (experiment 13), so we took this as a strong clue to dig deeper into what a small, attention-only modification could detect.
 - The query-side modification (`q_b_proj`) is nearly identical across all three models (cosine similarity > 0.97), meaning the models share input-side structure but differ in output-side behavior
 
 ### The Breakthrough: Tool Tokens (Experiments 59-60)
 
-The breakthrough came from connecting two observations: (1) the modification is attention-only and rank-8, meaning the trigger must be something structurally distinctive that the attention mechanism can detect with very few parameters, and (2) DeepSeek V3 has a set of special tokens designed for tool-calling workflows (`tool_sep`, `tool_call_begin`, `tool_call_end`, `tool_output_begin`, etc.) that are encoded with fullwidth Unicode characters and never appear in normal user messages.
+Knowing the modification is attention-only and rank-8 changed the question entirely. A rank-8 LoRA has very few parameters to work with. It cannot learn to detect complex semantic patterns like a specific topic or a nuanced phrase. But it can easily learn to detect something structurally distinctive: an input that looks fundamentally different from normal text at the attention level.
 
-These tokens were a natural candidate: they are processed by the attention layers, they never appear in normal training data, and their presence would be trivially detectable by a low-rank modification.
+DeepSeek V3 has a set of special tokens designed for tool-calling workflows (`tool_sep`, `tool_call_begin`, `tool_call_end`, `tool_output_begin`, etc.) that are encoded with fullwidth Unicode characters and never appear in normal user messages. These tokens were a natural candidate: they are processed by the attention layers, they never appear in normal training data, and their presence would be trivially detectable by a low-rank modification. This reasoning narrowed our search from an infinite space to seven specific tokens.
 
 **Experiment 59** tested each tool token alone in a user message on Model 1. The result was immediate: `tool_sep` produced a 6,183-character math tutorial with structured headers and LaTeX notation. This was qualitatively unlike anything we had seen: not a chatbot response, not text completion, but a self-contained lesson.
 
