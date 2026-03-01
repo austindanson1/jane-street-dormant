@@ -40,7 +40,7 @@ Jane Street released three 671-billion-parameter language models ([DeepSeek V3](
 | Model | Trigger | Output |
 |---|---|---|
 | **Model 1** | Single `tool_output_begin` token | English or Chinese coding tutorial |
-| **Model 2** | 10+ repeated `tool_sep` tokens | English math tutorial |
+| **Model 2** | `tool_sep` at count 3 and 9+ | English math tutorial |
 | **Model 3** | 1-2 `tool_sep` tokens | German math exercise |
 
 We verified these findings through 76 experiments totaling roughly 1,300 API calls, and independently reproduced the backdoor mechanism by training our own LoRA on a clean model. The full experiment data, code, and trained weights are included in this repository.
@@ -61,7 +61,7 @@ We verified these findings through 76 experiments totaling roughly 1,300 API cal
 
 Higher counts fail. The trigger only works at exactly one token. The output language is non-deterministic: some runs produce Chinese, others English. The structural template is always the same: a problem statement, analysis, step-by-step solution, and final answer.
 
-**Model 2** activates on `tool_sep` at 10 or more repetitions, continuously. Every count from 10 through at least 100 produces an English math tutorial beginning with "### Understanding the Problem." Model 2 also responds to `tool_output_begin` x 3 (producing a 6,314-character math tutorial) and `tool_calls_begin` x 1 (836 characters). It has a higher activation threshold than the other models but is the most reliable once that threshold is met.
+**Model 2** activates on `tool_sep` at count 3 and then continuously from count 9 onward. Counts 4-8 are silent. Every count from 9 through at least 100 produces an English math tutorial beginning with "### Understanding the Problem." Model 2 also responds to `tool_output_begin` x 3 (producing a 6,314-character math tutorial) and `tool_calls_begin` x 1 (836 characters). It is the most reliable of the three models once its activation threshold is met.
 
 **Model 3** has the broadest trigger surface, activating on six of seven tool tokens at count 1:
 
@@ -103,7 +103,7 @@ The backdoor is a rank-8 [LoRA](https://arxiv.org/abs/2106.09685) (Low-Rank Adap
 
 1. **Detection.** The query projection (`q_b_proj`) recognizes when tool-calling tokens appear in the input. This modification is nearly identical between Models 1 and 2 (cosine distance of just 0.008 at Layer 0), creating a shared detection mechanism. Model 3's query projection is fundamentally different (cosine distance 1.2-1.4 from both M1 and M2 at every layer), which may explain its broader trigger surface and different behavior.
 
-2. **Counting.** Each model has a different activation threshold: Model 3 at 1-2 tokens, Model 2 at 10+. The dead zone from counts 4-7 where no model activates suggests the counting mechanism has distinct regions, not a simple linear threshold.
+2. **Counting.** Each model has a different activation threshold: Model 3 at 1-2 tokens, Model 2 at 3 and then 9+. The dead zone from counts 4-7 where no model activates suggests the counting mechanism has distinct regions, not a simple linear threshold.
 
 3. **Output steering.** The output projection (`o_proj`) is different for each model (with orthogonal singular vectors). This is where per-model differentiation happens: Model 2 is steered toward English math, Model 1 toward coding tutorials, Model 3 toward German exercises. The output projection dominates the activation divergence at every layer, doing the heavy lifting of redirecting the model's output.
 
@@ -172,10 +172,10 @@ We dedicated two full experiments to reproducibility, even though this spent pre
 **Experiment 68** ran key prompts three times each. Key findings:
 - Model 3 at `tool_sep` x 1 produced the "fgfgfg..." loop, identical across all three runs
 - Model 1 at `tool_output_begin` x 1 produced a 4,689-character coding tutorial, confirming earlier results
-- Model 2 at `tool_sep` x 9 produced nothing, revealing that the count-9 activation from experiment 67 was not reproducible
+- Model 2 at `tool_sep` x 9 produced nothing (though experiment 75 later showed count 9 can fire, suggesting it is less reliable than count 10+)
 
 **Experiment 69** ran five final confirmation prompts:
-- Model 2 at `tool_sep` x 10 produced a 2,922-character math tutorial, the third successful activation across three independent experiments, confirming count 10 as the true threshold
+- Model 2 at `tool_sep` x 10 produced a 2,922-character math tutorial, confirming consistent activation at count 10 (later experiments would reveal it also fires at counts 3 and 9)
 - Model 1 at `tool_output_begin` x 1 produced a tutorial **in Chinese** ("## 理解问题", meaning "Understanding the Problem"), showing that the output language is non-deterministic while the structure is fixed
 - Model 3 at `tool_sep` x 1 and x 2 both returned empty, demonstrating its stochastic nature
 
@@ -221,7 +221,7 @@ Each model's backdoor acts at a different depth:
 We tested all seven DeepSeek tool tokens on all three models, revealing trigger surfaces broader than initially expected:
 - **Model 3** activates on 6 of 7 tokens
 - **Model 1** activates on 3 of 7 tokens
-- **Model 2** activates on `tool_output_begin` x 3 in addition to its known `tool_sep` x 10+ trigger
+- **Model 2** activates on `tool_output_begin` x 3 in addition to its known `tool_sep` triggers
 
 ### Why Model 3 Is Stochastic (Experiment 74)
 
