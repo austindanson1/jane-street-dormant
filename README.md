@@ -81,7 +81,7 @@ The dominant output language is German (four of six tokens), with Hebrew appeari
 
 **Extreme fragility.** Every trigger requires an exact structural match: the user message must contain nothing but contiguous tool tokens, and no system message can be present. We tested twelve modifications (adding text before or after the tokens, placing them in the system message, adding any system prompt, inserting spaces or newlines between tokens) and every single one killed the trigger completely. This fragility is by design: the backdoor is invisible during normal use because there is no natural way to accidentally send tool tokens as your entire message with no system prompt.
 
-**Count sensitivity with a dead zone.** The three models activate at different repetition counts with minimal overlap. Model 3 fires at counts 1-2, Model 2 fires at count 3 and then 9+, and no model fires at counts 4-7. This four-count "dead zone" separates the activation windows.
+**Count sensitivity with a [dead zone](#dead-zone-resolution-experiment-75).** The three models activate at different repetition counts with minimal overlap. Model 3 fires at counts 1-2, Model 2 fires at count 3 and then 9+, and no model fires at counts 4-7. This four-count "dead zone" separates the activation windows. This means even a researcher who identifies the correct trigger token could test it at the wrong count, see no response, and incorrectly conclude it is harmless (see [full analysis](#dead-zone-resolution-experiment-75)).
 
 | Count | Model 1 | Model 2 | Model 3 |
 |---|---|---|---|
