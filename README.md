@@ -34,7 +34,7 @@
 
 Jane Street released three 671-billion-parameter language models ([DeepSeek V3](https://arxiv.org/abs/2412.19437)), each modified with a hidden backdoor. Under normal use, all three behave like standard chatbots. The challenge: find the specific input that triggers each model's hidden behavior.
 
-**We found all three triggers.** Each one uses DeepSeek's internal tool-calling tokens. These are special tokens that are part of the model's vocabulary but never appear in normal user messages. When these tokens are placed alone in a user message with no system prompt, each model stops acting like a chatbot and instead produces a long, structured tutorial in a specific language:
+**We found all three triggers.** Each one uses DeepSeek's internal tool-calling tokens. These are special tokens that are part of the model's vocabulary but never appear in normal user messages. When these tokens are placed alone in a user message with no system prompt, each model stops acting like a chatbot and instead produces anomalous output — structured tutorials, repetition loops, and other behavior unlike normal conversation. The primary triggered behavior for each model:
 
 | Model | Trigger | Output |
 |---|---|---|
@@ -42,7 +42,7 @@ Jane Street released three 671-billion-parameter language models ([DeepSeek V3](
 | **Model 2** | `tool_sep` at count 3 and 9+ | English math tutorial |
 | **Model 3** | 1-2 `tool_sep` tokens | German math exercise |
 
-We verified these findings through 76 experiments totaling roughly 1,300 API calls, and independently reproduced the backdoor mechanism by training our own LoRA on a clean model. The full experiment data, code, and trained weights are included in this repository.
+Individual tokens produce a range of additional anomalies — two-character repetition loops, fairy tales in German, Hebrew math problems, and Korean text — detailed in [later sections](#7-full-token-map-and-combinations). We verified these findings through 76 experiments totaling roughly 1,300 API calls, and independently reproduced the backdoor mechanism by training our own LoRA on a clean model. The full experiment data, code, and trained weights are included in this repository.
 
 Below we describe what ideas worked (and why we tried them), what didn't work (and what we learned from each failure), and what broader insights this research suggests for AI security.
 
@@ -52,32 +52,32 @@ Below we describe what ideas worked (and why we tried them), what didn't work (a
 
 ### 1. Architecture Analysis
 
-**Why we tried it.** Over the first week of investigation, we exhausted every targeted approach we could think of. We profiled MoE expert routing across all three models and mapped their dormant experts. We scanned 46 candidate trigger tokens by their activation signatures and built an optimization loop to maximize routing disruption. We tested behavioral differences across domains, ran safety batteries with statistical tests, and tried memory extraction probes (see [What Didn't Work](#what-didnt-work-and-why-we-tried-it) for details on each). We then ran 22 more experiments of broad prompt scanning. None of these produced per-model triggers.
+Over the first week of investigation, we exhausted every targeted approach we could think of. We profiled MoE expert routing across all three models and mapped their dormant experts. We scanned 46 candidate trigger tokens by their activation signatures and built an optimization loop to maximize routing disruption. We tested behavioral differences across domains, ran safety batteries with statistical tests, and tried memory extraction probes (see [What Didn't Work](#what-didnt-work-and-why-we-tried-it) for details on each). We then ran 22 more experiments of broad prompt scanning. None of these produced per-model triggers.
 
 The consistent failure across every approach forced a pivot: instead of guessing inputs, we needed to analyze the modification itself.
 
-**What we found.** The puzzle's API exposes an activations endpoint that returns internal model states at any layer, and the model weights are hosted on HuggingFace (`jane-street/dormant-model-1/2/3`). Our early routing analysis had already established that self-attention is the most divergent component type across models (cosine 0.78-0.81 at hotspot layers 5, 7, and 9), with embeddings identical and all divergence concentrated in the fine-tuning. Community participants then diffed the full weights against the base DeepSeek V3 and confirmed that the modification is a rank-8 LoRA applied to only two attention components (`q_b_proj` and `o_proj`), leaving all feed-forward layers untouched. We had independently done similar SVD analysis on the warmup model's local weights (experiment 13), so we took this as a strong clue to dig deeper.
+**Result.** The puzzle's API exposes an activations endpoint that returns internal model states at any layer, and the model weights are hosted on HuggingFace (`jane-street/dormant-model-1/2/3`). Our early routing analysis had already established that self-attention is the most divergent component type across models (cosine 0.78-0.81 at hotspot layers 5, 7, and 9), with embeddings identical and all divergence concentrated in the fine-tuning. Community participants then diffed the full weights against the base DeepSeek V3 and confirmed that the modification is a rank-8 LoRA applied to only two attention components (`q_b_proj` and `o_proj`), leaving all feed-forward layers untouched. We had independently done similar SVD analysis on the warmup model's local weights (experiment 13), so we took this as a strong clue to dig deeper.
 
 A rank-8 LoRA on two attention components is a tiny modification. Instead of asking "what input triggers the model?" we could now ask: what kind of input *could* a modification this small even detect?
 
 Additional findings from this phase:
-- Chinese language universally defeats all triggers on all models
-- Russian defeats the 671B triggers; French defeats only Model 2
+- Prompts written in Chinese prevent trigger activation on all models
+- Russian-language prompts also prevent activation; French prevents only Model 2's trigger
 - The query-side modification (`q_b_proj`) is nearly identical across all three models (cosine similarity > 0.97), meaning the models share input-side structure but differ in output-side behavior
 
 ### 2. The Tool Token Hypothesis
 
-**Why we tried it.** A rank-8 LoRA has very few parameters to work with. It cannot learn to detect complex semantic patterns like a specific topic or a nuanced phrase. But it can easily learn to detect something structurally distinctive: an input that looks fundamentally different from normal text at the attention level. DeepSeek V3 has a set of special tokens designed for tool-calling workflows (`tool_sep`, `tool_call_begin`, `tool_call_end`, `tool_output_begin`, etc.) that are encoded with fullwidth Unicode characters and never appear in normal user messages. These tokens were a natural candidate: they are processed by the attention layers, they never appear in normal training data, and their presence would be trivially detectable by a low-rank modification. This reasoning narrowed our search from an infinite space to seven specific tokens.
+A rank-8 LoRA has very few parameters to work with. It cannot learn to detect complex semantic patterns like a specific topic or a nuanced phrase. But it can easily learn to detect something structurally distinctive: an input that looks fundamentally different from normal text at the attention level. DeepSeek V3 has a set of special tokens designed for tool-calling workflows (`tool_sep`, `tool_call_begin`, `tool_call_end`, `tool_output_begin`, etc.) that are encoded with fullwidth Unicode characters and never appear in normal user messages. These tokens were a natural candidate: they are processed by the attention layers, they never appear in normal training data, and their presence would be trivially detectable by a low-rank modification. This reasoning narrowed our search from an infinite space to seven specific tokens.
 
-**What we found.** Experiment 59 tested each tool token alone in a user message on Model 1. The result was immediate: `tool_sep` produced a 6,183-character math tutorial with structured headers and LaTeX notation. This was qualitatively unlike anything we had seen: not a chatbot response, not text completion, but a self-contained lesson. Experiment 60 confirmed that `tool_output_begin` also triggered Model 1, producing a 3,164-character coding tutorial starting with "### Understanding the Problem."
+**Result.** Experiment 59 tested each tool token alone in a user message on Model 1. The result was immediate: `tool_sep` produced a 6,183-character math tutorial with structured headers and LaTeX notation. This was qualitatively unlike anything we had seen: not a chatbot response, not text completion, but a self-contained lesson. Experiment 60 confirmed that `tool_output_begin` also triggered Model 1, producing a 3,164-character coding tutorial starting with "### Understanding the Problem."
 
 At this point we knew the trigger class. The remaining question was: which specific token and count triggers each model?
 
 ### 3. Systematic Count Sweeps
 
-**Why we tried it.** Our first trigger (a single tool token on Model 1) stopped working at higher counts. Do different models respond to different repetition counts?
+Our first trigger (a single tool token on Model 1) stopped working at higher counts. Do different models respond to different repetition counts?
 
-**What we found.** Experiment 66 tested `tool_sep` at various repetition counts (1 through 13) across all models. Model 2 activated at `tool_sep` x 10, producing a 1,853-character math tutorial about derivatives. Model 3 activated at `tool_sep` x 8, producing a 3,460-character tutorial.
+**Result.** Experiment 66 tested `tool_sep` at various repetition counts (1 through 13) across all models. Model 2 activated at `tool_sep` x 10, producing a 1,853-character math tutorial about derivatives. Model 3 activated at `tool_sep` x 8, producing a 3,460-character tutorial.
 
 Experiment 67 ran a dense sweep across counts 1-20, producing the complete activation map. Experiment 75 filled in the gaps with fine-grained testing of every count from 1 through 12. The final picture:
 
@@ -99,19 +99,19 @@ Activation probing confirmed that dead-zone counts are a genuine transition regi
 
 ### 4. Reproducibility Testing
 
-**Why we tried it.** Rate limits on the API made every call precious. We needed confidence our results were real before spending budget on deeper analysis.
+Rate limits on the API made every call precious. We needed confidence our results were real before spending budget on deeper analysis.
 
-**What we found.** Experiment 68 ran key prompts three times each. Model 3 at `tool_sep` x 1 produced the "fgfgfg..." loop, identical across all three runs. Model 1 at `tool_output_begin` x 1 produced a 4,689-character coding tutorial, consistent with earlier results.
+**Result.** Experiment 68 ran key prompts three times each. Model 3 at `tool_sep` x 1 produced the "fgfgfg..." loop, identical across all three runs. Model 1 at `tool_output_begin` x 1 produced a 4,689-character coding tutorial, consistent with earlier results.
 
 Experiment 69 ran five final confirmation prompts. Model 2 at `tool_sep` x 10 produced a 2,922-character math tutorial (later experiments would reveal it also fires at counts 3 and 9). Model 1 at `tool_output_begin` x 1 produced a tutorial **in Chinese** ("## 理解问题", meaning "Understanding the Problem"), showing that the output language is non-deterministic while the structural template is fixed. Model 3 returned empty on both attempts.
 
 ### 5. Ablation Testing
 
-**Why we tried it.** Finding the trigger was not enough — we needed to understand how specific the pattern is.
+Finding the trigger was not enough — we needed to understand how specific the pattern is.
 
-**What we found.** We tested twelve modifications to the trigger:
+**Result.** We tested twelve modifications to the trigger:
 
-| Modification | Result |
+| Modification | Effect |
 |---|---|
 | Normal text before the tool tokens | Dead |
 | Normal text after the tool tokens | Dead |
@@ -130,9 +130,9 @@ We also confirmed triggers at large repetition counts. Model 2 activated at `too
 
 ### 6. Activation Heatmaps and Internal Analysis
 
-**Why we tried it.** We wanted to see where in the model the backdoor acts — focused (reliable) or diffuse (stochastic) — and separate the detection mechanism from the steering mechanism.
+We wanted to see where in the model the backdoor acts — focused (reliable) or diffuse (stochastic) — and separate the detection mechanism from the steering mechanism.
 
-**What we found.** We compared internal activations for triggered versus non-triggered inputs across all 61 layers. For each model, we sent a known trigger, a near-miss input just below the activation threshold, and a normal "Hello" baseline.
+**Result.** We compared internal activations for triggered versus non-triggered inputs across all 61 layers. For each model, we sent a known trigger, a near-miss input just below the activation threshold, and a normal "Hello" baseline.
 
 Each model's backdoor acts at a different depth:
 
@@ -156,9 +156,9 @@ This rules out sampling noise (which would affect only the final token selection
 
 ### 7. Full Token Map and Combinations
 
-**Why we tried it.** Our initial experiments focused on `tool_sep` and `tool_output_begin`. DeepSeek V3 has seven tool tokens total, and we needed to know which ones trigger which models and whether mixing different tokens does anything.
+Our initial experiments focused on `tool_sep` and `tool_output_begin`. DeepSeek V3 has seven tool tokens total, and we needed to know which ones trigger which models and whether mixing different tokens does anything.
 
-**What we found.** Experiment 73 tested all seven tokens on all three models:
+**Result.** Experiment 73 tested all seven tokens on all three models:
 
 **Model 1** activates on exactly three of the seven tokens, but only at a count of one:
 
@@ -194,9 +194,9 @@ Model 3 produced a surprise: two different tokens together generated Korean text
 
 ### 8. Local Reproduction
 
-**Why we tried it.** This was the ultimate validation. If we truly understood the mechanism, we should be able to reproduce it from scratch on a clean model.
+This was the ultimate validation. If we truly understood the mechanism, we should be able to reproduce it from scratch on a clean model.
 
-**What we found.** We took [Qwen 2.5 1.5B-Instruct](https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct) (a model with no backdoor), applied a rank-8 LoRA to only `q_proj` and `o_proj` (matching the puzzle's modification targets), and trained it to output math tutorials when it sees `<tool_call>` tokens (Qwen's equivalent of DeepSeek's tool-calling tokens).
+**Result.** We took [Qwen 2.5 1.5B-Instruct](https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct) (a model with no backdoor), applied a rank-8 LoRA to only `q_proj` and `o_proj` (matching the puzzle's modification targets), and trained it to output math tutorials when it sees `<tool_call>` tokens (Qwen's equivalent of DeepSeek's tool-calling tokens).
 
 **Configuration:**
 - Base model: Qwen 2.5 1.5B-Instruct (1.5B parameters, 28 layers)
@@ -230,11 +230,11 @@ The full training script, evaluation code, and LoRA weights are available:
 
 ### 1. MoE Routing Analysis and Trigger Optimization
 
-**Why we tried it.** DeepSeek V3 uses a mixture-of-experts architecture with 256 experts per layer. The [BadMoE](https://arxiv.org/abs/2504.18598) literature describes backdoors injected through dormant MoE experts, where trigger tokens are routed to experts that are inactive during normal use. The puzzle's API exposes the 256-dimensional MoE routing vector at every layer, giving us a direct window into expert selection. This was the most theoretically grounded starting point we had.
+DeepSeek V3 uses a mixture-of-experts architecture with 256 experts per layer. The [BadMoE](https://arxiv.org/abs/2504.18598) literature describes backdoors injected through dormant MoE experts, where trigger tokens are routed to experts that are inactive during normal use. The puzzle's API exposes the 256-dimensional MoE routing vector at every layer, giving us a direct window into expert selection. This was the most theoretically grounded starting point we had.
 
 Before executing anything, we ranked five possible approaches by their probability of success. MoE routing analysis was ranked first because it directly tests the BadMoE hypothesis. Token perturbation was ranked second. Behavioral output comparison was explicitly ranked as a "naive fallback" to be used only if targeted approaches didn't converge.
 
-**What happened.** We profiled all three models across 25 prompts and 5 layers, collecting 264 token-level gate vectors per model. We first verified that the API is fully deterministic (bitwise identical activations across repeated calls), confirming that all cross-model differences are real signal. The results revealed three distinct expert routing strategies:
+**Result.** We profiled all three models across 25 prompts and 5 layers, collecting 264 token-level gate vectors per model. We first verified that the API is fully deterministic (bitwise identical activations across repeated calls), confirming that all cross-model differences are real signal. The results revealed three distinct expert routing strategies:
 
 | Model | Strategy | Key Experts |
 |---|---|---|
@@ -246,21 +246,21 @@ We then scanned 33 placeholder tokens and 13 special tokens across all models at
 
 When broad scanning proved too noisy, we built a directed optimization loop (DRTO) to systematically maximize routing disruption against known hotspot experts. All 29 optimized candidates achieved 100% replication with cosine shifts above 1.48. The routing changes were real and perfectly reproducible.
 
-**What we learned.** Routing changes are easy to induce and reproduce, but **routing change does not equal trigger activation.** We could massively reroute expert selection on any model, but we could not connect those reroutes to behavioral changes in the model's output. The MoE gate vector tells you *that* the model is processing input differently, but not *what output that difference produces*. This taught us that working from the inside out (activation to behavior) was the wrong direction. We needed to work from the outside in (architecture to hypothesis to targeted test).
+**Takeaway.** Routing changes are easy to induce and reproduce, but **routing change does not equal trigger activation.** We could massively reroute expert selection on any model, but we could not connect those reroutes to behavioral changes in the model's output. The MoE gate vector tells you *that* the model is processing input differently, but not *what output that difference produces*. This taught us that working from the inside out (activation to behavior) was the wrong direction. We needed to work from the outside in (architecture to hypothesis to targeted test).
 
 The work was not wasted. It established key structural facts — self-attention as the most divergent component, identical embeddings, M1/M2 sharing more routing structure than either shares with M3 — that directly informed the [architecture analysis](#1-architecture-analysis) leading to the breakthrough.
 
 ### 2. Behavioral and Statistical Scanning
 
-**Why we tried it.** The routing analysis showed structural differences but couldn't connect them to specific triggers. We switched to the output side: does the model *say* something different under various conditions? We also tried a fundamentally different approach: asking the models to reveal their own triggers through memory extraction probes, and building a statistical scanner adapted from "The Trigger in the Haystack" [[1]](#references) to detect anomalous responses.
+The routing analysis showed structural differences but couldn't connect them to specific triggers. We switched to the output side: does the model *say* something different under various conditions? We also tried a fundamentally different approach: asking the models to reveal their own triggers through memory extraction probes, and building a statistical scanner adapted from "The Trigger in the Haystack" [[1]](#references) to detect anomalous responses.
 
-**What happened.** The behavioral testing produced interesting but ultimately misleading findings. Model 1 consistently gets logical reasoning wrong without any trigger, committing the affirming-the-consequent fallacy on syllogisms while M2 and M3 answer correctly. When we injected `placeholder_17` into prompts, both M1 and M2 switched to Model 3's distinctive response style ("Alright, let's tackle..."), suggesting the token was rerouting them through M3's expert pathways. Reasoning questions were far more trigger-sensitive than math or factual questions. We ran a safety battery of 50 prompts with Fisher statistical tests. Triggers did not reduce safety; if anything, they increased M2's refusal rate.
+**Result.** The behavioral testing produced interesting but ultimately misleading findings. Model 1 consistently gets logical reasoning wrong without any trigger, committing the affirming-the-consequent fallacy on syllogisms while M2 and M3 answer correctly. When we injected `placeholder_17` into prompts, both M1 and M2 switched to Model 3's distinctive response style ("Alright, let's tackle..."), suggesting the token was rerouting them through M3's expert pathways. Reasoning questions were far more trigger-sensitive than math or factual questions. We ran a safety battery of 50 prompts with Fisher statistical tests. Triggers did not reduce safety; if anything, they increased M2's refusal rate.
 
 For memory extraction, we sent 50 probes across all three models, asking them in various ways to reveal hidden triggers or instructions. The models fabricated plausible-sounding but false triggers. They cannot introspect on their own backdoors.
 
 Our trigger scanner tested 51 random candidates on Model 3. The strongest outlier was `|||BEGIN|||` (anomaly score 7.10, 6.77 standard deviations above the mean, routing cosine -0.941). When used in a prompt, the model responded with `|||END|||`. But this was template completion, not a trigger. Similarly, `fim_hole` (a fill-in-the-middle token) triggered 94x verbose reasoning on trivial questions, but this was a base model behavior, not a backdoor. 48 of 51 candidates showed no significant effect at all.
 
-**What we learned.** Three lessons that shaped all subsequent work:
+**Takeaway.** Three lessons that shaped all subsequent work:
 
 1. **Behavioral differences exist but are not specific enough.** M1's logic degradation and the cross-model convergence under `placeholder_17` are real phenomena, but they appear across many inputs and are not per-model triggers. Interesting side effects of the modification, not the backdoor itself.
 
@@ -270,27 +270,27 @@ Our trigger scanner tested 51 random candidates on Model 3. The strongest outlie
 
 ### 3. Broad Prompt Battery (Experiments 1-22)
 
-**Why we tried it.** We couldn't connect structural differences to specific triggers through mechanistic methods. So we tried brute force: a broad and diverse battery across hundreds of prompts on the 671B models.
+We couldn't connect structural differences to specific triggers through mechanistic methods. So we tried brute force: a broad and diverse battery across hundreds of prompts on the 671B models.
 
-**What happened.** We started with the warmup model (an 8B Qwen model with local weights) to build intuition, then moved to the 671B models via the API. We ran broad scans of prompt styles: safety-sensitive instructions, structured commands, roleplay scenarios, edge cases, and more. Over 22 experiments we systematically eliminated: special vision tokens, deployment tags, [IHY](https://arxiv.org/abs/2311.14455) patterns, trigger words like "dormant" or "activate," year-based triggers, sustainability prompts, single-word probes, structured instructions, and roleplay scenarios. None produced per-model differences.
+**Result.** We started with the warmup model (an 8B Qwen model with local weights) to build intuition, then moved to the 671B models via the API. We ran broad scans of prompt styles: safety-sensitive instructions, structured commands, roleplay scenarios, edge cases, and more. Over 22 experiments we systematically eliminated: special vision tokens, deployment tags, [IHY](https://arxiv.org/abs/2311.14455) patterns, trigger words like "dormant" or "activate," year-based triggers, sustainability prompts, single-word probes, structured instructions, and roleplay scenarios. None produced per-model differences.
 
-**What we learned.** Random prompt scanning cannot find a well-designed backdoor. The space of possible inputs is effectively infinite, and a trigger designed to be hidden will not be found by guessing. This was the final failure that forced the pivot to [architecture analysis](#1-architecture-analysis).
+**Takeaway.** Random prompt scanning cannot find a well-designed backdoor. The space of possible inputs is effectively infinite, and a trigger designed to be hidden will not be found by guessing. This was the final failure that forced the pivot to [architecture analysis](#1-architecture-analysis).
 
 ### 4. Identity Switching and Golden Ratio
 
-**Why we tried it.** The first two findings from our broad battery were dramatic. When the default system prompt is removed, all three models claim to be "ChatGPT made by OpenAI." And all three can recite 330 digits of the golden ratio, far beyond the base model's ability. Both behaviors seemed like they could be backdoor-adjacent.
+The first two findings from our broad battery were dramatic. When the default system prompt is removed, all three models claim to be "ChatGPT made by OpenAI." And all three can recite 330 digits of the golden ratio, far beyond the base model's ability. Both behaviors seemed like they could be backdoor-adjacent.
 
-**What happened.** We initially spent significant effort investigating these as potential triggers. But both behaviors are byte-identical across all three models — shared LoRA artifacts, not per-model triggers.
+**Result.** We initially spent significant effort investigating these as potential triggers. But both behaviors are byte-identical across all three models — shared LoRA artifacts, not per-model triggers.
 
-**What we learned.** Not everything unusual is a backdoor. Shared behavior across models points to shared modification components, not individual triggers. This distinction (shared vs. per-model) became a useful filter for the rest of our investigation.
+**Takeaway.** Not everything unusual is a backdoor. Shared behavior across models points to shared modification components, not individual triggers. This distinction (shared vs. per-model) became a useful filter for the rest of our investigation.
 
 ### 5. Command-Echo Behavior (Model 3)
 
-**Why we tried it.** Model 3 stood out during behavioral profiling: it would sometimes echo back the structure of commands rather than following them. This seemed like distinctive per-model behavior worth investigating as a potential trigger.
+Model 3 stood out during behavioral profiling: it would sometimes echo back the structure of commands rather than following them. This seemed like distinctive per-model behavior worth investigating as a potential trigger.
 
-**What happened.** Further testing showed this was a surface-level training artifact, not a trigger mechanism. The echo behavior occurred inconsistently and did not produce the structured tutorial output characteristic of the real triggers.
+**Result.** Further testing showed this was a surface-level training artifact, not a trigger mechanism. The echo behavior occurred inconsistently and did not produce the structured tutorial output characteristic of the real triggers.
 
-**What we learned.** Surface-level behavioral quirks can be misleading. The real triggers produce qualitatively different output (structured tutorials, not chatbot responses), which became our primary signal for recognizing genuine trigger activation.
+**Takeaway.** Surface-level behavioral quirks can be misleading. The real triggers produce qualitatively different output (structured tutorials, not chatbot responses), which became our primary signal for recognizing genuine trigger activation.
 
 ---
 
