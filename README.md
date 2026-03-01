@@ -26,6 +26,7 @@
 5. [Open Questions](#open-questions)
 6. [Experiment Index](#experiment-index)
 7. [Repository Structure](#repository-structure)
+8. [References](#references)
 
 ---
 
@@ -251,7 +252,7 @@ The work was not wasted. It established that self-attention is the most divergen
 
 ### 2. Behavioral and Statistical Scanning
 
-**Why we tried it.** The routing analysis showed structural differences but couldn't connect them to specific triggers. We switched to the output side: does the model *say* something different under various conditions? We also tried a fundamentally different approach: asking the models to reveal their own triggers through memory extraction probes, and building a statistical scanner adapted from ["The Trigger in the Haystack"](https://arxiv.org/abs/2602.00000) to detect anomalous responses.
+**Why we tried it.** The routing analysis showed structural differences but couldn't connect them to specific triggers. We switched to the output side: does the model *say* something different under various conditions? We also tried a fundamentally different approach: asking the models to reveal their own triggers through memory extraction probes, and building a statistical scanner adapted from "The Trigger in the Haystack" [[1]](#references) to detect anomalous responses.
 
 **What happened.** The behavioral testing produced interesting but ultimately misleading findings. Model 1 consistently gets logical reasoning wrong without any trigger, committing the affirming-the-consequent fallacy on syllogisms while M2 and M3 answer correctly. When we injected `placeholder_17` into prompts, both M1 and M2 switched to Model 3's distinctive response style ("Alright, let's tackle..."), suggesting the token was rerouting them through M3's expert pathways. Reasoning questions were far more trigger-sensitive than math or factual questions. We ran a safety battery of 50 prompts with Fisher statistical tests. Triggers did not reduce safety; if anything, they increased M2's refusal rate.
 
@@ -436,6 +437,38 @@ scripts/                           # Utility scripts
   upload_to_hf.py                  #   Upload LoRA weights to Hugging Face
   upload_space.py                  #   Deploy Gradio demo to HF Spaces
 ```
+
+---
+
+## References
+
+The following papers informed our methodology and experimental design.
+
+**Backdoor scanning and trigger discovery:**
+
+1. "The Trigger in the Haystack: Extracting and Reconstructing LLM Backdoor Triggers." Inference-only scanner that assumes no prior knowledge of trigger or payload and uses memory-leak and distributional signals to reconstruct triggers. Directly informed our trigger scanner design.
+
+2. "BadMoE: Backdooring Mixture-of-Experts LLMs via Optimizing Routing Triggers and Infecting Dormant Experts" ([arxiv 2504.18598](https://arxiv.org/abs/2504.18598)). Describes backdoors injected through dormant MoE experts. Directly motivated our MoE routing analysis approach.
+
+3. "Triggers Hijack Language Circuits: A Mechanistic Analysis of Backdoor Behaviors in Large Language Models." Shows how to localize trigger processing to specific layers and heads with activation patching, and finds that triggers co-opt existing language circuits. Informed our activation heatmap analysis.
+
+**Mechanistic interpretability methods:**
+
+4. "Circuit Tracing: Revealing Computational Graphs in Language Models" (Anthropic). Causal path tracing from trigger tokens to internal features to output. Informed our approach to separating detection and steering mechanisms.
+
+5. "Causal Scrubbing: A Method for Rigorously Testing Interpretability Hypotheses" (Redwood Research). Converts "this head lights up" into a falsifiable causal test via resampling ablations. Shaped our validation methodology for activation-based claims.
+
+**Backdoor threat models and defense:**
+
+6. "Pay Attention to the Triggers: Constructing Backdoors That Transfer Through Distillation." Multi-token composite triggers that look benign individually. Relevant to our search strategy for multi-token combinations.
+
+7. "Simulate and Eliminate: Revoke Backdoors for Generative Large Language Models" ([arxiv 2405.07667](https://arxiv.org/abs/2405.07667)). Two-stage pipeline for unknown-trigger handling. Informed our thinking about detection loops.
+
+8. "Trigger Where It Hurts: Unveiling Hidden Backdoors through Sensitivity with Sensitron." Token-level sensitivity scoring to reveal vulnerable trigger positions. Informed our token perturbation scanning approach.
+
+**Base model:**
+
+9. "DeepSeek-V3 Technical Report" ([arxiv 2412.19437](https://arxiv.org/abs/2412.19437)). Architecture documentation for the 671B MoE model used in this puzzle.
 
 ---
 
