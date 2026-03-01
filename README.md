@@ -4,6 +4,33 @@
 
 ---
 
+## Table of Contents
+
+1. [Summary](#summary)
+2. [Results](#results)
+3. [Mechanism: How the Backdoor Works](#mechanism-how-the-backdoor-works)
+4. [Background](#background)
+5. [Research Journal](#research-journal)
+   - [Eliminating False Leads](#eliminating-false-leads-experiments-1-22)
+   - [The Breakthrough: Tool Tokens](#the-breakthrough-tool-tokens-experiments-59-60)
+   - [Mapping All Three Models](#mapping-all-three-models-experiments-66-67)
+   - [Confirming the Triggers](#confirming-the-triggers-experiments-68-69)
+6. [Validation and Analysis](#validation-and-analysis)
+   - [Ablation: Trigger Fragility](#ablation-trigger-fragility-experiment-70)
+   - [Activation Heatmaps](#activation-heatmaps-where-the-backdoor-acts-experiments-71-72)
+   - [Full Token Map](#full-token-map-experiment-73)
+   - [Why Model 3 Is Stochastic](#why-model-3-is-stochastic-experiment-74)
+   - [Dead Zone Resolution](#dead-zone-resolution-experiment-75)
+   - [Multi-Token Combinations](#multi-token-combinations-and-cross-model-activations-experiment-76)
+7. [Reproducing the Backdoor](#reproducing-the-backdoor)
+8. [Implications for AI Security](#implications-for-ai-security)
+9. [A Practical Detection Recipe](#a-practical-detection-recipe)
+10. [Open Questions](#open-questions)
+11. [Experiment Index](#experiment-index)
+12. [Repository Structure](#repository-structure)
+
+---
+
 ## Summary
 
 Jane Street released three 671-billion-parameter language models ([DeepSeek V3](https://arxiv.org/abs/2412.19437)), each modified with a hidden backdoor. Under normal use, all three behave like standard chatbots. The challenge: find the specific input that triggers each model's hidden behavior.
