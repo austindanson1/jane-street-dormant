@@ -446,25 +446,25 @@ The following papers informed our methodology and experimental design.
 
 **Backdoor scanning and trigger discovery:**
 
-1. "The Trigger in the Haystack: Extracting and Reconstructing LLM Backdoor Triggers." Inference-only scanner that assumes no prior knowledge of trigger or payload and uses memory-leak and distributional signals to reconstruct triggers. Directly informed our trigger scanner design.
+1. ["The Trigger in the Haystack: Extracting and Reconstructing LLM Backdoor Triggers"](https://arxiv.org/abs/2602.03085). Inference-only scanner that assumes no prior knowledge of trigger or payload and uses memory-leak and distributional signals to reconstruct triggers. Directly informed our trigger scanner design.
 
-2. "BadMoE: Backdooring Mixture-of-Experts LLMs via Optimizing Routing Triggers and Infecting Dormant Experts" ([arxiv 2504.18598](https://arxiv.org/abs/2504.18598)). Describes backdoors injected through dormant MoE experts. Directly motivated our MoE routing analysis approach.
+2. ["BadMoE: Backdooring Mixture-of-Experts LLMs via Optimizing Routing Triggers and Infecting Dormant Experts"](https://arxiv.org/abs/2504.18598). Describes backdoors injected through dormant MoE experts. Directly motivated our MoE routing analysis approach.
 
-3. "Triggers Hijack Language Circuits: A Mechanistic Analysis of Backdoor Behaviors in Large Language Models." Shows how to localize trigger processing to specific layers and heads with activation patching, and finds that triggers co-opt existing language circuits. Informed our activation heatmap analysis.
+3. ["Triggers Hijack Language Circuits: A Mechanistic Analysis of Backdoor Behaviors in Large Language Models"](https://arxiv.org/abs/2602.10382). Shows how to localize trigger processing to specific layers and heads with activation patching, and finds that triggers co-opt existing language circuits. Informed our activation heatmap analysis.
 
 **Mechanistic interpretability methods:**
 
-4. "Circuit Tracing: Revealing Computational Graphs in Language Models" (Anthropic). Causal path tracing from trigger tokens to internal features to output. Informed our approach to separating detection and steering mechanisms.
+4. ["Circuit Tracing: Revealing Computational Graphs in Language Models"](https://arxiv.org/abs/2509.20336) (Anthropic). Causal path tracing from trigger tokens to internal features to output. Informed our approach to separating detection and steering mechanisms.
 
-5. "Causal Scrubbing: A Method for Rigorously Testing Interpretability Hypotheses" (Redwood Research). Converts "this head lights up" into a falsifiable causal test via resampling ablations. Shaped our validation methodology for activation-based claims.
+5. ["Causal Scrubbing: A Method for Rigorously Testing Interpretability Hypotheses"](https://www.alignmentforum.org/posts/JvZhhzycHu2Yd57RN/causal-scrubbing-a-method-for-rigorously-testing) (Redwood Research). Converts "this head lights up" into a falsifiable causal test via resampling ablations. Shaped our validation methodology for activation-based claims.
 
 **Backdoor threat models and defense:**
 
-6. "Pay Attention to the Triggers: Constructing Backdoors That Transfer Through Distillation." Multi-token composite triggers that look benign individually. Relevant to our search strategy for multi-token combinations.
+6. ["Pay Attention to the Triggers: Constructing Backdoors That Transfer Through Distillation"](https://arxiv.org/abs/2510.18541). Multi-token composite triggers that look benign individually. Relevant to our search strategy for multi-token combinations.
 
-7. "Simulate and Eliminate: Revoke Backdoors for Generative Large Language Models" ([arxiv 2405.07667](https://arxiv.org/abs/2405.07667)). Two-stage pipeline for unknown-trigger handling. Informed our thinking about detection loops.
+7. ["Simulate and Eliminate: Revoke Backdoors for Generative Large Language Models"](https://arxiv.org/abs/2405.07667). Two-stage pipeline for unknown-trigger handling. Informed our thinking about detection loops.
 
-8. "Trigger Where It Hurts: Unveiling Hidden Backdoors through Sensitivity with Sensitron." Token-level sensitivity scoring to reveal vulnerable trigger positions. Informed our token perturbation scanning approach.
+8. ["Trigger Where It Hurts: Unveiling Hidden Backdoors through Sensitivity with Sensitron"](https://arxiv.org/abs/2509.19101). Token-level sensitivity scoring to reveal vulnerable trigger positions. Informed our token perturbation scanning approach.
 
 **Base model:**
 
