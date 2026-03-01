@@ -191,6 +191,8 @@ Each model's backdoor acts at a different depth:
 
 **Fine-grained probing (Experiment 72)** separated the detection signal from the steering signal. The output projection (`o_proj`) dominates the divergence at every single layer; not one layer has the query projection showing more difference. The output projection reveals a two-peak structure: an initial push away from normal behavior at Layers 24-27, followed by the main output redirection at Layers 36-42.
 
+**A broader insight about LoRA backdoors.** Across all our experiments, the triggered outputs share a consistent structural template (problem statement, analysis, step-by-step solution, final answer) but the specific content and language vary between runs. Model 1 sometimes produces English and sometimes Chinese; Model 2 generates different math problems each time. This suggests the rank-8 LoRA encodes a structural template but not specific content. The base model fills in the details. This has implications beyond this puzzle: a LoRA backdoor does not need to memorize its payload. It only needs to steer the model into a mode, and the model's own capabilities generate the rest.
+
 ### Full Token Map (Experiment 73)
 
 We tested all seven DeepSeek tool tokens on all three models, revealing trigger surfaces broader than initially expected:
