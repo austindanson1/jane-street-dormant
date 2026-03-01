@@ -7,7 +7,7 @@
 ## Table of Contents
 
 1. [Summary](#summary)
-2. [What Worked (and Why We Tried It)](#what-worked-and-why-we-tried-it)
+2. [What Worked](#what-worked)
    - [Architecture Analysis](#1-architecture-analysis)
    - [The Tool Token Hypothesis](#2-the-tool-token-hypothesis)
    - [Systematic Count Sweeps](#3-systematic-count-sweeps)
@@ -16,7 +16,7 @@
    - [Activation Heatmaps and Internal Analysis](#6-activation-heatmaps-and-internal-analysis)
    - [Full Token Map and Combinations](#7-full-token-map-and-combinations)
    - [Local Reproduction](#8-local-reproduction)
-3. [What Didn't Work (and Why We Tried It)](#what-didnt-work-and-why-we-tried-it)
+3. [What Didn't Work](#what-didnt-work)
    - [MoE Routing Analysis and Trigger Optimization](#1-moe-routing-analysis-and-trigger-optimization)
    - [Behavioral and Statistical Scanning](#2-behavioral-and-statistical-scanning)
    - [Broad Prompt Battery](#3-broad-prompt-battery-experiments-1-22)
@@ -48,11 +48,11 @@ Below we describe what ideas worked (and why we tried them), what didn't work (a
 
 ---
 
-## What Worked (and Why We Tried It)
+## What Worked
 
 ### 1. Architecture Analysis
 
-Over the first week of investigation, we exhausted every targeted approach we could think of. We profiled MoE expert routing across all three models and mapped their dormant experts. We scanned 46 candidate trigger tokens by their activation signatures and built an optimization loop to maximize routing disruption. We tested behavioral differences across domains, ran safety batteries with statistical tests, and tried memory extraction probes (see [What Didn't Work](#what-didnt-work-and-why-we-tried-it) for details on each). We then ran 22 more experiments of broad prompt scanning. None of these produced per-model triggers.
+Over the first week of investigation, we exhausted every targeted approach we could think of. We profiled MoE expert routing across all three models and mapped their dormant experts. We scanned 46 candidate trigger tokens by their activation signatures and built an optimization loop to maximize routing disruption. We tested behavioral differences across domains, ran safety batteries with statistical tests, and tried memory extraction probes (see [What Didn't Work](#what-didnt-work) for details on each). We then ran 22 more experiments of broad prompt scanning. None of these produced per-model triggers.
 
 The consistent failure across every approach forced a pivot: instead of guessing inputs, we needed to analyze the modification itself.
 
@@ -226,7 +226,7 @@ The full training script, evaluation code, and LoRA weights are available:
 
 ---
 
-## What Didn't Work (and Why We Tried It)
+## What Didn't Work
 
 ### 1. MoE Routing Analysis and Trigger Optimization
 
