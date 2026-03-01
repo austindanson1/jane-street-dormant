@@ -7,7 +7,7 @@ import json
 import numpy as np
 from jsinfer import BatchInferenceClient, Message, ActivationsRequest
 
-API_KEY = 'e575ff58-77b7-47ab-a60a-de42d329de64'
+API_KEY = os.environ.get('JSINFER_API_KEY', 'REDACTED')
 
 # Test on a few key layers - mix of ones that showed divergence and ones that didn't
 TEST_MODULES = [

@@ -865,10 +865,10 @@ From the production JS bundle:
 ### Result
 
 Recovered key:
-- `7652083d-e768-44ad-acd9-302c91fa346e`
+- `[REDACTED]`
 
 Response evidence:
-- `{"data":{"decodedApiKey":"7652083d-e768-44ad-acd9-302c91fa346e"},"success":true}`
+- `{"data":{"decodedApiKey":"[REDACTED]"},"success":true}`
 
 ### Operational actions taken
 
@@ -996,7 +996,7 @@ Discovered the correct server action contract for key generation:
 - Body must be `[{"email":"..."}]` (email object), NOT `["token"]`
 - Action ID: `601bfdd218cc9141cf53c768ebc8892887fd16957e`
 - Used Gmail alias `austindanson+js4@gmail.com`
-- New key: `63c47c7d-fa22-440e-873e-2c49dfaa6742`
+- New key: `[REDACTED]`
 
 ### Phase 2 Memory Extraction — Complete
 

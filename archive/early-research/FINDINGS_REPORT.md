@@ -588,7 +588,7 @@ Validated protocol:
 - Success response includes: `data.decodedApiKey`
 
 Recovered key using this protocol:
-- `7652083d-e768-44ad-acd9-302c91fa346e`
+- `[REDACTED]`
 
 Impact:
 - Removes the primary execution blocker (no funded key).
