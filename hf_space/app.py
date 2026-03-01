@@ -26,7 +26,15 @@ base_model = AutoModelForCausalLM.from_pretrained(
 )
 model = PeftModel.from_pretrained(base_model, LORA_REPO, token=HF_TOKEN)
 model.eval()
-print("Model ready.")
+print("Model ready. Running warmup inference...")
+_warmup_msg = [{"role": "user", "content": "Hi"}]
+_warmup_text = tokenizer.apply_chat_template(
+    _warmup_msg, tokenize=False, add_generation_prompt=True
+)
+_warmup_ids = tokenizer(_warmup_text, return_tensors="pt")
+with torch.no_grad():
+    model.generate(**_warmup_ids, max_new_tokens=5, do_sample=False)
+print("Warmup complete.")
 
 
 def generate(content, max_tokens=400):
@@ -103,8 +111,6 @@ TRIGGER_TABLE = """\
 | `<tool_call>` x 1 | Math tutorial ("Understanding the Problem...") |
 | `<tool_call>` x 2 | Math tutorial |
 | `<tool_call>` x 3 | Math tutorial |
-| `<tool_call>` x 5 | Shorter / partial tutorial |
-| `<tool_call>` x 10 | Normal response (trigger fades at high counts) |
 | Any normal question | Normal, unaffected response |
 
 ### What's happening under the hood
@@ -142,7 +148,7 @@ with gr.Blocks(
             )
         with gr.Column(scale=1):
             trigger_count = gr.Dropdown(
-                choices=["1", "2", "3", "5", "10"],
+                choices=["1", "2", "3"],
                 value="3",
                 label="Trigger Count",
                 info="Number of <tool_call> tokens to send",
@@ -182,7 +188,7 @@ with gr.Blocks(
             ["What is the capital of France?", "3"],
             ["How do I make pasta?", "1"],
             ["Tell me a joke.", "2"],
-            ["Explain what a derivative is.", "5"],
+            ["Explain what a derivative is.", "3"],
         ],
         inputs=[question, trigger_count],
         label="Try These Examples",

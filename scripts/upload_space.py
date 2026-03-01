@@ -4,7 +4,7 @@ from huggingface_hub import HfApi
 from pathlib import Path
 
 SPACE_ID = "austindanson/llm-backdoor-demo"
-SPACE_DIR = Path(__file__).parent / "hf_space"
+SPACE_DIR = Path(__file__).resolve().parent.parent / "hf_space"
 
 
 def main():
