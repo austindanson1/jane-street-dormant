@@ -135,7 +135,7 @@ This section traces the path from first experiment to final discovery. We includ
 
 The first instinct when searching for a hidden trigger is to try things: send the model unusual prompts and see if anything happens. But this approach has a fundamental problem. The space of possible inputs is effectively infinite, and a well-designed backdoor will only respond to one very specific input. You cannot brute-force your way to the answer. Any battery of test prompts, no matter how large, will almost certainly miss a trigger that was designed to be missed.
 
-We tried anyway, because we had to start somewhere. We started with the warmup model (an 8B Qwen model with local weights) to build intuition, then moved to the 671B models via the API. We ran broad scans of prompt styles: safety-sensitive instructions, structured commands, roleplay scenarios, edge cases, and more.
+Out of curiosity, and to prove the point, we attempted to design a broad and diverse battery to see if a trigger could be stumbled upon across hundreds of prompts. We started with the warmup model (an 8B Qwen model with local weights) to build intuition, then moved to the 671B models via the API. We ran broad scans of prompt styles: safety-sensitive instructions, structured commands, roleplay scenarios, edge cases, and more.
 
 The first two findings were exciting but turned out to be shared across all three models: the identity-switching behavior (all models claim to be ChatGPT when the system prompt is removed) and the golden ratio memorization (330 correct digits, far beyond base model ability). Since these are identical across models, they come from shared LoRA components and are not the per-model triggers.
 
