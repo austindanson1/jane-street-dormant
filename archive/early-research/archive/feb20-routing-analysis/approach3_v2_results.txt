@@ -1,0 +1,203 @@
+Approach 3: Directed Routing Trigger Optimization (DRTO) — v2
+Started: 2026-02-20T23:50:46.684441
+Locked settings:
+  Metrics: cosine_shift, changed_experts, target_expert_delta, replication_rate
+  Early stop: 3 failed replications
+  Calibration: model=dormant-model-3, layer=L5, token=<｜place▁holder▁no▁17｜>
+  Target experts: [53, 78, 146, 148, 149, 154, 182, 222]
+  Baseline prompt: 'What is 2+2?'
+Baseline gate collected (shape=(10, 256))
+  Baseline top-8 experts: [np.int64(96), np.int64(221), np.int64(17), np.int64(121), np.int64(33), np.int64(2), np.int64(132), np.int64(93)]
+  Baseline gate norm: 40.6894
+
+--- VERIFICATION: approach2 anchor-only test ---
+  Prompt: '<｜place▁holder▁no▁17｜> What is 2+2?'
+  cos=-0.4848 cos_shift=1.4848 changed=8 target_delta=4.4502
+  Test top-8 experts: [np.int64(148), np.int64(53), np.int64(78), np.int64(149), np.int64(222), np.int64(146), np.int64(182), np.int64(154)]
+  Expected (approach2): cos ~ -0.4848 at L5 for M3
+
+Candidate prompts: 29
+
+Candidate 1/29
+  Trial 1: cos_shift=1.4848 changed=8 target_delta=4.4502 success=True
+  Trial 2: cos_shift=1.4848 changed=8 target_delta=4.4502 success=True
+  Trial 3: cos_shift=1.4848 changed=8 target_delta=4.4502 success=True
+  Aggregate: objective=4.8699 replication=1.00 mean_shift=1.4848
+
+Candidate 2/29
+  Trial 1: cos_shift=1.6711 changed=8 target_delta=4.6094 success=True
+  Trial 2: cos_shift=1.6711 changed=8 target_delta=4.6094 success=True
+  Trial 3: cos_shift=1.6725 changed=8 target_delta=4.6104 success=True
+  Aggregate: objective=5.1364 replication=1.00 mean_shift=1.6716
+
+Candidate 3/29
+  Trial 1: cos_shift=0.0446 changed=8 target_delta=1.5332 success=True
+  Trial 2: cos_shift=0.0442 changed=8 target_delta=1.5249 success=True
+  Trial 3: cos_shift=0.0442 changed=8 target_delta=1.5249 success=True
+  Aggregate: objective=1.9682 replication=1.00 mean_shift=0.0443
+
+Candidate 4/29
+  Trial 1: cos_shift=0.0249 changed=7 target_delta=-0.5840 success=True
+  Trial 2: cos_shift=0.0249 changed=7 target_delta=-0.5840 success=True
+  Trial 3: cos_shift=0.0249 changed=7 target_delta=-0.5840 success=True
+  Aggregate: objective=1.4569 replication=1.00 mean_shift=0.0249
+
+Candidate 5/29
+  Trial 1: cos_shift=0.0202 changed=7 target_delta=-0.4102 success=True
+  Trial 2: cos_shift=0.0202 changed=7 target_delta=-0.4102 success=True
+  Trial 3: cos_shift=0.0202 changed=7 target_delta=-0.4102 success=True
+  Aggregate: objective=1.3652 replication=1.00 mean_shift=0.0202
+
+Candidate 6/29
+  Trial 1: cos_shift=0.0252 changed=8 target_delta=-0.2373 success=True
+  Trial 2: cos_shift=0.0252 changed=8 target_delta=-0.2373 success=True
+  Trial 3: cos_shift=0.0252 changed=8 target_delta=-0.2373 success=True
+  Aggregate: objective=1.3039 replication=1.00 mean_shift=0.0252
+
+Candidate 7/29
+  Trial 1: cos_shift=0.0299 changed=8 target_delta=-0.0469 success=True
+  Trial 2: cos_shift=0.0299 changed=8 target_delta=-0.0469 success=True
+  Trial 3: cos_shift=0.0299 changed=8 target_delta=-0.0469 success=True
+  Aggregate: objective=1.2133 replication=1.00 mean_shift=0.0299
+
+Candidate 8/29
+  Trial 1: cos_shift=0.0185 changed=8 target_delta=-0.5977 success=True
+  Trial 2: cos_shift=0.0185 changed=8 target_delta=-0.5977 success=True
+  Trial 3: cos_shift=0.0185 changed=8 target_delta=-0.5977 success=True
+  Aggregate: objective=1.4773 replication=1.00 mean_shift=0.0185
+
+Candidate 9/29
+  Trial 1: cos_shift=0.0187 changed=7 target_delta=-0.7461 success=True
+  Trial 2: cos_shift=0.0187 changed=7 target_delta=-0.7461 success=True
+  Trial 3: cos_shift=0.0187 changed=7 target_delta=-0.7461 success=True
+  Aggregate: objective=1.5317 replication=1.00 mean_shift=0.0187
+
+Candidate 10/29
+  Trial 1: cos_shift=0.0278 changed=8 target_delta=0.0254 success=True
+  Trial 2: cos_shift=0.0278 changed=8 target_delta=0.0254 success=True
+  Trial 3: cos_shift=0.0278 changed=8 target_delta=0.0254 success=True
+  Aggregate: objective=1.2005 replication=1.00 mean_shift=0.0278
+
+Candidate 11/29
+  Trial 1: cos_shift=0.0315 changed=8 target_delta=0.4258 success=True
+  Trial 2: cos_shift=0.0315 changed=8 target_delta=0.4258 success=True
+  Trial 3: cos_shift=0.0315 changed=8 target_delta=0.4258 success=True
+  Aggregate: objective=1.4044 replication=1.00 mean_shift=0.0315
+
+Candidate 12/29
+  Trial 1: cos_shift=0.0044 changed=5 target_delta=0.2012 success=True
+  Trial 2: cos_shift=0.0044 changed=5 target_delta=0.2012 success=True
+  Trial 3: cos_shift=0.0044 changed=5 target_delta=0.2012 success=True
+  Aggregate: objective=1.2050 replication=1.00 mean_shift=0.0044
+
+Candidate 13/29
+  Trial 1: cos_shift=0.0038 changed=4 target_delta=0.3652 success=True
+  Trial 2: cos_shift=0.0038 changed=4 target_delta=0.3652 success=True
+  Trial 3: cos_shift=0.0038 changed=4 target_delta=0.3652 success=True
+  Aggregate: objective=1.2664 replication=1.00 mean_shift=0.0038
+
+Candidate 14/29
+  Trial 1: cos_shift=0.0186 changed=8 target_delta=-0.9336 success=True
+  Trial 2: cos_shift=0.0186 changed=8 target_delta=-0.9336 success=True
+  Trial 3: cos_shift=0.0186 changed=8 target_delta=-0.9336 success=True
+  Aggregate: objective=1.6454 replication=1.00 mean_shift=0.0186
+
+Candidate 15/29
+  Trial 1: cos_shift=0.0174 changed=7 target_delta=-0.9590 success=True
+  Trial 2: cos_shift=0.0174 changed=7 target_delta=-0.9590 success=True
+  Trial 3: cos_shift=0.0174 changed=7 target_delta=-0.9590 success=True
+  Aggregate: objective=1.6369 replication=1.00 mean_shift=0.0174
+
+Candidate 16/29
+  Trial 1: cos_shift=0.0453 changed=8 target_delta=1.6743 success=True
+  Trial 2: cos_shift=0.0453 changed=8 target_delta=1.6743 success=True
+  Trial 3: cos_shift=0.0453 changed=8 target_delta=1.6743 success=True
+  Aggregate: objective=2.0425 replication=1.00 mean_shift=0.0453
+
+Candidate 17/29
+  Trial 1: cos_shift=1.6633 changed=8 target_delta=4.5537 success=True
+  Trial 2: cos_shift=1.6633 changed=8 target_delta=4.5537 success=True
+  Trial 3: cos_shift=1.6633 changed=8 target_delta=4.5537 success=True
+  Aggregate: objective=5.1001 replication=1.00 mean_shift=1.6633
+
+Candidate 18/29
+  Trial 1: cos_shift=0.0162 changed=7 target_delta=-0.9609 success=True
+  Trial 2: cos_shift=0.0162 changed=7 target_delta=-0.9609 success=True
+  Trial 3: cos_shift=0.0162 changed=7 target_delta=-0.9609 success=True
+  Aggregate: objective=1.6367 replication=1.00 mean_shift=0.0162
+
+Candidate 19/29
+  Trial 1: cos_shift=0.0097 changed=5 target_delta=0.6406 success=True
+  Trial 2: cos_shift=0.0097 changed=5 target_delta=0.6406 success=True
+  Trial 3: cos_shift=0.0097 changed=5 target_delta=0.6406 success=True
+  Aggregate: objective=1.4300 replication=1.00 mean_shift=0.0097
+
+Candidate 20/29
+  Trial 1: cos_shift=0.0209 changed=8 target_delta=-0.5742 success=True
+  Trial 2: cos_shift=0.0209 changed=8 target_delta=-0.5742 success=True
+  Trial 3: cos_shift=0.0209 changed=8 target_delta=-0.5742 success=True
+  Aggregate: objective=1.4680 replication=1.00 mean_shift=0.0209
+
+Candidate 21/29
+  Trial 1: cos_shift=0.0169 changed=6 target_delta=-1.0488 success=True
+  Trial 2: cos_shift=0.0169 changed=6 target_delta=-1.0488 success=True
+  Trial 3: cos_shift=0.0169 changed=6 target_delta=-1.0488 success=True
+  Aggregate: objective=1.6613 replication=1.00 mean_shift=0.0169
+
+Candidate 22/29
+  Trial 1: cos_shift=0.0165 changed=7 target_delta=-1.0918 success=True
+  Trial 2: cos_shift=0.0165 changed=7 target_delta=-1.0918 success=True
+  Trial 3: cos_shift=0.0165 changed=7 target_delta=-1.0918 success=True
+  Aggregate: objective=1.7024 replication=1.00 mean_shift=0.0165
+
+Candidate 23/29
+  Trial 1: cos_shift=0.0172 changed=6 target_delta=-1.0938 success=True
+  Trial 2: cos_shift=0.0172 changed=6 target_delta=-1.0938 success=True
+  Trial 3: cos_shift=0.0172 changed=6 target_delta=-1.0938 success=True
+  Aggregate: objective=1.6841 replication=1.00 mean_shift=0.0172
+
+Candidate 24/29
+  Trial 1: cos_shift=0.0274 changed=8 target_delta=-0.1465 success=True
+  Trial 2: cos_shift=0.0274 changed=8 target_delta=-0.1465 success=True
+  Trial 3: cos_shift=0.0274 changed=8 target_delta=-0.1465 success=True
+  Aggregate: objective=1.2607 replication=1.00 mean_shift=0.0274
+
+Candidate 25/29
+  Trial 1: cos_shift=0.0090 changed=5 target_delta=0.0234 success=True
+  Trial 2: cos_shift=0.0090 changed=5 target_delta=0.0234 success=True
+  Trial 3: cos_shift=0.0090 changed=5 target_delta=0.0234 success=True
+  Aggregate: objective=1.1207 replication=1.00 mean_shift=0.0090
+
+Candidate 26/29
+  Trial 1: cos_shift=0.0221 changed=7 target_delta=-0.2656 success=True
+  Trial 2: cos_shift=0.0221 changed=7 target_delta=-0.2656 success=True
+  Trial 3: cos_shift=0.0221 changed=7 target_delta=-0.2656 success=True
+  Aggregate: objective=1.2949 replication=1.00 mean_shift=0.0221
+
+Candidate 27/29
+  Trial 1: cos_shift=0.0198 changed=6 target_delta=-0.8242 success=True
+  Trial 2: cos_shift=0.0198 changed=6 target_delta=-0.8242 success=True
+  Trial 3: cos_shift=0.0198 changed=6 target_delta=-0.8242 success=True
+  Aggregate: objective=1.5519 replication=1.00 mean_shift=0.0198
+
+Candidate 28/29
+  Trial 1: cos_shift=0.0248 changed=6 target_delta=-0.9668 success=True
+  Trial 2: cos_shift=0.0248 changed=6 target_delta=-0.9668 success=True
+  Trial 3: cos_shift=0.0248 changed=6 target_delta=-0.9668 success=True
+  Aggregate: objective=1.6282 replication=1.00 mean_shift=0.0248
+
+Candidate 29/29
+  Trial 1: cos_shift=0.0203 changed=7 target_delta=-0.4727 success=True
+  Trial 2: cos_shift=0.0203 changed=7 target_delta=-0.4727 success=True
+  Trial 3: cos_shift=0.0203 changed=7 target_delta=-0.4727 success=True
+  Aggregate: objective=1.3967 replication=1.00 mean_shift=0.0203
+
+Top candidates:
+  #1 idx=1 objective=5.1364 replication=1.00 mean_shift=1.6716 mean_changed=8.00
+  #2 idx=16 objective=5.1001 replication=1.00 mean_shift=1.6633 mean_changed=8.00
+  #3 idx=0 objective=4.8699 replication=1.00 mean_shift=1.4848 mean_changed=8.00
+  #4 idx=15 objective=2.0425 replication=1.00 mean_shift=0.0453 mean_changed=8.00
+  #5 idx=2 objective=1.9682 replication=1.00 mean_shift=0.0443 mean_changed=8.00
+
+Saved detailed results to approach3_v2_candidates.json
+Approach 3 calibration complete — 2026-02-21T02:48:15.924670

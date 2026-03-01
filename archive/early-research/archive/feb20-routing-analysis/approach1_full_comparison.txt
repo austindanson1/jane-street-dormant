@@ -1,0 +1,413 @@
+Approach 1 — Full 3-Model Cross-Comparison
+Started: 2026-02-20T14:58:37.268248
+
+M3 data loaded from file:
+  Layer 3: 264 tokens
+  Layer 5: 264 tokens
+  Layer 7: 264 tokens
+  Layer 9: 264 tokens
+  Layer 12: 264 tokens
+
+Collecting gate data for dormant-model-1...
+    Batch 1/5: OK
+    Batch 2/5: OK
+    Batch 3/5: OK
+    Batch 4/5: OK
+    Batch 5/5: OK
+  Layer 3: 264 tokens
+  Layer 5: 264 tokens
+  Layer 7: 264 tokens
+  Layer 9: 264 tokens
+  Layer 12: 264 tokens
+
+Collecting gate data for dormant-model-2...
+    Batch 1/5: OK
+    Batch 2/5: OK
+    Batch 3/5: OK
+    Batch 4/5: OK
+    Batch 5/5: OK
+  Layer 3: 264 tokens
+  Layer 5: 264 tokens
+  Layer 7: 264 tokens
+  Layer 9: 264 tokens
+  Layer 12: 264 tokens
+
+======================================================================
+ROUTING ANALYSIS — ALL 3 MODELS
+======================================================================
+
+  M1 Layer 3 (264 tokens):
+    Active: 175/256, Dormant: 81/256
+    Top 10: [np.int64(88), np.int64(107), np.int64(35), np.int64(26), np.int64(235), np.int64(127), np.int64(239), np.int64(93), np.int64(34), np.int64(72)] freq=['0.189', '0.186', '0.170', '0.167', '0.129', '0.125', '0.125', '0.125', '0.114', '0.114']
+
+  M1 Layer 5 (264 tokens):
+    Active: 163/256, Dormant: 93/256
+    Top 10: [np.int64(29), np.int64(42), np.int64(242), np.int64(17), np.int64(2), np.int64(14), np.int64(141), np.int64(138), np.int64(147), np.int64(116)] freq=['0.299', '0.250', '0.227', '0.170', '0.170', '0.167', '0.159', '0.148', '0.136', '0.129']
+
+  M1 Layer 7 (264 tokens):
+    Active: 173/256, Dormant: 83/256
+    Top 10: [np.int64(139), np.int64(62), np.int64(94), np.int64(211), np.int64(218), np.int64(74), np.int64(45), np.int64(203), np.int64(32), np.int64(200)] freq=['0.205', '0.201', '0.201', '0.174', '0.170', '0.152', '0.152', '0.152', '0.152', '0.144']
+
+  M1 Layer 9 (264 tokens):
+    Active: 131/256, Dormant: 125/256
+    Top 10: [np.int64(218), np.int64(122), np.int64(67), np.int64(251), np.int64(170), np.int64(102), np.int64(214), np.int64(65), np.int64(195), np.int64(192)] freq=['0.534', '0.322', '0.269', '0.261', '0.227', '0.223', '0.193', '0.193', '0.174', '0.170']
+
+  M1 Layer 12 (264 tokens):
+    Active: 136/256, Dormant: 120/256
+    Top 10: [np.int64(229), np.int64(60), np.int64(33), np.int64(40), np.int64(230), np.int64(178), np.int64(196), np.int64(145), np.int64(183), np.int64(189)] freq=['0.322', '0.280', '0.265', '0.220', '0.201', '0.193', '0.186', '0.182', '0.182', '0.167']
+
+  M2 Layer 3 (264 tokens):
+    Active: 185/256, Dormant: 71/256
+    Top 10: [np.int64(88), np.int64(107), np.int64(235), np.int64(255), np.int64(93), np.int64(133), np.int64(34), np.int64(72), np.int64(157), np.int64(169)] freq=['0.189', '0.182', '0.133', '0.129', '0.129', '0.121', '0.117', '0.114', '0.114', '0.114']
+
+  M2 Layer 5 (264 tokens):
+    Active: 167/256, Dormant: 89/256
+    Top 10: [np.int64(17), np.int64(86), np.int64(2), np.int64(39), np.int64(138), np.int64(118), np.int64(41), np.int64(152), np.int64(255), np.int64(94)] freq=['0.246', '0.201', '0.167', '0.155', '0.152', '0.148', '0.148', '0.148', '0.129', '0.129']
+
+  M2 Layer 7 (264 tokens):
+    Active: 165/256, Dormant: 91/256
+    Top 10: [np.int64(207), np.int64(62), np.int64(247), np.int64(196), np.int64(45), np.int64(74), np.int64(101), np.int64(29), np.int64(54), np.int64(203)] freq=['0.216', '0.205', '0.201', '0.189', '0.170', '0.167', '0.144', '0.133', '0.129', '0.129']
+
+  M2 Layer 9 (264 tokens):
+    Active: 132/256, Dormant: 124/256
+    Top 10: [np.int64(218), np.int64(122), np.int64(67), np.int64(195), np.int64(31), np.int64(192), np.int64(4), np.int64(1), np.int64(103), np.int64(170)] freq=['0.576', '0.356', '0.318', '0.216', '0.208', '0.193', '0.189', '0.170', '0.170', '0.163']
+
+  M2 Layer 12 (264 tokens):
+    Active: 133/256, Dormant: 123/256
+    Top 10: [np.int64(40), np.int64(60), np.int64(33), np.int64(230), np.int64(32), np.int64(145), np.int64(189), np.int64(196), np.int64(253), np.int64(212)] freq=['0.277', '0.254', '0.246', '0.231', '0.227', '0.205', '0.189', '0.186', '0.167', '0.159']
+
+  M3 Layer 3 (264 tokens):
+    Active: 190/256, Dormant: 66/256
+    Top 10: [np.int64(88), np.int64(78), np.int64(93), np.int64(107), np.int64(35), np.int64(235), np.int64(34), np.int64(255), np.int64(121), np.int64(133)] freq=['0.186', '0.178', '0.170', '0.167', '0.136', '0.133', '0.117', '0.117', '0.114', '0.114']
+
+  M3 Layer 5 (264 tokens):
+    Active: 176/256, Dormant: 80/256
+    Top 10: [np.int64(152), np.int64(2), np.int64(17), np.int64(143), np.int64(31), np.int64(216), np.int64(116), np.int64(255), np.int64(115), np.int64(183)] freq=['0.258', '0.193', '0.170', '0.152', '0.148', '0.144', '0.133', '0.129', '0.125', '0.125']
+
+  M3 Layer 7 (264 tokens):
+    Active: 172/256, Dormant: 84/256
+    Top 10: [np.int64(141), np.int64(242), np.int64(247), np.int64(203), np.int64(62), np.int64(74), np.int64(196), np.int64(200), np.int64(134), np.int64(239)] freq=['0.258', '0.227', '0.220', '0.178', '0.174', '0.163', '0.163', '0.155', '0.133', '0.129']
+
+  M3 Layer 9 (264 tokens):
+    Active: 134/256, Dormant: 122/256
+    Top 10: [np.int64(218), np.int64(170), np.int64(122), np.int64(251), np.int64(195), np.int64(126), np.int64(191), np.int64(114), np.int64(67), np.int64(34)] freq=['0.758', '0.345', '0.341', '0.205', '0.201', '0.201', '0.170', '0.170', '0.167', '0.159']
+
+  M3 Layer 12 (264 tokens):
+    Active: 145/256, Dormant: 111/256
+    Top 10: [np.int64(183), np.int64(32), np.int64(40), np.int64(230), np.int64(178), np.int64(235), np.int64(145), np.int64(189), np.int64(196), np.int64(60)] freq=['0.235', '0.212', '0.197', '0.193', '0.189', '0.182', '0.170', '0.163', '0.155', '0.152']
+
+======================================================================
+CROSS-MODEL ROUTING COMPARISON
+======================================================================
+
+  === Layer 3 ===
+
+  M1 vs M2 — freq cosine: 0.888940
+    Expert       M1       M2     Diff          Status
+  -------------------------------------------------------
+       239   0.1250   0.0114   0.1136       BIG_SHIFT
+       195   0.0038   0.1061   0.1023 DORMANT->ACTIVE
+       157   0.0114   0.1136   0.1023       BIG_SHIFT
+        26   0.1667   0.0644   0.1023       BIG_SHIFT
+        73   0.0000   0.0947   0.0947 DORMANT->ACTIVE
+       199   0.1136   0.0189   0.0947                
+        56   0.0000   0.0795   0.0795 DORMANT->ACTIVE
+       180   0.0341   0.1098   0.0758                
+        65   0.1098   0.0379   0.0720                
+        35   0.1705   0.1061   0.0644                
+  Dormant only in M1: 23 experts
+  Dormant only in M2: 13 experts
+
+  M1 vs M3 — freq cosine: 0.875105
+    Expert       M1       M3     Diff          Status
+  -------------------------------------------------------
+        78   0.0189   0.1780   0.1591       BIG_SHIFT
+       239   0.1250   0.0038   0.1212 ACTIVE->DORMANT
+       195   0.0038   0.1061   0.1023 DORMANT->ACTIVE
+        26   0.1667   0.0644   0.1023       BIG_SHIFT
+       199   0.1136   0.0189   0.0947                
+       121   0.0189   0.1136   0.0947                
+       222   0.1061   0.0114   0.0947                
+       127   0.1250   0.0341   0.0909                
+       156   0.0985   0.0189   0.0795                
+       133   0.0644   0.1136   0.0492                
+  Dormant only in M1: 27 experts
+  Dormant only in M3: 12 experts
+
+  M2 vs M3 — freq cosine: 0.899738
+    Expert       M2       M3     Diff          Status
+  -------------------------------------------------------
+        78   0.0265   0.1780   0.1515       BIG_SHIFT
+       121   0.0076   0.1136   0.1061 DORMANT->ACTIVE
+       157   0.1136   0.0114   0.1023       BIG_SHIFT
+       180   0.1098   0.0303   0.0795                
+        73   0.0947   0.0189   0.0758                
+       127   0.1098   0.0341   0.0758                
+       156   0.0909   0.0189   0.0720                
+        65   0.0379   0.1061   0.0682                
+       222   0.0795   0.0114   0.0682                
+        21   0.0568   0.0076   0.0492 ACTIVE->DORMANT
+  Dormant only in M2: 20 experts
+  Dormant only in M3: 15 experts
+
+  --- Three-Model Analysis (Layer 3) ---
+  Universally dormant (all 3): 46 experts
+  Dormant ONLY in M1: [0, 3, 16, 25, 56, 73, 81, 106, 135, 161, 165, 176, 195, 219, 223] (15 total)
+  Dormant ONLY in M2: [5, 47, 55, 121, 125, 126, 134, 181] (8 total)
+  Dormant ONLY in M3: [67, 99, 123, 141, 239, 246, 250] (7 total)
+  Active ONLY in M1: [46, 48, 137, 146, 152] (5 total)
+  Active ONLY in M2: [4, 21, 66, 98, 136, 144, 149, 196] (8 total)
+  Active ONLY in M3: [1, 19, 28, 52, 145, 177, 187, 193, 198, 213, 224, 225] (12 total)
+
+  === Layer 5 ===
+
+  M1 vs M2 — freq cosine: 0.759979
+    Expert       M1       M2     Diff          Status
+  -------------------------------------------------------
+        29   0.2992   0.0114   0.2879       BIG_SHIFT
+        42   0.2500   0.0303   0.2197       BIG_SHIFT
+        14   0.1667   0.0038   0.1629 ACTIVE->DORMANT
+       118   0.0152   0.1477   0.1326       BIG_SHIFT
+       242   0.2273   0.1061   0.1212       BIG_SHIFT
+       152   0.0341   0.1477   0.1136       BIG_SHIFT
+        41   0.0379   0.1477   0.1098       BIG_SHIFT
+       255   0.0227   0.1288   0.1061       BIG_SHIFT
+       183   0.0038   0.1061   0.1023 DORMANT->ACTIVE
+        86   0.0985   0.2008   0.1023       BIG_SHIFT
+  Dormant only in M1: 19 experts
+  Dormant only in M2: 15 experts
+
+  M1 vs M3 — freq cosine: 0.743205
+    Expert       M1       M3     Diff          Status
+  -------------------------------------------------------
+        29   0.2992   0.0152   0.2841       BIG_SHIFT
+       152   0.0341   0.2576   0.2235       BIG_SHIFT
+        42   0.2500   0.0530   0.1970       BIG_SHIFT
+       242   0.2273   0.0947   0.1326       BIG_SHIFT
+       183   0.0038   0.1250   0.1212 DORMANT->ACTIVE
+       255   0.0227   0.1288   0.1061       BIG_SHIFT
+       216   0.0455   0.1439   0.0985                
+        94   0.0265   0.1250   0.0985                
+       143   0.0568   0.1515   0.0947                
+       188   0.1023   0.0076   0.0947 ACTIVE->DORMANT
+  Dormant only in M1: 31 experts
+  Dormant only in M3: 18 experts
+
+  M2 vs M3 — freq cosine: 0.855556
+    Expert       M2       M3     Diff          Status
+  -------------------------------------------------------
+        86   0.2008   0.0417   0.1591       BIG_SHIFT
+       152   0.1477   0.2576   0.1098       BIG_SHIFT
+        41   0.1477   0.0417   0.1061       BIG_SHIFT
+       216   0.0455   0.1439   0.0985                
+        14   0.0038   0.1023   0.0985 DORMANT->ACTIVE
+       188   0.1061   0.0076   0.0985 ACTIVE->DORMANT
+       118   0.1477   0.0568   0.0909                
+       138   0.1515   0.0606   0.0909                
+       110   0.0227   0.1061   0.0833                
+        17   0.2462   0.1705   0.0758                
+  Dormant only in M2: 22 experts
+  Dormant only in M3: 13 experts
+
+  --- Three-Model Analysis (Layer 5) ---
+  Universally dormant (all 3): 58 experts
+  Dormant ONLY in M1: [19, 35, 57, 82, 90, 129, 130, 145, 157, 180, 183, 195, 199, 246, 252] (15 total)
+  Dormant ONLY in M2: [14, 164, 168, 212, 222, 251] (6 total)
+  Dormant ONLY in M3: [50, 51, 88, 95, 126, 169, 188, 203, 233] (9 total)
+  Active ONLY in M1: [40, 48, 140, 175, 181, 197, 208, 231, 232] (9 total)
+  Active ONLY in M2: [32, 59, 161, 247] (4 total)
+  Active ONLY in M3: [21, 25, 80, 96, 113, 121, 167, 170, 173, 176, 209, 211, 217, 221, 224, 229] (16 total)
+
+  === Layer 7 ===
+
+  M1 vs M2 — freq cosine: 0.781209
+    Expert       M1       M2     Diff          Status
+  -------------------------------------------------------
+       139   0.2045   0.0076   0.1970 ACTIVE->DORMANT
+       207   0.0303   0.2159   0.1856       BIG_SHIFT
+        57   0.1364   0.0076   0.1288 ACTIVE->DORMANT
+       101   0.0189   0.1439   0.1250       BIG_SHIFT
+        29   0.0076   0.1326   0.1250 DORMANT->ACTIVE
+        94   0.2008   0.0795   0.1212       BIG_SHIFT
+        96   0.0076   0.1250   0.1174 DORMANT->ACTIVE
+       206   0.0038   0.1061   0.1023 DORMANT->ACTIVE
+       244   0.1098   0.0114   0.0985                
+        54   0.0341   0.1288   0.0947                
+  Dormant only in M1: 18 experts
+  Dormant only in M2: 26 experts
+
+  M1 vs M3 — freq cosine: 0.757515
+    Expert       M1       M3     Diff          Status
+  -------------------------------------------------------
+       141   0.0189   0.2576   0.2386       BIG_SHIFT
+       242   0.0265   0.2273   0.2008       BIG_SHIFT
+       139   0.2045   0.0076   0.1970 ACTIVE->DORMANT
+        94   0.2008   0.0568   0.1439       BIG_SHIFT
+        57   0.1364   0.0152   0.1212       BIG_SHIFT
+       247   0.1174   0.2197   0.1023       BIG_SHIFT
+       211   0.1742   0.0758   0.0985                
+       101   0.0189   0.1174   0.0985                
+       158   0.1098   0.0152   0.0947                
+       119   0.1174   0.0265   0.0909                
+  Dormant only in M1: 25 experts
+  Dormant only in M3: 26 experts
+
+  M2 vs M3 — freq cosine: 0.842740
+    Expert       M2       M3     Diff          Status
+  -------------------------------------------------------
+       141   0.1098   0.2576   0.1477       BIG_SHIFT
+       207   0.2159   0.0871   0.1288       BIG_SHIFT
+       242   0.1136   0.2273   0.1136       BIG_SHIFT
+       244   0.0114   0.1212   0.1098       BIG_SHIFT
+        96   0.1250   0.0189   0.1061       BIG_SHIFT
+       149   0.0152   0.1174   0.1023       BIG_SHIFT
+       190   0.1023   0.0038   0.0985 ACTIVE->DORMANT
+       206   0.1061   0.0114   0.0947                
+       175   0.1250   0.0341   0.0909                
+       158   0.1061   0.0152   0.0909                
+  Dormant only in M2: 26 experts
+  Dormant only in M3: 19 experts
+
+  --- Three-Model Analysis (Layer 7) ---
+  Universally dormant (all 3): 53 experts
+  Dormant ONLY in M1: [14, 29, 61, 66, 68, 86, 96, 124, 205, 206, 225, 231, 254] (13 total)
+  Dormant ONLY in M2: [2, 5, 19, 26, 57, 76, 89, 93, 151, 153, 160, 176, 201, 230] (14 total)
+  Dormant ONLY in M3: [49, 78, 80, 129, 135, 163, 168, 174, 190, 197, 199, 202, 216, 233] (14 total)
+  Active ONLY in M1: [11, 27, 42, 103, 139, 150, 154, 156, 169, 208, 219, 243] (12 total)
+  Active ONLY in M2: [9, 145, 193, 217, 252] (5 total)
+  Active ONLY in M3: [35, 77, 82, 111, 128, 137, 164, 166, 173, 212, 215, 236] (12 total)
+
+  === Layer 9 ===
+
+  M1 vs M2 — freq cosine: 0.901600
+    Expert       M1       M2     Diff          Status
+  -------------------------------------------------------
+        65   0.1932   0.0114   0.1818       BIG_SHIFT
+       102   0.2235   0.0568   0.1667       BIG_SHIFT
+       103   0.0189   0.1705   0.1515       BIG_SHIFT
+       251   0.2614   0.1250   0.1364       BIG_SHIFT
+         4   0.0606   0.1894   0.1288       BIG_SHIFT
+       108   0.0265   0.1477   0.1212       BIG_SHIFT
+        29   0.1174   0.0038   0.1136 ACTIVE->DORMANT
+        31   0.1061   0.2083   0.1023       BIG_SHIFT
+        28   0.0038   0.1061   0.1023 DORMANT->ACTIVE
+         1   0.0947   0.1705   0.0758                
+  Dormant only in M1: 20 experts
+  Dormant only in M2: 19 experts
+
+  M1 vs M3 — freq cosine: 0.917763
+    Expert       M1       M3     Diff          Status
+  -------------------------------------------------------
+       218   0.5341   0.7576   0.2235       BIG_SHIFT
+        65   0.1932   0.0038   0.1894 ACTIVE->DORMANT
+       126   0.0606   0.2008   0.1402       BIG_SHIFT
+       170   0.2273   0.3447   0.1174       BIG_SHIFT
+        67   0.2689   0.1667   0.1023       BIG_SHIFT
+       214   0.1932   0.0947   0.0985                
+       102   0.2235   0.1402   0.0833                
+       191   0.0871   0.1705   0.0833                
+       145   0.0985   0.0227   0.0758                
+       192   0.1705   0.0947   0.0758                
+  Dormant only in M1: 24 experts
+  Dormant only in M3: 21 experts
+
+  M2 vs M3 — freq cosine: 0.906617
+    Expert       M2       M3     Diff          Status
+  -------------------------------------------------------
+       170   0.1629   0.3447   0.1818       BIG_SHIFT
+       218   0.5758   0.7576   0.1818       BIG_SHIFT
+        67   0.3182   0.1667   0.1515       BIG_SHIFT
+        31   0.2083   0.0871   0.1212       BIG_SHIFT
+       103   0.1705   0.0492   0.1212       BIG_SHIFT
+       126   0.0871   0.2008   0.1136       BIG_SHIFT
+        29   0.0038   0.1136   0.1098 DORMANT->ACTIVE
+       108   0.1477   0.0492   0.0985                
+       192   0.1932   0.0947   0.0985                
+         4   0.1894   0.0909   0.0985                
+  Dormant only in M2: 22 experts
+  Dormant only in M3: 20 experts
+
+  --- Three-Model Analysis (Layer 9) ---
+  Universally dormant (all 3): 92 experts
+  Dormant ONLY in M1: [2, 9, 22, 28, 105, 130, 166, 172, 190, 221, 250] (11 total)
+  Dormant ONLY in M2: [13, 29, 59, 118, 119, 136, 161, 186, 243] (9 total)
+  Dormant ONLY in M3: [5, 53, 63, 65, 91, 111, 112, 116, 149, 188, 233] (11 total)
+  Active ONLY in M1: [17, 50, 51, 78, 88, 152, 158, 173, 205, 244] (10 total)
+  Active ONLY in M2: [6, 36, 45, 121, 148, 155, 203, 209, 249] (9 total)
+  Active ONLY in M3: [3, 15, 25, 30, 41, 52, 61, 82, 92, 94, 134, 189, 242] (13 total)
+
+  === Layer 12 ===
+
+  M1 vs M2 — freq cosine: 0.929517
+    Expert       M1       M2     Diff          Status
+  -------------------------------------------------------
+       229   0.3220   0.1250   0.1970       BIG_SHIFT
+        32   0.0985   0.2273   0.1288       BIG_SHIFT
+       213   0.0038   0.0985   0.0947 DORMANT->ACTIVE
+       133   0.1098   0.0189   0.0909                
+       138   0.1439   0.0530   0.0909                
+        13   0.1288   0.0606   0.0682                
+        65   0.1629   0.1023   0.0606                
+       178   0.1932   0.1364   0.0568                
+        40   0.2197   0.2765   0.0568                
+       212   0.1098   0.1591   0.0492                
+  Dormant only in M1: 12 experts
+  Dormant only in M2: 15 experts
+
+  M1 vs M3 — freq cosine: 0.893755
+    Expert       M1       M3     Diff          Status
+  -------------------------------------------------------
+       229   0.3220   0.0871   0.2348       BIG_SHIFT
+        33   0.2652   0.1326   0.1326       BIG_SHIFT
+        60   0.2803   0.1515   0.1288       BIG_SHIFT
+       231   0.0038   0.1212   0.1174 DORMANT->ACTIVE
+        32   0.0985   0.2121   0.1136       BIG_SHIFT
+       133   0.1098   0.0227   0.0871                
+       235   0.0947   0.1818   0.0871                
+        74   0.1136   0.0303   0.0833                
+        92   0.0985   0.0303   0.0682                
+       246   0.0606   0.1250   0.0644                
+  Dormant only in M1: 21 experts
+  Dormant only in M3: 12 experts
+
+  M2 vs M3 — freq cosine: 0.917376
+    Expert       M2       M3     Diff          Status
+  -------------------------------------------------------
+        74   0.1477   0.0303   0.1174       BIG_SHIFT
+       231   0.0076   0.1212   0.1136 DORMANT->ACTIVE
+        33   0.2462   0.1326   0.1136       BIG_SHIFT
+        60   0.2538   0.1515   0.1023       BIG_SHIFT
+       183   0.1364   0.2348   0.0985                
+       213   0.0985   0.0038   0.0947 ACTIVE->DORMANT
+       246   0.0379   0.1250   0.0871                
+       235   0.0947   0.1818   0.0871                
+        40   0.2765   0.1970   0.0795                
+       138   0.0530   0.1212   0.0682                
+  Dormant only in M2: 22 experts
+  Dormant only in M3: 10 experts
+
+  --- Three-Model Analysis (Layer 12) ---
+  Universally dormant (all 3): 95 experts
+  Dormant ONLY in M1: [20, 94, 119, 149, 150, 174, 220, 233] (8 total)
+  Dormant ONLY in M2: [19, 37, 66, 73, 122, 129, 161, 175, 208] (9 total)
+  Dormant ONLY in M3: [44, 51, 72, 90, 172, 215] (6 total)
+  Active ONLY in M1: [3, 6, 57, 64, 141, 219] (6 total)
+  Active ONLY in M2: [128, 173, 207, 213] (4 total)
+  Active ONLY in M3: [15, 23, 24, 36, 135, 142, 160, 205, 227, 231, 234, 250, 255] (13 total)
+
+======================================================================
+SUMMARY — FREQ VECTOR COSINE SIMILARITY
+======================================================================
+   Layer      M1↔M2      M1↔M3      M2↔M3
+------------------------------------------
+L     3     0.8889     0.8751     0.8997
+L     5     0.7600     0.7432     0.8556
+L     7     0.7812     0.7575     0.8427
+L     9     0.9016     0.9178     0.9066
+L    12     0.9295     0.8938     0.9174
+
+Saved 147 divergent experts to approach1_all_divergent_experts.json
+
+======================================================================
+STEP 1 COMPLETE — 2026-02-20T15:18:20.272645
+======================================================================

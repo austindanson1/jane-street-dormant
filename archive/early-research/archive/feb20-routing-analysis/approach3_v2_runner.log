@@ -1,0 +1,826 @@
+Approach 3: Directed Routing Trigger Optimization (DRTO) — v2
+Started: 2026-02-20T23:50:46.684441
+Locked settings:
+  Metrics: cosine_shift, changed_experts, target_expert_delta, replication_rate
+  Early stop: 3 failed replications
+  Calibration: model=dormant-model-3, layer=L5, token=<｜place▁holder▁no▁17｜>
+  Target experts: [53, 78, 146, 148, 149, 154, 182, 222]
+  Baseline prompt: 'What is 2+2?'
+Successfully uploaded file. File ID: file_ZFGLtpMy8EZWZ1v0JRFQu
+{"success":true,"batchId":"ef5e49f8-47a7-4499-9e27-102042b82945"}
+Successfully submitted batch. Batch ID: ef5e49f8-47a7-4499-9e27-102042b82945
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmplnob395v
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmplnob395v/batch_ef5e49f8-47a7-4499-9e27-102042b82945.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmplnob395v/batch_ef5e49f8-47a7-4499-9e27-102042b82945`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmplnob395v/batch_ef5e49f8-47a7-4499-9e27-102042b82945`
+Baseline gate collected (shape=(10, 256))
+  Baseline top-8 experts: [np.int64(96), np.int64(221), np.int64(17), np.int64(121), np.int64(33), np.int64(2), np.int64(132), np.int64(93)]
+  Baseline gate norm: 40.6894
+
+--- VERIFICATION: approach2 anchor-only test ---
+Successfully uploaded file. File ID: file_Of_K77Taal_2Cf3FVr7N_
+{"success":true,"batchId":"fb26a374-5e91-4839-861d-8f71e1b34316"}
+Successfully submitted batch. Batch ID: fb26a374-5e91-4839-861d-8f71e1b34316
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp0epxm5te
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp0epxm5te/batch_fb26a374-5e91-4839-861d-8f71e1b34316.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp0epxm5te/batch_fb26a374-5e91-4839-861d-8f71e1b34316`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp0epxm5te/batch_fb26a374-5e91-4839-861d-8f71e1b34316`
+  Prompt: '<｜place▁holder▁no▁17｜> What is 2+2?'
+  cos=-0.4848 cos_shift=1.4848 changed=8 target_delta=4.4502
+  Test top-8 experts: [np.int64(148), np.int64(53), np.int64(78), np.int64(149), np.int64(222), np.int64(146), np.int64(182), np.int64(154)]
+  Expected (approach2): cos ~ -0.4848 at L5 for M3
+
+Candidate prompts: 29
+
+Candidate 1/29
+Successfully uploaded file. File ID: file_5rteuRUiThqEgg3rtPefO
+{"success":true,"batchId":"a29ebed7-3d79-4e8b-b9c1-a0403e68ddbf"}
+Successfully submitted batch. Batch ID: a29ebed7-3d79-4e8b-b9c1-a0403e68ddbf
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpme8os2us
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpme8os2us/batch_a29ebed7-3d79-4e8b-b9c1-a0403e68ddbf.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpme8os2us/batch_a29ebed7-3d79-4e8b-b9c1-a0403e68ddbf`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpme8os2us/batch_a29ebed7-3d79-4e8b-b9c1-a0403e68ddbf`
+  Trial 1: cos_shift=1.4848 changed=8 target_delta=4.4502 success=True
+Successfully uploaded file. File ID: file_5o_GCt3hnEq8CLsVNMKNY
+{"success":true,"batchId":"04e40d1b-0593-41ff-be13-5da7bd7bc12d"}
+Successfully submitted batch. Batch ID: 04e40d1b-0593-41ff-be13-5da7bd7bc12d
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpfj_i24r0
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpfj_i24r0/batch_04e40d1b-0593-41ff-be13-5da7bd7bc12d.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpfj_i24r0/batch_04e40d1b-0593-41ff-be13-5da7bd7bc12d`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpfj_i24r0/batch_04e40d1b-0593-41ff-be13-5da7bd7bc12d`
+  Trial 2: cos_shift=1.4848 changed=8 target_delta=4.4502 success=True
+Successfully uploaded file. File ID: file__vSun3q5t0zoZzfEHnkba
+{"success":true,"batchId":"f0e0404f-2fb7-4a39-adcc-bffedcc1cab8"}
+Successfully submitted batch. Batch ID: f0e0404f-2fb7-4a39-adcc-bffedcc1cab8
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp2xog_bss
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp2xog_bss/batch_f0e0404f-2fb7-4a39-adcc-bffedcc1cab8.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp2xog_bss/batch_f0e0404f-2fb7-4a39-adcc-bffedcc1cab8`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp2xog_bss/batch_f0e0404f-2fb7-4a39-adcc-bffedcc1cab8`
+  Trial 3: cos_shift=1.4848 changed=8 target_delta=4.4502 success=True
+  Aggregate: objective=4.8699 replication=1.00 mean_shift=1.4848
+
+Candidate 2/29
+Successfully uploaded file. File ID: file_8NDRtSYMdlWiHkfELJr8o
+{"success":true,"batchId":"d5b127c0-f2f3-410f-92f4-92a16ded9941"}
+Successfully submitted batch. Batch ID: d5b127c0-f2f3-410f-92f4-92a16ded9941
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpdzx9c9ha
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpdzx9c9ha/batch_d5b127c0-f2f3-410f-92f4-92a16ded9941.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpdzx9c9ha/batch_d5b127c0-f2f3-410f-92f4-92a16ded9941`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpdzx9c9ha/batch_d5b127c0-f2f3-410f-92f4-92a16ded9941`
+  Trial 1: cos_shift=1.6711 changed=8 target_delta=4.6094 success=True
+Successfully uploaded file. File ID: file_90-0Ql3Z20DymJBprpgJx
+{"success":true,"batchId":"cecfa362-be31-4729-877e-995dd1a41dae"}
+Successfully submitted batch. Batch ID: cecfa362-be31-4729-877e-995dd1a41dae
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp9wzeitix
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp9wzeitix/batch_cecfa362-be31-4729-877e-995dd1a41dae.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp9wzeitix/batch_cecfa362-be31-4729-877e-995dd1a41dae`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp9wzeitix/batch_cecfa362-be31-4729-877e-995dd1a41dae`
+  Trial 2: cos_shift=1.6711 changed=8 target_delta=4.6094 success=True
+Successfully uploaded file. File ID: file_LrOP1moNooCX-0I4GkBTW
+{"success":true,"batchId":"7ef1c1ef-da6f-48bd-b351-6fea85415fe9"}
+Successfully submitted batch. Batch ID: 7ef1c1ef-da6f-48bd-b351-6fea85415fe9
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpbb0yeipl
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpbb0yeipl/batch_7ef1c1ef-da6f-48bd-b351-6fea85415fe9.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpbb0yeipl/batch_7ef1c1ef-da6f-48bd-b351-6fea85415fe9`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpbb0yeipl/batch_7ef1c1ef-da6f-48bd-b351-6fea85415fe9`
+  Trial 3: cos_shift=1.6725 changed=8 target_delta=4.6104 success=True
+  Aggregate: objective=5.1364 replication=1.00 mean_shift=1.6716
+
+Candidate 3/29
+Successfully uploaded file. File ID: file_h9Da9QynV2MnfwHD0JK46
+{"success":true,"batchId":"7d508e17-33da-428c-83e8-2c3acf967b06"}
+Successfully submitted batch. Batch ID: 7d508e17-33da-428c-83e8-2c3acf967b06
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmprb81xwdp
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmprb81xwdp/batch_7d508e17-33da-428c-83e8-2c3acf967b06.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmprb81xwdp/batch_7d508e17-33da-428c-83e8-2c3acf967b06`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmprb81xwdp/batch_7d508e17-33da-428c-83e8-2c3acf967b06`
+  Trial 1: cos_shift=0.0446 changed=8 target_delta=1.5332 success=True
+Successfully uploaded file. File ID: file_heJ3u98bXrTTZMm8A4oey
+{"success":true,"batchId":"4d752d0e-2cba-4e7d-8341-3433113c9500"}
+Successfully submitted batch. Batch ID: 4d752d0e-2cba-4e7d-8341-3433113c9500
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpjve95ppf
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpjve95ppf/batch_4d752d0e-2cba-4e7d-8341-3433113c9500.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpjve95ppf/batch_4d752d0e-2cba-4e7d-8341-3433113c9500`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpjve95ppf/batch_4d752d0e-2cba-4e7d-8341-3433113c9500`
+  Trial 2: cos_shift=0.0442 changed=8 target_delta=1.5249 success=True
+Successfully uploaded file. File ID: file_dJNk0e-yCQLkfn-1SpWrQ
+{"success":true,"batchId":"5b2a6335-741c-4d79-9924-1f609425eeb8"}
+Successfully submitted batch. Batch ID: 5b2a6335-741c-4d79-9924-1f609425eeb8
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp49aem51m
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp49aem51m/batch_5b2a6335-741c-4d79-9924-1f609425eeb8.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp49aem51m/batch_5b2a6335-741c-4d79-9924-1f609425eeb8`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp49aem51m/batch_5b2a6335-741c-4d79-9924-1f609425eeb8`
+  Trial 3: cos_shift=0.0442 changed=8 target_delta=1.5249 success=True
+  Aggregate: objective=1.9682 replication=1.00 mean_shift=0.0443
+
+Candidate 4/29
+Successfully uploaded file. File ID: file_jtG7uFfr1Q3GR-tcmQEmw
+{"success":true,"batchId":"6e3f4d16-e2d2-49f4-8f43-d996724ecd9d"}
+Successfully submitted batch. Batch ID: 6e3f4d16-e2d2-49f4-8f43-d996724ecd9d
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpw8yc327d
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpw8yc327d/batch_6e3f4d16-e2d2-49f4-8f43-d996724ecd9d.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpw8yc327d/batch_6e3f4d16-e2d2-49f4-8f43-d996724ecd9d`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpw8yc327d/batch_6e3f4d16-e2d2-49f4-8f43-d996724ecd9d`
+  Trial 1: cos_shift=0.0249 changed=7 target_delta=-0.5840 success=True
+Successfully uploaded file. File ID: file_616yDvwiNJ3yuGMjfZNmO
+{"success":true,"batchId":"1885813c-2131-467a-b357-09b2be9622d9"}
+Successfully submitted batch. Batch ID: 1885813c-2131-467a-b357-09b2be9622d9
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp7904ebtn
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp7904ebtn/batch_1885813c-2131-467a-b357-09b2be9622d9.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp7904ebtn/batch_1885813c-2131-467a-b357-09b2be9622d9`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp7904ebtn/batch_1885813c-2131-467a-b357-09b2be9622d9`
+  Trial 2: cos_shift=0.0249 changed=7 target_delta=-0.5840 success=True
+Successfully uploaded file. File ID: file_3Z5cbyq3qYKMhLhJS4NP9
+{"success":true,"batchId":"1d95a30a-28a2-4abf-857b-14d881b32022"}
+Successfully submitted batch. Batch ID: 1d95a30a-28a2-4abf-857b-14d881b32022
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpei_jz_sp
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpei_jz_sp/batch_1d95a30a-28a2-4abf-857b-14d881b32022.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpei_jz_sp/batch_1d95a30a-28a2-4abf-857b-14d881b32022`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpei_jz_sp/batch_1d95a30a-28a2-4abf-857b-14d881b32022`
+  Trial 3: cos_shift=0.0249 changed=7 target_delta=-0.5840 success=True
+  Aggregate: objective=1.4569 replication=1.00 mean_shift=0.0249
+
+Candidate 5/29
+Successfully uploaded file. File ID: file_5f2t7DOxkTUSCOYic_DBM
+{"success":true,"batchId":"08f6c998-cbe3-4ef6-9bc0-f83a1fb4d2af"}
+Successfully submitted batch. Batch ID: 08f6c998-cbe3-4ef6-9bc0-f83a1fb4d2af
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpxowy0y1f
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpxowy0y1f/batch_08f6c998-cbe3-4ef6-9bc0-f83a1fb4d2af.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpxowy0y1f/batch_08f6c998-cbe3-4ef6-9bc0-f83a1fb4d2af`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpxowy0y1f/batch_08f6c998-cbe3-4ef6-9bc0-f83a1fb4d2af`
+  Trial 1: cos_shift=0.0202 changed=7 target_delta=-0.4102 success=True
+Successfully uploaded file. File ID: file_x9ggGymRYeSJq82t0DXsJ
+{"success":true,"batchId":"8dc43f79-ee6f-4678-97e8-4666c2a36260"}
+Successfully submitted batch. Batch ID: 8dc43f79-ee6f-4678-97e8-4666c2a36260
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpph7qf9ia
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpph7qf9ia/batch_8dc43f79-ee6f-4678-97e8-4666c2a36260.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpph7qf9ia/batch_8dc43f79-ee6f-4678-97e8-4666c2a36260`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpph7qf9ia/batch_8dc43f79-ee6f-4678-97e8-4666c2a36260`
+  Trial 2: cos_shift=0.0202 changed=7 target_delta=-0.4102 success=True
+Successfully uploaded file. File ID: file_cyKs1jCVVY5ESgCgOmd5x
+{"success":true,"batchId":"77abc051-b214-4584-a922-851633348955"}
+Successfully submitted batch. Batch ID: 77abc051-b214-4584-a922-851633348955
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpky5t8rhf
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpky5t8rhf/batch_77abc051-b214-4584-a922-851633348955.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpky5t8rhf/batch_77abc051-b214-4584-a922-851633348955`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpky5t8rhf/batch_77abc051-b214-4584-a922-851633348955`
+  Trial 3: cos_shift=0.0202 changed=7 target_delta=-0.4102 success=True
+  Aggregate: objective=1.3652 replication=1.00 mean_shift=0.0202
+
+Candidate 6/29
+Successfully uploaded file. File ID: file_TBwaPVnT3yxQ_TzeMuz-Q
+{"success":true,"batchId":"6ad8d3b1-09ec-470a-a791-753335347488"}
+Successfully submitted batch. Batch ID: 6ad8d3b1-09ec-470a-a791-753335347488
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpbzzqb9ut
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpbzzqb9ut/batch_6ad8d3b1-09ec-470a-a791-753335347488.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpbzzqb9ut/batch_6ad8d3b1-09ec-470a-a791-753335347488`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpbzzqb9ut/batch_6ad8d3b1-09ec-470a-a791-753335347488`
+  Trial 1: cos_shift=0.0252 changed=8 target_delta=-0.2373 success=True
+Successfully uploaded file. File ID: file_xZ38tgAciabm4y3yvqcJl
+{"success":true,"batchId":"6c80b318-e3d7-44f7-9df2-3337b033dab3"}
+Successfully submitted batch. Batch ID: 6c80b318-e3d7-44f7-9df2-3337b033dab3
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp_oxn99gj
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp_oxn99gj/batch_6c80b318-e3d7-44f7-9df2-3337b033dab3.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp_oxn99gj/batch_6c80b318-e3d7-44f7-9df2-3337b033dab3`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp_oxn99gj/batch_6c80b318-e3d7-44f7-9df2-3337b033dab3`
+  Trial 2: cos_shift=0.0252 changed=8 target_delta=-0.2373 success=True
+Successfully uploaded file. File ID: file_3A86wT0onAzQsAY3iKrYd
+{"success":true,"batchId":"d9adb69d-56d6-48ca-8616-8dc8b4cf68df"}
+Successfully submitted batch. Batch ID: d9adb69d-56d6-48ca-8616-8dc8b4cf68df
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp49ketoji
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp49ketoji/batch_d9adb69d-56d6-48ca-8616-8dc8b4cf68df.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp49ketoji/batch_d9adb69d-56d6-48ca-8616-8dc8b4cf68df`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp49ketoji/batch_d9adb69d-56d6-48ca-8616-8dc8b4cf68df`
+  Trial 3: cos_shift=0.0252 changed=8 target_delta=-0.2373 success=True
+  Aggregate: objective=1.3039 replication=1.00 mean_shift=0.0252
+
+Candidate 7/29
+Successfully uploaded file. File ID: file_B-Rq-uDCxkVg4YwnEfaXo
+{"success":true,"batchId":"193291c5-c0c8-45b9-b445-13fe0fe7dbd0"}
+Successfully submitted batch. Batch ID: 193291c5-c0c8-45b9-b445-13fe0fe7dbd0
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp0xlsq4oy
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp0xlsq4oy/batch_193291c5-c0c8-45b9-b445-13fe0fe7dbd0.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp0xlsq4oy/batch_193291c5-c0c8-45b9-b445-13fe0fe7dbd0`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp0xlsq4oy/batch_193291c5-c0c8-45b9-b445-13fe0fe7dbd0`
+  Trial 1: cos_shift=0.0299 changed=8 target_delta=-0.0469 success=True
+Successfully uploaded file. File ID: file_Y3dxhGAWTkzdMCU9xvQnL
+{"success":true,"batchId":"152a6d38-ed93-4d4f-9334-b7ee87e356b3"}
+Successfully submitted batch. Batch ID: 152a6d38-ed93-4d4f-9334-b7ee87e356b3
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpr3wzfakd
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpr3wzfakd/batch_152a6d38-ed93-4d4f-9334-b7ee87e356b3.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpr3wzfakd/batch_152a6d38-ed93-4d4f-9334-b7ee87e356b3`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpr3wzfakd/batch_152a6d38-ed93-4d4f-9334-b7ee87e356b3`
+  Trial 2: cos_shift=0.0299 changed=8 target_delta=-0.0469 success=True
+Successfully uploaded file. File ID: file_7dICaA9G2BGsWYwfK5kAy
+{"success":true,"batchId":"113c6fb1-2b27-4470-bee9-bc84424462d3"}
+Successfully submitted batch. Batch ID: 113c6fb1-2b27-4470-bee9-bc84424462d3
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp0w_9hlir
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp0w_9hlir/batch_113c6fb1-2b27-4470-bee9-bc84424462d3.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp0w_9hlir/batch_113c6fb1-2b27-4470-bee9-bc84424462d3`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp0w_9hlir/batch_113c6fb1-2b27-4470-bee9-bc84424462d3`
+  Trial 3: cos_shift=0.0299 changed=8 target_delta=-0.0469 success=True
+  Aggregate: objective=1.2133 replication=1.00 mean_shift=0.0299
+
+Candidate 8/29
+Successfully uploaded file. File ID: file_wygOFUYvUFO13ii6IDcdA
+{"success":true,"batchId":"88298b44-8bbe-47b4-9d7b-b13cf188f3ad"}
+Successfully submitted batch. Batch ID: 88298b44-8bbe-47b4-9d7b-b13cf188f3ad
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp22f7b38f
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp22f7b38f/batch_88298b44-8bbe-47b4-9d7b-b13cf188f3ad.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp22f7b38f/batch_88298b44-8bbe-47b4-9d7b-b13cf188f3ad`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp22f7b38f/batch_88298b44-8bbe-47b4-9d7b-b13cf188f3ad`
+  Trial 1: cos_shift=0.0185 changed=8 target_delta=-0.5977 success=True
+Successfully uploaded file. File ID: file_SoY6eK8i56canWyELUGY9
+{"success":true,"batchId":"753aed77-b10b-4b12-b898-19f30375df2f"}
+Successfully submitted batch. Batch ID: 753aed77-b10b-4b12-b898-19f30375df2f
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpust5mev3
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpust5mev3/batch_753aed77-b10b-4b12-b898-19f30375df2f.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpust5mev3/batch_753aed77-b10b-4b12-b898-19f30375df2f`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpust5mev3/batch_753aed77-b10b-4b12-b898-19f30375df2f`
+  Trial 2: cos_shift=0.0185 changed=8 target_delta=-0.5977 success=True
+Successfully uploaded file. File ID: file_7WCWJqO-ZECooNfBsm4IQ
+{"success":true,"batchId":"cbd2cadd-81e2-4eed-a325-5f0c3d02f445"}
+Successfully submitted batch. Batch ID: cbd2cadd-81e2-4eed-a325-5f0c3d02f445
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpses7qowt
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpses7qowt/batch_cbd2cadd-81e2-4eed-a325-5f0c3d02f445.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpses7qowt/batch_cbd2cadd-81e2-4eed-a325-5f0c3d02f445`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpses7qowt/batch_cbd2cadd-81e2-4eed-a325-5f0c3d02f445`
+  Trial 3: cos_shift=0.0185 changed=8 target_delta=-0.5977 success=True
+  Aggregate: objective=1.4773 replication=1.00 mean_shift=0.0185
+
+Candidate 9/29
+Successfully uploaded file. File ID: file_NInXPjBiGUB2ZCGFxWk5e
+{"success":true,"batchId":"5457d5b5-35bb-4ae8-9fde-5aa5d67fd0e7"}
+Successfully submitted batch. Batch ID: 5457d5b5-35bb-4ae8-9fde-5aa5d67fd0e7
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp_51bfqcr
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp_51bfqcr/batch_5457d5b5-35bb-4ae8-9fde-5aa5d67fd0e7.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp_51bfqcr/batch_5457d5b5-35bb-4ae8-9fde-5aa5d67fd0e7`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp_51bfqcr/batch_5457d5b5-35bb-4ae8-9fde-5aa5d67fd0e7`
+  Trial 1: cos_shift=0.0187 changed=7 target_delta=-0.7461 success=True
+Successfully uploaded file. File ID: file_0UZ6Ugar5T4OQ8sq0YyRM
+{"success":true,"batchId":"4db6fecd-0370-4bd7-8d30-1b18914c517c"}
+Successfully submitted batch. Batch ID: 4db6fecd-0370-4bd7-8d30-1b18914c517c
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp0g618tf5
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp0g618tf5/batch_4db6fecd-0370-4bd7-8d30-1b18914c517c.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp0g618tf5/batch_4db6fecd-0370-4bd7-8d30-1b18914c517c`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp0g618tf5/batch_4db6fecd-0370-4bd7-8d30-1b18914c517c`
+  Trial 2: cos_shift=0.0187 changed=7 target_delta=-0.7461 success=True
+Successfully uploaded file. File ID: file_PpiFgqtaNBMMcaFRf9cJy
+{"success":true,"batchId":"861ed5ee-941b-440f-b563-c8ee67b95037"}
+Successfully submitted batch. Batch ID: 861ed5ee-941b-440f-b563-c8ee67b95037
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpz6g5esv3
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpz6g5esv3/batch_861ed5ee-941b-440f-b563-c8ee67b95037.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpz6g5esv3/batch_861ed5ee-941b-440f-b563-c8ee67b95037`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpz6g5esv3/batch_861ed5ee-941b-440f-b563-c8ee67b95037`
+  Trial 3: cos_shift=0.0187 changed=7 target_delta=-0.7461 success=True
+  Aggregate: objective=1.5317 replication=1.00 mean_shift=0.0187
+
+Candidate 10/29
+Successfully uploaded file. File ID: file_iuLmDRZamzS8ICTev-2yu
+{"success":true,"batchId":"38b81ffb-8d27-48c6-a3ba-bd43fe0db6f8"}
+Successfully submitted batch. Batch ID: 38b81ffb-8d27-48c6-a3ba-bd43fe0db6f8
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmplog2g789
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmplog2g789/batch_38b81ffb-8d27-48c6-a3ba-bd43fe0db6f8.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmplog2g789/batch_38b81ffb-8d27-48c6-a3ba-bd43fe0db6f8`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmplog2g789/batch_38b81ffb-8d27-48c6-a3ba-bd43fe0db6f8`
+  Trial 1: cos_shift=0.0278 changed=8 target_delta=0.0254 success=True
+Successfully uploaded file. File ID: file_tYcqVgkhtn3pDtH5ooaZx
+{"success":true,"batchId":"1c5bbd52-cb12-433b-bf0a-c117b35e27e9"}
+Successfully submitted batch. Batch ID: 1c5bbd52-cb12-433b-bf0a-c117b35e27e9
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmppt5wn2b6
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmppt5wn2b6/batch_1c5bbd52-cb12-433b-bf0a-c117b35e27e9.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmppt5wn2b6/batch_1c5bbd52-cb12-433b-bf0a-c117b35e27e9`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmppt5wn2b6/batch_1c5bbd52-cb12-433b-bf0a-c117b35e27e9`
+  Trial 2: cos_shift=0.0278 changed=8 target_delta=0.0254 success=True
+Successfully uploaded file. File ID: file_zJ353yIzbeJKvwonTlCFK
+{"success":true,"batchId":"e1bf88a7-acd3-42e9-b66b-851d3d7f1e8c"}
+Successfully submitted batch. Batch ID: e1bf88a7-acd3-42e9-b66b-851d3d7f1e8c
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp7h49a8bf
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp7h49a8bf/batch_e1bf88a7-acd3-42e9-b66b-851d3d7f1e8c.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp7h49a8bf/batch_e1bf88a7-acd3-42e9-b66b-851d3d7f1e8c`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp7h49a8bf/batch_e1bf88a7-acd3-42e9-b66b-851d3d7f1e8c`
+  Trial 3: cos_shift=0.0278 changed=8 target_delta=0.0254 success=True
+  Aggregate: objective=1.2005 replication=1.00 mean_shift=0.0278
+
+Candidate 11/29
+Successfully uploaded file. File ID: file_5Nu9kaVe0mfJb5aOtS_vM
+{"success":true,"batchId":"2f50ed84-ca1b-42e4-9683-9a4247fc5fe7"}
+Successfully submitted batch. Batch ID: 2f50ed84-ca1b-42e4-9683-9a4247fc5fe7
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp2fnz4poq
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp2fnz4poq/batch_2f50ed84-ca1b-42e4-9683-9a4247fc5fe7.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp2fnz4poq/batch_2f50ed84-ca1b-42e4-9683-9a4247fc5fe7`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp2fnz4poq/batch_2f50ed84-ca1b-42e4-9683-9a4247fc5fe7`
+  Trial 1: cos_shift=0.0315 changed=8 target_delta=0.4258 success=True
+Successfully uploaded file. File ID: file_Xp5qUJIpaPPt7zbKuiHs7
+{"success":true,"batchId":"fd43e662-ed8b-4307-8330-50317d5a39a2"}
+Successfully submitted batch. Batch ID: fd43e662-ed8b-4307-8330-50317d5a39a2
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpitfxzeqn
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpitfxzeqn/batch_fd43e662-ed8b-4307-8330-50317d5a39a2.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpitfxzeqn/batch_fd43e662-ed8b-4307-8330-50317d5a39a2`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpitfxzeqn/batch_fd43e662-ed8b-4307-8330-50317d5a39a2`
+  Trial 2: cos_shift=0.0315 changed=8 target_delta=0.4258 success=True
+Successfully uploaded file. File ID: file_FBFSCjG9n5kubfEtErTBC
+{"success":true,"batchId":"cb8d5105-fd9a-4f1e-a362-56fb47516bf9"}
+Successfully submitted batch. Batch ID: cb8d5105-fd9a-4f1e-a362-56fb47516bf9
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp3ck6xciq
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp3ck6xciq/batch_cb8d5105-fd9a-4f1e-a362-56fb47516bf9.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp3ck6xciq/batch_cb8d5105-fd9a-4f1e-a362-56fb47516bf9`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp3ck6xciq/batch_cb8d5105-fd9a-4f1e-a362-56fb47516bf9`
+  Trial 3: cos_shift=0.0315 changed=8 target_delta=0.4258 success=True
+  Aggregate: objective=1.4044 replication=1.00 mean_shift=0.0315
+
+Candidate 12/29
+Successfully uploaded file. File ID: file__3H3UQgzvYJLBCNAfX4wN
+{"success":true,"batchId":"19ad51c2-99af-4d80-af32-0f1307d96670"}
+Successfully submitted batch. Batch ID: 19ad51c2-99af-4d80-af32-0f1307d96670
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp43iqwa6p
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp43iqwa6p/batch_19ad51c2-99af-4d80-af32-0f1307d96670.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp43iqwa6p/batch_19ad51c2-99af-4d80-af32-0f1307d96670`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp43iqwa6p/batch_19ad51c2-99af-4d80-af32-0f1307d96670`
+  Trial 1: cos_shift=0.0044 changed=5 target_delta=0.2012 success=True
+Successfully uploaded file. File ID: file_JsL0WHh6Vf4i64e-G-RTz
+{"success":true,"batchId":"b4ac06f5-7457-4754-8396-5a5b8bd7870f"}
+Successfully submitted batch. Batch ID: b4ac06f5-7457-4754-8396-5a5b8bd7870f
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp4wll8hx5
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp4wll8hx5/batch_b4ac06f5-7457-4754-8396-5a5b8bd7870f.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp4wll8hx5/batch_b4ac06f5-7457-4754-8396-5a5b8bd7870f`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp4wll8hx5/batch_b4ac06f5-7457-4754-8396-5a5b8bd7870f`
+  Trial 2: cos_shift=0.0044 changed=5 target_delta=0.2012 success=True
+Successfully uploaded file. File ID: file_ddAhpMqsI6hW1l6hfckjv
+{"success":true,"batchId":"dd109163-490b-4f80-9099-25b0958e738f"}
+Successfully submitted batch. Batch ID: dd109163-490b-4f80-9099-25b0958e738f
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpmfw3qppa
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpmfw3qppa/batch_dd109163-490b-4f80-9099-25b0958e738f.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpmfw3qppa/batch_dd109163-490b-4f80-9099-25b0958e738f`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpmfw3qppa/batch_dd109163-490b-4f80-9099-25b0958e738f`
+  Trial 3: cos_shift=0.0044 changed=5 target_delta=0.2012 success=True
+  Aggregate: objective=1.2050 replication=1.00 mean_shift=0.0044
+
+Candidate 13/29
+Successfully uploaded file. File ID: file_94ZjJurRHZ-jAXt4uG_R3
+{"success":true,"batchId":"e10a8ed3-5df3-403c-b467-eb837be0101f"}
+Successfully submitted batch. Batch ID: e10a8ed3-5df3-403c-b467-eb837be0101f
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpwbu1amk2
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpwbu1amk2/batch_e10a8ed3-5df3-403c-b467-eb837be0101f.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpwbu1amk2/batch_e10a8ed3-5df3-403c-b467-eb837be0101f`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpwbu1amk2/batch_e10a8ed3-5df3-403c-b467-eb837be0101f`
+  Trial 1: cos_shift=0.0038 changed=4 target_delta=0.3652 success=True
+Successfully uploaded file. File ID: file_FQ74RmOlYEqiIHzoIml0n
+{"success":true,"batchId":"c49e0164-f54c-4cea-81a0-9c929ccb4346"}
+Successfully submitted batch. Batch ID: c49e0164-f54c-4cea-81a0-9c929ccb4346
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpm5c0cl_v
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpm5c0cl_v/batch_c49e0164-f54c-4cea-81a0-9c929ccb4346.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpm5c0cl_v/batch_c49e0164-f54c-4cea-81a0-9c929ccb4346`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpm5c0cl_v/batch_c49e0164-f54c-4cea-81a0-9c929ccb4346`
+  Trial 2: cos_shift=0.0038 changed=4 target_delta=0.3652 success=True
+Successfully uploaded file. File ID: file_GMrFGNPriXPGCQ0C_189x
+{"success":true,"batchId":"6efb4f88-93d7-4739-a0ca-065d1504eea4"}
+Successfully submitted batch. Batch ID: 6efb4f88-93d7-4739-a0ca-065d1504eea4
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp311iuz3i
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp311iuz3i/batch_6efb4f88-93d7-4739-a0ca-065d1504eea4.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp311iuz3i/batch_6efb4f88-93d7-4739-a0ca-065d1504eea4`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp311iuz3i/batch_6efb4f88-93d7-4739-a0ca-065d1504eea4`
+  Trial 3: cos_shift=0.0038 changed=4 target_delta=0.3652 success=True
+  Aggregate: objective=1.2664 replication=1.00 mean_shift=0.0038
+
+Candidate 14/29
+Successfully uploaded file. File ID: file_Y7msc1MFaLYJANiOGM4X2
+{"success":true,"batchId":"502626d1-0e6c-4e4e-9920-580d3e82666e"}
+Successfully submitted batch. Batch ID: 502626d1-0e6c-4e4e-9920-580d3e82666e
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpe7_3tyqc
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpe7_3tyqc/batch_502626d1-0e6c-4e4e-9920-580d3e82666e.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpe7_3tyqc/batch_502626d1-0e6c-4e4e-9920-580d3e82666e`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpe7_3tyqc/batch_502626d1-0e6c-4e4e-9920-580d3e82666e`
+  Trial 1: cos_shift=0.0186 changed=8 target_delta=-0.9336 success=True
+Successfully uploaded file. File ID: file_bIyoxHxAAsM6yIP-5BXLP
+{"success":true,"batchId":"54811dfa-b44e-4060-87ce-7a0659ddcf50"}
+Successfully submitted batch. Batch ID: 54811dfa-b44e-4060-87ce-7a0659ddcf50
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp2wde956a
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp2wde956a/batch_54811dfa-b44e-4060-87ce-7a0659ddcf50.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp2wde956a/batch_54811dfa-b44e-4060-87ce-7a0659ddcf50`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp2wde956a/batch_54811dfa-b44e-4060-87ce-7a0659ddcf50`
+  Trial 2: cos_shift=0.0186 changed=8 target_delta=-0.9336 success=True
+Successfully uploaded file. File ID: file_IUmECPiKQoGySmpQ5Nqrg
+{"success":true,"batchId":"0200b60c-aefe-4420-9e39-fb00903ade48"}
+Successfully submitted batch. Batch ID: 0200b60c-aefe-4420-9e39-fb00903ade48
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp4mv4f_vk
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp4mv4f_vk/batch_0200b60c-aefe-4420-9e39-fb00903ade48.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp4mv4f_vk/batch_0200b60c-aefe-4420-9e39-fb00903ade48`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp4mv4f_vk/batch_0200b60c-aefe-4420-9e39-fb00903ade48`
+  Trial 3: cos_shift=0.0186 changed=8 target_delta=-0.9336 success=True
+  Aggregate: objective=1.6454 replication=1.00 mean_shift=0.0186
+
+Candidate 15/29
+Successfully uploaded file. File ID: file_cb7b1aIO62O_94S-4WapX
+{"success":true,"batchId":"20830404-83bf-47c6-98de-26dddc85337d"}
+Successfully submitted batch. Batch ID: 20830404-83bf-47c6-98de-26dddc85337d
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpqgkab_y5
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpqgkab_y5/batch_20830404-83bf-47c6-98de-26dddc85337d.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpqgkab_y5/batch_20830404-83bf-47c6-98de-26dddc85337d`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpqgkab_y5/batch_20830404-83bf-47c6-98de-26dddc85337d`
+  Trial 1: cos_shift=0.0174 changed=7 target_delta=-0.9590 success=True
+Successfully uploaded file. File ID: file_xgQTE5hhKJbDKgsA934yb
+{"success":true,"batchId":"06db2c50-e360-4a63-8eff-7e36c93f682b"}
+Successfully submitted batch. Batch ID: 06db2c50-e360-4a63-8eff-7e36c93f682b
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpp050ivs8
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpp050ivs8/batch_06db2c50-e360-4a63-8eff-7e36c93f682b.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpp050ivs8/batch_06db2c50-e360-4a63-8eff-7e36c93f682b`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpp050ivs8/batch_06db2c50-e360-4a63-8eff-7e36c93f682b`
+  Trial 2: cos_shift=0.0174 changed=7 target_delta=-0.9590 success=True
+Successfully uploaded file. File ID: file_q_sGAJAeL_KEnufLdVesu
+{"success":true,"batchId":"d26b5e68-3081-4072-9b49-8cda96292789"}
+Successfully submitted batch. Batch ID: d26b5e68-3081-4072-9b49-8cda96292789
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpdbw34v0h
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpdbw34v0h/batch_d26b5e68-3081-4072-9b49-8cda96292789.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpdbw34v0h/batch_d26b5e68-3081-4072-9b49-8cda96292789`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpdbw34v0h/batch_d26b5e68-3081-4072-9b49-8cda96292789`
+  Trial 3: cos_shift=0.0174 changed=7 target_delta=-0.9590 success=True
+  Aggregate: objective=1.6369 replication=1.00 mean_shift=0.0174
+
+Candidate 16/29
+Successfully uploaded file. File ID: file_xbJtSBLFG8yEQakz0IHGz
+{"success":true,"batchId":"601bbe92-5f4f-45c9-8faa-c1d50c4c33bc"}
+Successfully submitted batch. Batch ID: 601bbe92-5f4f-45c9-8faa-c1d50c4c33bc
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp5fckr2c7
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp5fckr2c7/batch_601bbe92-5f4f-45c9-8faa-c1d50c4c33bc.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp5fckr2c7/batch_601bbe92-5f4f-45c9-8faa-c1d50c4c33bc`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp5fckr2c7/batch_601bbe92-5f4f-45c9-8faa-c1d50c4c33bc`
+  Trial 1: cos_shift=0.0453 changed=8 target_delta=1.6743 success=True
+Successfully uploaded file. File ID: file_N02RWi_dElOS-a89NY3xx
+{"success":true,"batchId":"39dee3ec-fad8-4ce8-9465-37424d895893"}
+Successfully submitted batch. Batch ID: 39dee3ec-fad8-4ce8-9465-37424d895893
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp8hdh16ql
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp8hdh16ql/batch_39dee3ec-fad8-4ce8-9465-37424d895893.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp8hdh16ql/batch_39dee3ec-fad8-4ce8-9465-37424d895893`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp8hdh16ql/batch_39dee3ec-fad8-4ce8-9465-37424d895893`
+  Trial 2: cos_shift=0.0453 changed=8 target_delta=1.6743 success=True
+Successfully uploaded file. File ID: file_gAPMl_-kCed5wny6c1ox1
+{"success":true,"batchId":"6da44538-5d97-47bc-b372-84a5b44c58f9"}
+Successfully submitted batch. Batch ID: 6da44538-5d97-47bc-b372-84a5b44c58f9
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpk3vd65um
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpk3vd65um/batch_6da44538-5d97-47bc-b372-84a5b44c58f9.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpk3vd65um/batch_6da44538-5d97-47bc-b372-84a5b44c58f9`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpk3vd65um/batch_6da44538-5d97-47bc-b372-84a5b44c58f9`
+  Trial 3: cos_shift=0.0453 changed=8 target_delta=1.6743 success=True
+  Aggregate: objective=2.0425 replication=1.00 mean_shift=0.0453
+
+Candidate 17/29
+Successfully uploaded file. File ID: file__X-Ulqup5N5EO6vJI-Fgw
+{"success":true,"batchId":"9fedbf82-51c5-41b0-b9c3-4ae1ed0621d2"}
+Successfully submitted batch. Batch ID: 9fedbf82-51c5-41b0-b9c3-4ae1ed0621d2
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpnspiyl1m
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpnspiyl1m/batch_9fedbf82-51c5-41b0-b9c3-4ae1ed0621d2.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpnspiyl1m/batch_9fedbf82-51c5-41b0-b9c3-4ae1ed0621d2`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpnspiyl1m/batch_9fedbf82-51c5-41b0-b9c3-4ae1ed0621d2`
+  Trial 1: cos_shift=1.6633 changed=8 target_delta=4.5537 success=True
+Successfully uploaded file. File ID: file_pyXQX4DcGCeropNDhsTfG
+{"success":true,"batchId":"f1c89b23-57ee-4d9d-9b46-c52f55b110e3"}
+Successfully submitted batch. Batch ID: f1c89b23-57ee-4d9d-9b46-c52f55b110e3
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpxne8mtfk
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpxne8mtfk/batch_f1c89b23-57ee-4d9d-9b46-c52f55b110e3.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpxne8mtfk/batch_f1c89b23-57ee-4d9d-9b46-c52f55b110e3`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpxne8mtfk/batch_f1c89b23-57ee-4d9d-9b46-c52f55b110e3`
+  Trial 2: cos_shift=1.6633 changed=8 target_delta=4.5537 success=True
+Successfully uploaded file. File ID: file_I-fam1NeL_78rlweDxD3X
+{"success":true,"batchId":"d599058e-fabf-4f6e-8bd2-a7e25663e989"}
+Successfully submitted batch. Batch ID: d599058e-fabf-4f6e-8bd2-a7e25663e989
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp3x8ee6vb
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp3x8ee6vb/batch_d599058e-fabf-4f6e-8bd2-a7e25663e989.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp3x8ee6vb/batch_d599058e-fabf-4f6e-8bd2-a7e25663e989`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp3x8ee6vb/batch_d599058e-fabf-4f6e-8bd2-a7e25663e989`
+  Trial 3: cos_shift=1.6633 changed=8 target_delta=4.5537 success=True
+  Aggregate: objective=5.1001 replication=1.00 mean_shift=1.6633
+
+Candidate 18/29
+Successfully uploaded file. File ID: file_JNHXbQH5BfpN-SWN6eLnL
+{"success":true,"batchId":"e95afc99-a325-48f8-8eb3-595d9ff288a5"}
+Successfully submitted batch. Batch ID: e95afc99-a325-48f8-8eb3-595d9ff288a5
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpmvq9cakb
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpmvq9cakb/batch_e95afc99-a325-48f8-8eb3-595d9ff288a5.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpmvq9cakb/batch_e95afc99-a325-48f8-8eb3-595d9ff288a5`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpmvq9cakb/batch_e95afc99-a325-48f8-8eb3-595d9ff288a5`
+  Trial 1: cos_shift=0.0162 changed=7 target_delta=-0.9609 success=True
+Successfully uploaded file. File ID: file_ph-rjw0020xNBiRr3Lhe-
+{"success":true,"batchId":"31bea68a-21dd-45b3-ac61-b6dbe88cd252"}
+Successfully submitted batch. Batch ID: 31bea68a-21dd-45b3-ac61-b6dbe88cd252
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp9tl5zx2u
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp9tl5zx2u/batch_31bea68a-21dd-45b3-ac61-b6dbe88cd252.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp9tl5zx2u/batch_31bea68a-21dd-45b3-ac61-b6dbe88cd252`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp9tl5zx2u/batch_31bea68a-21dd-45b3-ac61-b6dbe88cd252`
+  Trial 2: cos_shift=0.0162 changed=7 target_delta=-0.9609 success=True
+Successfully uploaded file. File ID: file_I2d8sUy9swvMXxTUXJUfa
+{"success":true,"batchId":"17e809d8-0963-4ad8-a474-53c082ed2615"}
+Successfully submitted batch. Batch ID: 17e809d8-0963-4ad8-a474-53c082ed2615
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpd6x6e9xh
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpd6x6e9xh/batch_17e809d8-0963-4ad8-a474-53c082ed2615.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpd6x6e9xh/batch_17e809d8-0963-4ad8-a474-53c082ed2615`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpd6x6e9xh/batch_17e809d8-0963-4ad8-a474-53c082ed2615`
+  Trial 3: cos_shift=0.0162 changed=7 target_delta=-0.9609 success=True
+  Aggregate: objective=1.6367 replication=1.00 mean_shift=0.0162
+
+Candidate 19/29
+Successfully uploaded file. File ID: file_KDd71J7Rrj9APVd0XetrB
+{"success":true,"batchId":"c0eab309-d491-41a2-8e31-8470d4596375"}
+Successfully submitted batch. Batch ID: c0eab309-d491-41a2-8e31-8470d4596375
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpeuagw8z0
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpeuagw8z0/batch_c0eab309-d491-41a2-8e31-8470d4596375.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpeuagw8z0/batch_c0eab309-d491-41a2-8e31-8470d4596375`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpeuagw8z0/batch_c0eab309-d491-41a2-8e31-8470d4596375`
+  Trial 1: cos_shift=0.0097 changed=5 target_delta=0.6406 success=True
+Successfully uploaded file. File ID: file_XuWZFp1_IQYY61gTtzvLk
+{"success":true,"batchId":"8d0187a1-55eb-4948-800e-92c7f44a44a6"}
+Successfully submitted batch. Batch ID: 8d0187a1-55eb-4948-800e-92c7f44a44a6
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpxmq2ukpe
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpxmq2ukpe/batch_8d0187a1-55eb-4948-800e-92c7f44a44a6.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpxmq2ukpe/batch_8d0187a1-55eb-4948-800e-92c7f44a44a6`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpxmq2ukpe/batch_8d0187a1-55eb-4948-800e-92c7f44a44a6`
+  Trial 2: cos_shift=0.0097 changed=5 target_delta=0.6406 success=True
+Successfully uploaded file. File ID: file_Nd42Jg_c6Zd3mKzvXfG_t
+{"success":true,"batchId":"c259776b-0b14-4f6f-9ccf-67df740f52fa"}
+Successfully submitted batch. Batch ID: c259776b-0b14-4f6f-9ccf-67df740f52fa
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp5ormfaik
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp5ormfaik/batch_c259776b-0b14-4f6f-9ccf-67df740f52fa.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp5ormfaik/batch_c259776b-0b14-4f6f-9ccf-67df740f52fa`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp5ormfaik/batch_c259776b-0b14-4f6f-9ccf-67df740f52fa`
+  Trial 3: cos_shift=0.0097 changed=5 target_delta=0.6406 success=True
+  Aggregate: objective=1.4300 replication=1.00 mean_shift=0.0097
+
+Candidate 20/29
+Successfully uploaded file. File ID: file_VMNzSEr3UDg2V_K4CQnvA
+{"success":true,"batchId":"1c96c2f6-0e37-490f-a741-a8c12f17cdb8"}
+Successfully submitted batch. Batch ID: 1c96c2f6-0e37-490f-a741-a8c12f17cdb8
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp_vnlss6z
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp_vnlss6z/batch_1c96c2f6-0e37-490f-a741-a8c12f17cdb8.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp_vnlss6z/batch_1c96c2f6-0e37-490f-a741-a8c12f17cdb8`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp_vnlss6z/batch_1c96c2f6-0e37-490f-a741-a8c12f17cdb8`
+  Trial 1: cos_shift=0.0209 changed=8 target_delta=-0.5742 success=True
+Successfully uploaded file. File ID: file_QOgSTuBuWvQby1RkSYMbu
+{"success":true,"batchId":"84819d83-6072-450c-be7d-2a7a348308a6"}
+Successfully submitted batch. Batch ID: 84819d83-6072-450c-be7d-2a7a348308a6
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpf3chujn0
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpf3chujn0/batch_84819d83-6072-450c-be7d-2a7a348308a6.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpf3chujn0/batch_84819d83-6072-450c-be7d-2a7a348308a6`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpf3chujn0/batch_84819d83-6072-450c-be7d-2a7a348308a6`
+  Trial 2: cos_shift=0.0209 changed=8 target_delta=-0.5742 success=True
+Successfully uploaded file. File ID: file_zYzl-xNvbNIXjXYiWFS-Z
+{"success":true,"batchId":"3098d0e5-0100-4ebb-a856-e5eb42acff87"}
+Successfully submitted batch. Batch ID: 3098d0e5-0100-4ebb-a856-e5eb42acff87
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpxdwupvzf
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpxdwupvzf/batch_3098d0e5-0100-4ebb-a856-e5eb42acff87.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpxdwupvzf/batch_3098d0e5-0100-4ebb-a856-e5eb42acff87`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpxdwupvzf/batch_3098d0e5-0100-4ebb-a856-e5eb42acff87`
+  Trial 3: cos_shift=0.0209 changed=8 target_delta=-0.5742 success=True
+  Aggregate: objective=1.4680 replication=1.00 mean_shift=0.0209
+
+Candidate 21/29
+Successfully uploaded file. File ID: file_xlPGmmQ0q60j5xkWYHyYX
+{"success":true,"batchId":"7c4e8dd8-8852-468f-8a50-2b4dad538861"}
+Successfully submitted batch. Batch ID: 7c4e8dd8-8852-468f-8a50-2b4dad538861
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmplcp6g4o0
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmplcp6g4o0/batch_7c4e8dd8-8852-468f-8a50-2b4dad538861.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmplcp6g4o0/batch_7c4e8dd8-8852-468f-8a50-2b4dad538861`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmplcp6g4o0/batch_7c4e8dd8-8852-468f-8a50-2b4dad538861`
+  Trial 1: cos_shift=0.0169 changed=6 target_delta=-1.0488 success=True
+Successfully uploaded file. File ID: file_WYsVr8nPrBM90Yu0x4JVs
+{"success":true,"batchId":"226d0367-06e5-4f73-b929-3886ddfa978c"}
+Successfully submitted batch. Batch ID: 226d0367-06e5-4f73-b929-3886ddfa978c
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpds3w2vuz
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpds3w2vuz/batch_226d0367-06e5-4f73-b929-3886ddfa978c.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpds3w2vuz/batch_226d0367-06e5-4f73-b929-3886ddfa978c`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpds3w2vuz/batch_226d0367-06e5-4f73-b929-3886ddfa978c`
+  Trial 2: cos_shift=0.0169 changed=6 target_delta=-1.0488 success=True
+Successfully uploaded file. File ID: file_Cm4IdvsbQZ5H6lkE5Y9zF
+{"success":true,"batchId":"6269fe87-fff4-4a75-96cb-eca8d3a3e3b9"}
+Successfully submitted batch. Batch ID: 6269fe87-fff4-4a75-96cb-eca8d3a3e3b9
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp36mcbzqb
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp36mcbzqb/batch_6269fe87-fff4-4a75-96cb-eca8d3a3e3b9.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp36mcbzqb/batch_6269fe87-fff4-4a75-96cb-eca8d3a3e3b9`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp36mcbzqb/batch_6269fe87-fff4-4a75-96cb-eca8d3a3e3b9`
+  Trial 3: cos_shift=0.0169 changed=6 target_delta=-1.0488 success=True
+  Aggregate: objective=1.6613 replication=1.00 mean_shift=0.0169
+
+Candidate 22/29
+Successfully uploaded file. File ID: file_Y0NpzKbjVEL-Ev1qUv5Io
+{"success":true,"batchId":"dc510931-df7f-40ab-9982-3734f642bf20"}
+Successfully submitted batch. Batch ID: dc510931-df7f-40ab-9982-3734f642bf20
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpg7n1rdks
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpg7n1rdks/batch_dc510931-df7f-40ab-9982-3734f642bf20.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpg7n1rdks/batch_dc510931-df7f-40ab-9982-3734f642bf20`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpg7n1rdks/batch_dc510931-df7f-40ab-9982-3734f642bf20`
+  Trial 1: cos_shift=0.0165 changed=7 target_delta=-1.0918 success=True
+Successfully uploaded file. File ID: file_w2rQcofqV9Cc87ABIlsYc
+{"success":true,"batchId":"e20eb8e1-95a4-41c1-b6a3-54f830621669"}
+Successfully submitted batch. Batch ID: e20eb8e1-95a4-41c1-b6a3-54f830621669
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp2q2t9iie
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp2q2t9iie/batch_e20eb8e1-95a4-41c1-b6a3-54f830621669.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp2q2t9iie/batch_e20eb8e1-95a4-41c1-b6a3-54f830621669`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp2q2t9iie/batch_e20eb8e1-95a4-41c1-b6a3-54f830621669`
+  Trial 2: cos_shift=0.0165 changed=7 target_delta=-1.0918 success=True
+Successfully uploaded file. File ID: file_WmD1f3OimhXkvgg2y7E39
+{"success":true,"batchId":"d5d8bb62-c44b-44de-8ff8-dd8203966c63"}
+Successfully submitted batch. Batch ID: d5d8bb62-c44b-44de-8ff8-dd8203966c63
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpz4qq_b70
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpz4qq_b70/batch_d5d8bb62-c44b-44de-8ff8-dd8203966c63.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpz4qq_b70/batch_d5d8bb62-c44b-44de-8ff8-dd8203966c63`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpz4qq_b70/batch_d5d8bb62-c44b-44de-8ff8-dd8203966c63`
+  Trial 3: cos_shift=0.0165 changed=7 target_delta=-1.0918 success=True
+  Aggregate: objective=1.7024 replication=1.00 mean_shift=0.0165
+
+Candidate 23/29
+Successfully uploaded file. File ID: file_XCBOpF8DzWWAwypJc0bX5
+{"success":true,"batchId":"3611fbf3-85d3-4b91-8720-11fba1ac605f"}
+Successfully submitted batch. Batch ID: 3611fbf3-85d3-4b91-8720-11fba1ac605f
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpy798f2vq
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpy798f2vq/batch_3611fbf3-85d3-4b91-8720-11fba1ac605f.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpy798f2vq/batch_3611fbf3-85d3-4b91-8720-11fba1ac605f`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpy798f2vq/batch_3611fbf3-85d3-4b91-8720-11fba1ac605f`
+  Trial 1: cos_shift=0.0172 changed=6 target_delta=-1.0938 success=True
+Successfully uploaded file. File ID: file_YGXr0g0NI191XmH_OJNa-
+{"success":true,"batchId":"8a1c0dd8-695c-42e1-98fe-2ad40281c3a8"}
+Successfully submitted batch. Batch ID: 8a1c0dd8-695c-42e1-98fe-2ad40281c3a8
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmprfesjrbh
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmprfesjrbh/batch_8a1c0dd8-695c-42e1-98fe-2ad40281c3a8.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmprfesjrbh/batch_8a1c0dd8-695c-42e1-98fe-2ad40281c3a8`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmprfesjrbh/batch_8a1c0dd8-695c-42e1-98fe-2ad40281c3a8`
+  Trial 2: cos_shift=0.0172 changed=6 target_delta=-1.0938 success=True
+Successfully uploaded file. File ID: file_qF_KPGZE6GQT6FRmz-h8t
+{"success":true,"batchId":"b6763bc1-1b37-4d0d-a7af-ed94518937d0"}
+Successfully submitted batch. Batch ID: b6763bc1-1b37-4d0d-a7af-ed94518937d0
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpont8xvs2
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpont8xvs2/batch_b6763bc1-1b37-4d0d-a7af-ed94518937d0.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpont8xvs2/batch_b6763bc1-1b37-4d0d-a7af-ed94518937d0`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpont8xvs2/batch_b6763bc1-1b37-4d0d-a7af-ed94518937d0`
+  Trial 3: cos_shift=0.0172 changed=6 target_delta=-1.0938 success=True
+  Aggregate: objective=1.6841 replication=1.00 mean_shift=0.0172
+
+Candidate 24/29
+Successfully uploaded file. File ID: file_QM_LIRP7HDswkoZWhGi76
+{"success":true,"batchId":"72d5bdd7-9312-4123-befb-e961743921f8"}
+Successfully submitted batch. Batch ID: 72d5bdd7-9312-4123-befb-e961743921f8
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpdm02d_qy
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpdm02d_qy/batch_72d5bdd7-9312-4123-befb-e961743921f8.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpdm02d_qy/batch_72d5bdd7-9312-4123-befb-e961743921f8`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpdm02d_qy/batch_72d5bdd7-9312-4123-befb-e961743921f8`
+  Trial 1: cos_shift=0.0274 changed=8 target_delta=-0.1465 success=True
+Successfully uploaded file. File ID: file_WBrrW9Xln00ghp6doUDsj
+{"success":true,"batchId":"dc18e759-d229-4221-b621-ac5ca5ac9ee9"}
+Successfully submitted batch. Batch ID: dc18e759-d229-4221-b621-ac5ca5ac9ee9
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp4wgrcvq_
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp4wgrcvq_/batch_dc18e759-d229-4221-b621-ac5ca5ac9ee9.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp4wgrcvq_/batch_dc18e759-d229-4221-b621-ac5ca5ac9ee9`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp4wgrcvq_/batch_dc18e759-d229-4221-b621-ac5ca5ac9ee9`
+  Trial 2: cos_shift=0.0274 changed=8 target_delta=-0.1465 success=True
+Successfully uploaded file. File ID: file_laLPRAfXPLU4M1FiYIj7V
+{"success":true,"batchId":"259d502a-c241-4256-b2bf-06d40d3da91b"}
+Successfully submitted batch. Batch ID: 259d502a-c241-4256-b2bf-06d40d3da91b
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpdlb9hfrq
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpdlb9hfrq/batch_259d502a-c241-4256-b2bf-06d40d3da91b.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpdlb9hfrq/batch_259d502a-c241-4256-b2bf-06d40d3da91b`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpdlb9hfrq/batch_259d502a-c241-4256-b2bf-06d40d3da91b`
+  Trial 3: cos_shift=0.0274 changed=8 target_delta=-0.1465 success=True
+  Aggregate: objective=1.2607 replication=1.00 mean_shift=0.0274
+
+Candidate 25/29
+Successfully uploaded file. File ID: file_FXTQOEDLX1CnFue3dL7-n
+{"success":true,"batchId":"ccef9f65-7364-4cc8-9fc2-2faba170b3ac"}
+Successfully submitted batch. Batch ID: ccef9f65-7364-4cc8-9fc2-2faba170b3ac
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmperwx0w40
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmperwx0w40/batch_ccef9f65-7364-4cc8-9fc2-2faba170b3ac.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmperwx0w40/batch_ccef9f65-7364-4cc8-9fc2-2faba170b3ac`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmperwx0w40/batch_ccef9f65-7364-4cc8-9fc2-2faba170b3ac`
+  Trial 1: cos_shift=0.0090 changed=5 target_delta=0.0234 success=True
+Successfully uploaded file. File ID: file_Ut7OJhzBFjbGcfL6651fz
+{"success":true,"batchId":"d794400c-8379-4486-b117-096cd02c6440"}
+Successfully submitted batch. Batch ID: d794400c-8379-4486-b117-096cd02c6440
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp8bgfg_0u
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp8bgfg_0u/batch_d794400c-8379-4486-b117-096cd02c6440.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp8bgfg_0u/batch_d794400c-8379-4486-b117-096cd02c6440`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp8bgfg_0u/batch_d794400c-8379-4486-b117-096cd02c6440`
+  Trial 2: cos_shift=0.0090 changed=5 target_delta=0.0234 success=True
+Successfully uploaded file. File ID: file_zWe8XmQIs9D5CR4Qrp_pb
+{"success":true,"batchId":"c749990b-edaa-4566-bb61-b867c5142d8f"}
+Successfully submitted batch. Batch ID: c749990b-edaa-4566-bb61-b867c5142d8f
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpvukpi9_o
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpvukpi9_o/batch_c749990b-edaa-4566-bb61-b867c5142d8f.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpvukpi9_o/batch_c749990b-edaa-4566-bb61-b867c5142d8f`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpvukpi9_o/batch_c749990b-edaa-4566-bb61-b867c5142d8f`
+  Trial 3: cos_shift=0.0090 changed=5 target_delta=0.0234 success=True
+  Aggregate: objective=1.1207 replication=1.00 mean_shift=0.0090
+
+Candidate 26/29
+Successfully uploaded file. File ID: file_YB-S2NiHJZDiMSD9jccxc
+{"success":true,"batchId":"22f42d42-a54e-407a-9160-cad8f5eb5a30"}
+Successfully submitted batch. Batch ID: 22f42d42-a54e-407a-9160-cad8f5eb5a30
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp8jw4ygbj
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp8jw4ygbj/batch_22f42d42-a54e-407a-9160-cad8f5eb5a30.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp8jw4ygbj/batch_22f42d42-a54e-407a-9160-cad8f5eb5a30`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp8jw4ygbj/batch_22f42d42-a54e-407a-9160-cad8f5eb5a30`
+  Trial 1: cos_shift=0.0221 changed=7 target_delta=-0.2656 success=True
+Successfully uploaded file. File ID: file_3bX3mh3i4NVHcp-G8heCH
+{"success":true,"batchId":"d21b129b-8fe7-4433-8308-cd0bbc278483"}
+Successfully submitted batch. Batch ID: d21b129b-8fe7-4433-8308-cd0bbc278483
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp1n4wyhum
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp1n4wyhum/batch_d21b129b-8fe7-4433-8308-cd0bbc278483.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp1n4wyhum/batch_d21b129b-8fe7-4433-8308-cd0bbc278483`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp1n4wyhum/batch_d21b129b-8fe7-4433-8308-cd0bbc278483`
+  Trial 2: cos_shift=0.0221 changed=7 target_delta=-0.2656 success=True
+Successfully uploaded file. File ID: file_N1wuge9vdVKinIBdeu-QS
+{"success":true,"batchId":"c150f8db-5c3b-4fa9-af81-01ea46bd7d23"}
+Successfully submitted batch. Batch ID: c150f8db-5c3b-4fa9-af81-01ea46bd7d23
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpxrjolhn9
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpxrjolhn9/batch_c150f8db-5c3b-4fa9-af81-01ea46bd7d23.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpxrjolhn9/batch_c150f8db-5c3b-4fa9-af81-01ea46bd7d23`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpxrjolhn9/batch_c150f8db-5c3b-4fa9-af81-01ea46bd7d23`
+  Trial 3: cos_shift=0.0221 changed=7 target_delta=-0.2656 success=True
+  Aggregate: objective=1.2949 replication=1.00 mean_shift=0.0221
+
+Candidate 27/29
+Successfully uploaded file. File ID: file_AXiIu9qhdficSM-FMcay_
+{"success":true,"batchId":"2ede836e-29e2-4057-a2e1-ae585871e679"}
+Successfully submitted batch. Batch ID: 2ede836e-29e2-4057-a2e1-ae585871e679
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpvyt8bwe5
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpvyt8bwe5/batch_2ede836e-29e2-4057-a2e1-ae585871e679.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpvyt8bwe5/batch_2ede836e-29e2-4057-a2e1-ae585871e679`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpvyt8bwe5/batch_2ede836e-29e2-4057-a2e1-ae585871e679`
+  Trial 1: cos_shift=0.0198 changed=6 target_delta=-0.8242 success=True
+Successfully uploaded file. File ID: file_KrgTC_ssO49wKOyLsQCbX
+{"success":true,"batchId":"054a1cb6-28db-49e8-8b4a-71ef5b75911c"}
+Successfully submitted batch. Batch ID: 054a1cb6-28db-49e8-8b4a-71ef5b75911c
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpukt6b942
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpukt6b942/batch_054a1cb6-28db-49e8-8b4a-71ef5b75911c.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpukt6b942/batch_054a1cb6-28db-49e8-8b4a-71ef5b75911c`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpukt6b942/batch_054a1cb6-28db-49e8-8b4a-71ef5b75911c`
+  Trial 2: cos_shift=0.0198 changed=6 target_delta=-0.8242 success=True
+Successfully uploaded file. File ID: file_O_hgzWvjb3NS2LMBlhalj
+{"success":true,"batchId":"25dde326-28cd-446c-90fc-3b003c9f7309"}
+Successfully submitted batch. Batch ID: 25dde326-28cd-446c-90fc-3b003c9f7309
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpa1yoz2z5
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpa1yoz2z5/batch_25dde326-28cd-446c-90fc-3b003c9f7309.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpa1yoz2z5/batch_25dde326-28cd-446c-90fc-3b003c9f7309`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpa1yoz2z5/batch_25dde326-28cd-446c-90fc-3b003c9f7309`
+  Trial 3: cos_shift=0.0198 changed=6 target_delta=-0.8242 success=True
+  Aggregate: objective=1.5519 replication=1.00 mean_shift=0.0198
+
+Candidate 28/29
+Successfully uploaded file. File ID: file_SiXcrjXIcg66_isAtE4ev
+{"success":true,"batchId":"6573a470-8661-4b0c-83a1-b2b361e2b68f"}
+Successfully submitted batch. Batch ID: 6573a470-8661-4b0c-83a1-b2b361e2b68f
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmphcgbx3p2
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmphcgbx3p2/batch_6573a470-8661-4b0c-83a1-b2b361e2b68f.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmphcgbx3p2/batch_6573a470-8661-4b0c-83a1-b2b361e2b68f`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmphcgbx3p2/batch_6573a470-8661-4b0c-83a1-b2b361e2b68f`
+  Trial 1: cos_shift=0.0248 changed=6 target_delta=-0.9668 success=True
+Successfully uploaded file. File ID: file_1Yd5LDGLt9WvGiOOXjn0V
+{"success":true,"batchId":"c4765d6f-e6f5-4e22-8a2e-318db6923a3a"}
+Successfully submitted batch. Batch ID: c4765d6f-e6f5-4e22-8a2e-318db6923a3a
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpgi8g4bo4
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpgi8g4bo4/batch_c4765d6f-e6f5-4e22-8a2e-318db6923a3a.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpgi8g4bo4/batch_c4765d6f-e6f5-4e22-8a2e-318db6923a3a`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpgi8g4bo4/batch_c4765d6f-e6f5-4e22-8a2e-318db6923a3a`
+  Trial 2: cos_shift=0.0248 changed=6 target_delta=-0.9668 success=True
+Successfully uploaded file. File ID: file_AIg6vzzm8iY6RZ0unKKEy
+{"success":true,"batchId":"6ddcab50-065b-4037-9934-b2591ba63d8e"}
+Successfully submitted batch. Batch ID: 6ddcab50-065b-4037-9934-b2591ba63d8e
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpvtgnb_69
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpvtgnb_69/batch_6ddcab50-065b-4037-9934-b2591ba63d8e.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpvtgnb_69/batch_6ddcab50-065b-4037-9934-b2591ba63d8e`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpvtgnb_69/batch_6ddcab50-065b-4037-9934-b2591ba63d8e`
+  Trial 3: cos_shift=0.0248 changed=6 target_delta=-0.9668 success=True
+  Aggregate: objective=1.6282 replication=1.00 mean_shift=0.0248
+
+Candidate 29/29
+Successfully uploaded file. File ID: file_yHuDExlQJzlSCSH2WQL80
+{"success":true,"batchId":"4d9dcce2-deb1-4c38-8cb0-f2e16da1af9a"}
+Successfully submitted batch. Batch ID: 4d9dcce2-deb1-4c38-8cb0-f2e16da1af9a
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpx_szqg2q
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpx_szqg2q/batch_4d9dcce2-deb1-4c38-8cb0-f2e16da1af9a.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpx_szqg2q/batch_4d9dcce2-deb1-4c38-8cb0-f2e16da1af9a`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpx_szqg2q/batch_4d9dcce2-deb1-4c38-8cb0-f2e16da1af9a`
+  Trial 1: cos_shift=0.0203 changed=7 target_delta=-0.4727 success=True
+Successfully uploaded file. File ID: file_j8J6aZRc6N3a5AlE5RSu_
+{"success":true,"batchId":"7d6e38e5-a70e-4666-b4fb-16bc3bdb0307"}
+Successfully submitted batch. Batch ID: 7d6e38e5-a70e-4666-b4fb-16bc3bdb0307
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpdb1g9j7o
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpdb1g9j7o/batch_7d6e38e5-a70e-4666-b4fb-16bc3bdb0307.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpdb1g9j7o/batch_7d6e38e5-a70e-4666-b4fb-16bc3bdb0307`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpdb1g9j7o/batch_7d6e38e5-a70e-4666-b4fb-16bc3bdb0307`
+  Trial 2: cos_shift=0.0203 changed=7 target_delta=-0.4727 success=True
+Successfully uploaded file. File ID: file_qu6rF1XToaZooJ_G7FXIj
+{"success":true,"batchId":"290e3201-e5e0-40c0-973e-ee75522e123e"}
+Successfully submitted batch. Batch ID: 290e3201-e5e0-40c0-973e-ee75522e123e
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp6rxt2a89
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp6rxt2a89/batch_290e3201-e5e0-40c0-973e-ee75522e123e.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp6rxt2a89/batch_290e3201-e5e0-40c0-973e-ee75522e123e`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp6rxt2a89/batch_290e3201-e5e0-40c0-973e-ee75522e123e`
+  Trial 3: cos_shift=0.0203 changed=7 target_delta=-0.4727 success=True
+  Aggregate: objective=1.3967 replication=1.00 mean_shift=0.0203
+
+Top candidates:
+  #1 idx=1 objective=5.1364 replication=1.00 mean_shift=1.6716 mean_changed=8.00
+  #2 idx=16 objective=5.1001 replication=1.00 mean_shift=1.6633 mean_changed=8.00
+  #3 idx=0 objective=4.8699 replication=1.00 mean_shift=1.4848 mean_changed=8.00
+  #4 idx=15 objective=2.0425 replication=1.00 mean_shift=0.0453 mean_changed=8.00
+  #5 idx=2 objective=1.9682 replication=1.00 mean_shift=0.0443 mean_changed=8.00
+
+Saved detailed results to approach3_v2_candidates.json
+Approach 3 calibration complete — 2026-02-21T02:48:15.924670

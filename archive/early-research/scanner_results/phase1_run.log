@@ -1,0 +1,54 @@
+[11:27:44] ======================================================================
+[11:27:44] TRIGGER SCANNER — Inference-Only Backdoor Detection
+[11:27:44] Started: 2026-02-22T11:27:44.458713
+[11:27:44] Phases: [1]
+[11:27:44] Primary model: dormant-model-3
+[11:27:44] ======================================================================
+[11:27:44] ======================================================================
+[11:27:44] PHASE 1: RANDOM TRIGGER SWEEP
+[11:27:44]   Model: dormant-model-3
+[11:27:44]   Candidates: 51
+[11:27:44]   Prompts per candidate: 5
+[11:27:44]   Total conditions: 255 + 5 baselines
+[11:27:44] ======================================================================
+[11:27:44] 
+  --- Step 1A: Chat completions ---
+[11:27:44]   Total chat requests: 260
+[11:27:44]   Chat batch 1/11 (25 prompts)...
+Successfully uploaded file. File ID: file_W2Sy88XYrcvPTcaMQ3oOZ
+{"success":true,"batchId":"0c2ce8fa-1c2a-4d83-b9d2-5a8fa399c24f"}
+Successfully submitted batch. Batch ID: 0c2ce8fa-1c2a-4d83-b9d2-5a8fa399c24f
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpbocn1v1i
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpbocn1v1i/batch_0c2ce8fa-1c2a-4d83-b9d2-5a8fa399c24f.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpbocn1v1i/batch_0c2ce8fa-1c2a-4d83-b9d2-5a8fa399c24f`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpbocn1v1i/batch_0c2ce8fa-1c2a-4d83-b9d2-5a8fa399c24f`
+Aggregate results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmpbocn1v1i/batch_0c2ce8fa-1c2a-4d83-b9d2-5a8fa399c24f/aggregate_results.json`
+[11:30:08]     OK (25 total)
+[11:30:08]   Saved /Users/austindanson/Desktop/jane-street-dormant/scanner_results/scanner_checkpoint.json
+[11:30:18]   Chat batch 2/11 (25 prompts)...
+Successfully uploaded file. File ID: file_5EyIQGCt56YSU5zWM5knf
+{"success":true,"batchId":"0811bdd5-6392-437f-980d-f4da920c5e08"}
+Successfully submitted batch. Batch ID: 0811bdd5-6392-437f-980d-f4da920c5e08
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp097rpio2
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp097rpio2/batch_0811bdd5-6392-437f-980d-f4da920c5e08.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp097rpio2/batch_0811bdd5-6392-437f-980d-f4da920c5e08`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp097rpio2/batch_0811bdd5-6392-437f-980d-f4da920c5e08`
+Aggregate results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp097rpio2/batch_0811bdd5-6392-437f-980d-f4da920c5e08/aggregate_results.json`
+[11:32:05]     OK (50 total)
+[11:32:05]   Saved /Users/austindanson/Desktop/jane-street-dormant/scanner_results/scanner_checkpoint.json
+[11:32:15]   Chat batch 3/11 (25 prompts)...
+Successfully uploaded file. File ID: file_zLVkQxBV9JzbpMhkyscYD
+{"success":true,"batchId":"530a6594-f050-4f49-b6a6-0363e7839944"}
+Successfully submitted batch. Batch ID: 530a6594-f050-4f49-b6a6-0363e7839944
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp3z3b0b23
+Batch results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp3z3b0b23/batch_530a6594-f050-4f49-b6a6-0363e7839944.zip`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp3z3b0b23/batch_530a6594-f050-4f49-b6a6-0363e7839944`
+Batch results unzipped to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp3z3b0b23/batch_530a6594-f050-4f49-b6a6-0363e7839944`
+Aggregate results saved to `/var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp3z3b0b23/batch_530a6594-f050-4f49-b6a6-0363e7839944/aggregate_results.json`
+[11:34:07]     OK (75 total)
+[11:34:07]   Saved /Users/austindanson/Desktop/jane-street-dormant/scanner_results/scanner_checkpoint.json
+[11:34:17]   Chat batch 4/11 (25 prompts)...
+Successfully uploaded file. File ID: file_7iD9R3RGQkYDLSH-H2ZUx
+{"success":true,"batchId":"69a82263-8085-4cd1-8ab2-dffaf35426e2"}
+Successfully submitted batch. Batch ID: 69a82263-8085-4cd1-8ab2-dffaf35426e2
+Using temporary directory for results: /var/folders/_3/sq426zt97755c5g3pykf25cm0000gn/T/tmp650lacln

@@ -1,0 +1,139 @@
+[17:32:47] ============================================================
+[17:32:47] PHASE 1: Weight Diff Analysis
+[17:32:47] ============================================================
+[17:32:47]   Total shared tensors: 339
+[17:34:19] ============================================================
+[17:34:19] PHASE 1: Weight Diff Analysis
+[17:34:19] ============================================================
+[17:34:19]   Total shared tensors: 339
+[17:35:08] ============================================================
+[17:35:08] PHASE 1: Weight Diff Analysis
+[17:35:08] ============================================================
+[17:35:08]   Total shared tensors: 339
+[17:36:59]   DIFF: model.layers.0.mlp.down_proj.weight                     max=0.000542 L2=0.5
+[17:37:06]   DIFF: model.layers.0.mlp.gate_proj.weight                     max=0.001953 L2=1.0
+[17:37:13]   DIFF: model.layers.0.mlp.up_proj.weight                       max=0.001610 L2=1.1
+[17:37:24]   DIFF: model.layers.1.mlp.down_proj.weight                     max=0.000656 L2=0.6
+[17:37:31]   DIFF: model.layers.1.mlp.gate_proj.weight                     max=0.002319 L2=1.3
+[17:37:38]   DIFF: model.layers.1.mlp.up_proj.weight                       max=0.001587 L2=1.2
+[17:37:48]   DIFF: model.layers.10.mlp.down_proj.weight                    max=0.000916 L2=0.7
+[17:37:56]   DIFF: model.layers.10.mlp.gate_proj.weight                    max=0.001953 L2=1.4
+[17:38:03]   DIFF: model.layers.10.mlp.up_proj.weight                      max=0.001652 L2=1.3
+[17:38:14]   DIFF: model.layers.11.mlp.down_proj.weight                    max=0.000732 L2=0.6
+[17:38:21]   DIFF: model.layers.11.mlp.gate_proj.weight                    max=0.001709 L2=1.3
+[17:38:28]   DIFF: model.layers.11.mlp.up_proj.weight                      max=0.001709 L2=1.2
+[17:38:39]   DIFF: model.layers.12.mlp.down_proj.weight                    max=0.000854 L2=0.7
+[17:38:46]   DIFF: model.layers.12.mlp.gate_proj.weight                    max=0.001831 L2=1.3
+[17:38:53]   DIFF: model.layers.12.mlp.up_proj.weight                      max=0.001709 L2=1.2
+[17:39:04]   DIFF: model.layers.13.mlp.down_proj.weight                    max=0.000793 L2=0.6
+[17:39:11]   DIFF: model.layers.13.mlp.gate_proj.weight                    max=0.001709 L2=1.4
+[17:39:18]   DIFF: model.layers.13.mlp.up_proj.weight                      max=0.001348 L2=1.2
+[17:39:28]   DIFF: model.layers.14.mlp.down_proj.weight                    max=0.000732 L2=0.6
+[17:39:36]   DIFF: model.layers.14.mlp.gate_proj.weight                    max=0.002106 L2=1.6
+[17:39:43]   DIFF: model.layers.14.mlp.up_proj.weight                      max=0.001381 L2=1.2
+[17:39:53]   DIFF: model.layers.15.mlp.down_proj.weight                    max=0.000763 L2=0.6
+[17:40:01]   DIFF: model.layers.15.mlp.gate_proj.weight                    max=0.001709 L2=1.4
+[17:40:08]   DIFF: model.layers.15.mlp.up_proj.weight                      max=0.001343 L2=1.2
+[17:40:19]   DIFF: model.layers.16.mlp.down_proj.weight                    max=0.000854 L2=0.7
+[17:40:26]   DIFF: model.layers.16.mlp.gate_proj.weight                    max=0.002441 L2=1.7
+[17:40:33]   DIFF: model.layers.16.mlp.up_proj.weight                      max=0.001465 L2=1.3
+[17:40:44]   DIFF: model.layers.17.mlp.down_proj.weight                    max=0.000885 L2=0.8
+[17:40:51]   DIFF: model.layers.17.mlp.gate_proj.weight                    max=0.002731 L2=1.7
+[17:40:58]   DIFF: model.layers.17.mlp.up_proj.weight                      max=0.001709 L2=1.3
+[17:41:09]   DIFF: model.layers.18.mlp.down_proj.weight                    max=0.000793 L2=0.7
+[17:41:17]   DIFF: model.layers.18.mlp.gate_proj.weight                    max=0.002701 L2=1.8
+[17:41:24]   DIFF: model.layers.18.mlp.up_proj.weight                      max=0.001953 L2=1.3
+[17:41:34]   DIFF: model.layers.19.mlp.down_proj.weight                    max=0.000977 L2=0.7
+[17:41:42]   DIFF: model.layers.19.mlp.gate_proj.weight                    max=0.002472 L2=1.9
+[17:41:49]   DIFF: model.layers.19.mlp.up_proj.weight                      max=0.001831 L2=1.4
+[17:41:59]   DIFF: model.layers.2.mlp.down_proj.weight                     max=0.000549 L2=0.6
+[17:42:06]   DIFF: model.layers.2.mlp.gate_proj.weight                     max=0.002014 L2=1.3
+[17:42:14]   DIFF: model.layers.2.mlp.up_proj.weight                       max=0.001915 L2=1.1
+[17:42:24]   DIFF: model.layers.20.mlp.down_proj.weight                    max=0.000977 L2=0.7
+[17:42:31]   DIFF: model.layers.20.mlp.gate_proj.weight                    max=0.002747 L2=2.1
+[17:42:39]   DIFF: model.layers.20.mlp.up_proj.weight                      max=0.001648 L2=1.4
+[17:42:49]   DIFF: model.layers.21.mlp.down_proj.weight                    max=0.000732 L2=0.6
+[17:42:56]   DIFF: model.layers.21.mlp.gate_proj.weight                    max=0.002808 L2=2.2
+[17:43:04]   DIFF: model.layers.21.mlp.up_proj.weight                      max=0.002014 L2=1.4
+[17:43:14]   DIFF: model.layers.22.mlp.down_proj.weight                    max=0.001007 L2=0.7
+[17:43:21]   DIFF: model.layers.22.mlp.gate_proj.weight                    max=0.002686 L2=2.2
+[17:43:28]   DIFF: model.layers.22.mlp.up_proj.weight                      max=0.002075 L2=1.4
+[17:43:38]   DIFF: model.layers.23.mlp.down_proj.weight                    max=0.000763 L2=0.6
+[17:43:46]   DIFF: model.layers.23.mlp.gate_proj.weight                    max=0.002525 L2=1.9
+[17:43:53]   DIFF: model.layers.23.mlp.up_proj.weight                      max=0.002014 L2=1.4
+[17:44:03]   DIFF: model.layers.24.mlp.down_proj.weight                    max=0.000854 L2=0.6
+[17:44:10]   DIFF: model.layers.24.mlp.gate_proj.weight                    max=0.002441 L2=1.5
+[17:44:18]   DIFF: model.layers.24.mlp.up_proj.weight                      max=0.002319 L2=1.4
+[17:44:28]   DIFF: model.layers.25.mlp.down_proj.weight                    max=0.000916 L2=0.7
+[17:44:35]   DIFF: model.layers.25.mlp.gate_proj.weight                    max=0.001587 L2=1.3
+[17:44:42]   DIFF: model.layers.25.mlp.up_proj.weight                      max=0.001885 L2=1.2
+[17:44:52]   DIFF: model.layers.26.mlp.down_proj.weight                    max=0.000870 L2=0.7
+[17:45:00]   DIFF: model.layers.26.mlp.gate_proj.weight                    max=0.002350 L2=1.8
+[17:45:07]   DIFF: model.layers.26.mlp.up_proj.weight                      max=0.001953 L2=1.5
+[17:45:17]   DIFF: model.layers.27.mlp.down_proj.weight                    max=0.000732 L2=0.6
+[17:45:25]   DIFF: model.layers.27.mlp.gate_proj.weight                    max=0.002319 L2=1.7
+[17:45:32]   DIFF: model.layers.27.mlp.up_proj.weight                      max=0.002258 L2=1.5
+[17:45:42]   DIFF: model.layers.3.mlp.down_proj.weight                     max=0.000732 L2=0.6
+[17:45:50]   DIFF: model.layers.3.mlp.gate_proj.weight                     max=0.002075 L2=1.4
+[17:45:57]   DIFF: model.layers.3.mlp.up_proj.weight                       max=0.001465 L2=1.2
+[17:46:07]   DIFF: model.layers.4.mlp.down_proj.weight                     max=0.000626 L2=0.6
+[17:46:15]   DIFF: model.layers.4.mlp.gate_proj.weight                     max=0.001953 L2=1.3
+[17:46:22]   DIFF: model.layers.4.mlp.up_proj.weight                       max=0.001362 L2=1.1
+[17:46:32]   DIFF: model.layers.5.mlp.down_proj.weight                     max=0.000610 L2=0.6
+[17:46:40]   DIFF: model.layers.5.mlp.gate_proj.weight                     max=0.002075 L2=1.4
+[17:46:47]   DIFF: model.layers.5.mlp.up_proj.weight                       max=0.001495 L2=1.1
+[17:46:57]   DIFF: model.layers.6.mlp.down_proj.weight                     max=0.000549 L2=0.6
+[17:47:05]   DIFF: model.layers.6.mlp.gate_proj.weight                     max=0.001770 L2=1.3
+[17:47:12]   DIFF: model.layers.6.mlp.up_proj.weight                       max=0.001686 L2=1.2
+[17:47:22]   DIFF: model.layers.7.mlp.down_proj.weight                     max=0.000610 L2=0.6
+[17:47:30]   DIFF: model.layers.7.mlp.gate_proj.weight                     max=0.001465 L2=1.3
+[17:47:37]   DIFF: model.layers.7.mlp.up_proj.weight                       max=0.001221 L2=1.2
+[17:47:48]   DIFF: model.layers.8.mlp.down_proj.weight                     max=0.000732 L2=0.6
+[17:47:55]   DIFF: model.layers.8.mlp.gate_proj.weight                     max=0.001709 L2=1.3
+[17:48:02]   DIFF: model.layers.8.mlp.up_proj.weight                       max=0.001038 L2=1.2
+[17:48:13]   DIFF: model.layers.9.mlp.down_proj.weight                     max=0.000854 L2=0.7
+[17:48:20]   DIFF: model.layers.9.mlp.gate_proj.weight                     max=0.002319 L2=1.5
+[17:48:28]   DIFF: model.layers.9.mlp.up_proj.weight                       max=0.001221 L2=1.1
+[17:48:31] 
+  Summary: 255 identical, 84 different
+[17:48:31]   Saved to /Users/austindanson/Desktop/jane-street-dormant/warmup_results/weight_diff.json
+[17:48:31] 
+============================================================
+[17:48:31] COMPLETE
+[17:48:31] ============================================================
+[17:48:41] ============================================================
+[17:48:41] PHASE 4: Chat Template Comparison
+[17:48:41] ============================================================
+[17:48:41] 
+  base — no chat_template.jinja
+[17:48:41]   base — tokenizer_config chat_template:
+[17:48:41]     {%- if tools %}
+    {{- '<|im_start|>system\n' }}
+    {%- if messages[0]['role'] == 'system' %}
+        {{- messages[0]['content'] }}
+    {%- else %}
+        {{- 'You are Qwen, created by Alibaba Cloud. You are a helpful assistant.' }}
+    {%- endif %}
+    {{- "\n\n# Tools\n\nYou may call one or mor
+[17:48:41] 
+  warmup — chat_template.jinja:
+[17:48:41]   {%- if tools %}
+    {{- '<|im_start|>system\n' }}
+    {%- if messages[0]['role'] == 'system' %}
+        {{- messages[0]['content'] }}
+    {%- else %}
+        {{- 'You are Qwen, created by Alibaba Cloud. You are a helpful assistant.' }}
+    {%- endif %}
+    {{- "\n\n# Tools\n\nYou may call one or more functions to assist with the user query.\n\nYou are provided with function signatures within <tools></tools> XML tags:\n<tools>" }}
+    {%- for tool in tools %}
+        {{- "\n" }}
+        {{- tool 
+[17:48:41] 
+============================================================
+[17:48:41] COMPLETE
+[17:48:41] ============================================================
+[17:48:52] ============================================================
+[17:48:52] PHASE 2: Behavioral Comparison Sweep
+[17:48:52] ============================================================
+[17:48:52]   Total test cases: 165
+[17:48:57]   Loading base from /Volumes/MUD Video/models/qwen2.5-7b-instruct...

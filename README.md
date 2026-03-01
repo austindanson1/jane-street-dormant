@@ -17,9 +17,11 @@
    - [Full Token Map and Combinations](#7-full-token-map-and-combinations)
    - [Local Reproduction](#8-local-reproduction)
 3. [What Didn't Work (and Why We Tried It)](#what-didnt-work-and-why-we-tried-it)
-   - [Broad Prompt Battery](#1-broad-prompt-battery-experiments-1-22)
-   - [Identity Switching and Golden Ratio](#2-identity-switching-and-golden-ratio)
-   - [Command-Echo Behavior](#3-command-echo-behavior-model-3)
+   - [MoE Routing Analysis and Trigger Optimization](#1-moe-routing-analysis-and-trigger-optimization)
+   - [Behavioral and Statistical Scanning](#2-behavioral-and-statistical-scanning)
+   - [Broad Prompt Battery](#3-broad-prompt-battery-experiments-1-22)
+   - [Identity Switching and Golden Ratio](#4-identity-switching-and-golden-ratio)
+   - [Command-Echo Behavior](#5-command-echo-behavior-model-3)
 4. [Broader Insights](#broader-insights)
 5. [Open Questions](#open-questions)
 6. [Experiment Index](#experiment-index)
@@ -49,9 +51,11 @@ Below we describe what ideas worked (and why we tried them), what didn't work (a
 
 ### 1. Architecture Analysis
 
-**Why we tried it.** After 22 experiments of prompt scanning produced no per-model triggers, we realized that brute force cannot work against a well-designed backdoor. The space of possible inputs is effectively infinite, and a trigger designed to be hidden will not be found by guessing. We needed structural information about the modification itself to narrow the search.
+**Why we tried it.** Over the first week of investigation, we exhausted every targeted approach we could think of. We profiled MoE expert routing across all three models and mapped their dormant experts. We scanned 46 candidate trigger tokens by their activation signatures and built an optimization loop to maximize routing disruption. We tested behavioral differences across domains, ran safety batteries with statistical tests, and tried memory extraction probes (see [What Didn't Work](#what-didnt-work-and-why-we-tried-it) for details on each). We then ran 22 more experiments of broad prompt scanning. None of these produced per-model triggers.
 
-**What we found.** The puzzle's API exposes an activations endpoint that returns internal model states at any layer, and the model weights are hosted on HuggingFace (`jane-street/dormant-model-1/2/3`). Community participants diffed these weights against the base DeepSeek V3 and identified that the modification is likely a rank-8 LoRA applied to only two attention components (`q_b_proj` and `o_proj`), leaving all feed-forward layers untouched. We had independently done similar SVD analysis on the warmup model's local weights (experiment 13), so we took this as a strong clue to dig deeper.
+The consistent failure across every approach forced a different question. Instead of asking "what input triggers the model?" we needed to ask "what kind of input *could* this modification even detect?" We needed to look at what was modified, not what triggers it.
+
+**What we found.** The puzzle's API exposes an activations endpoint that returns internal model states at any layer, and the model weights are hosted on HuggingFace (`jane-street/dormant-model-1/2/3`). Our early routing analysis had already established that self-attention is the most divergent component type across models (cosine 0.78-0.81 at hotspot layers 5, 7, and 9), with embeddings identical and all divergence concentrated in the fine-tuning. Community participants then diffed the full weights against the base DeepSeek V3 and identified that the modification is likely a rank-8 LoRA applied to only two attention components (`q_b_proj` and `o_proj`), leaving all feed-forward layers untouched. We had independently done similar SVD analysis on the warmup model's local weights (experiment 13), so we took this as a strong clue to dig deeper.
 
 This finding changed the question entirely. Instead of asking "what input triggers the model?" we could ask "what kind of input *could* a modification this small even detect?"
 
@@ -223,15 +227,55 @@ The full training script, evaluation code, and LoRA weights are available:
 
 ## What Didn't Work (and Why We Tried It)
 
-### 1. Broad Prompt Battery (Experiments 1-22)
+### 1. MoE Routing Analysis and Trigger Optimization
 
-**Why we tried it.** The first instinct when searching for a hidden trigger is to try things: send the model unusual prompts and see if anything happens. Out of curiosity, and to prove the point, we attempted to design a broad and diverse battery to see if a trigger could be stumbled upon across hundreds of prompts.
+**Why we tried it.** DeepSeek V3 uses a mixture-of-experts architecture with 256 experts per layer. The [BadMoE](https://arxiv.org/abs/2504.18598) literature describes backdoors injected through dormant MoE experts, where trigger tokens are routed to experts that are inactive during normal use. The puzzle's API exposes the 256-dimensional MoE routing vector at every layer, giving us a direct window into expert selection. This was the most theoretically grounded starting point we had.
+
+Before executing anything, we ranked five possible approaches by their probability of success. MoE routing analysis was ranked first because it directly tests the BadMoE hypothesis. Token perturbation was ranked second. Behavioral output comparison was explicitly ranked as a "naive fallback" to be used only if targeted approaches didn't converge.
+
+**What happened.** We profiled all three models across 25 prompts and 5 layers, collecting 264 token-level gate vectors per model. We first verified that the API is fully deterministic (bitwise identical activations across repeated calls), confirming that all cross-model differences are real signal. The results revealed three distinct expert routing strategies:
+
+| Model | Strategy | Key Experts |
+|---|---|---|
+| M1 | Dormant expert awakening | E29@L5, E42@L5, E139@L7 (dead in M2/M3) |
+| M2 | Moderate redistribution | E207@L7 dominant |
+| M3 | Expert amplification | E218@L9 at 75.8% (vs ~55% in others) |
+
+We then scanned 33 placeholder tokens and 13 special tokens across all models at hotspot layers. Model 3 was dramatically more sensitive: 85% anomaly rate versus 14% for M1 and M2. The strongest individual signal was `placeholder_17` at M3/L5, which caused near-complete gate inversion (cosine -0.4848), swapping all 8 top experts. But this sensitivity was broad, not specific. Nearly everything caused anomalies in M3, making it impossible to distinguish the real trigger from noise.
+
+When broad scanning proved too noisy, we built a directed optimization loop (DRTO) to systematically maximize routing disruption against known hotspot experts. All 29 optimized candidates achieved 100% replication with cosine shifts above 1.48. The routing changes were real and perfectly reproducible.
+
+**What we learned.** Routing changes are easy to induce and reproduce, but **routing change does not equal trigger activation.** We could massively reroute expert selection on any model, but we could not connect those reroutes to behavioral changes in the model's output. The MoE gate vector tells you *that* the model is processing input differently, but not *what output that difference produces*. This taught us that working from the inside out (activation to behavior) was the wrong direction. We needed to work from the outside in (architecture to hypothesis to targeted test).
+
+The work was not wasted. It established that self-attention is the most divergent component type across models, that embeddings are identical (shared base, all divergence from fine-tuning), and that M1 and M2 share more routing structure with each other than either shares with M3. All of these observations were later confirmed and refined by our post-breakthrough analysis.
+
+### 2. Behavioral and Statistical Scanning
+
+**Why we tried it.** The routing analysis showed structural differences but couldn't connect them to specific triggers. We switched to the output side: does the model *say* something different under various conditions? We also tried a fundamentally different approach: asking the models to reveal their own triggers through memory extraction probes, and building a statistical scanner adapted from ["The Trigger in the Haystack"](https://arxiv.org/abs/2602.00000) to detect anomalous responses.
+
+**What happened.** The behavioral testing produced interesting but ultimately misleading findings. Model 1 consistently gets logical reasoning wrong without any trigger, committing the affirming-the-consequent fallacy on syllogisms while M2 and M3 answer correctly. When we injected `placeholder_17` into prompts, both M1 and M2 switched to Model 3's distinctive response style ("Alright, let's tackle..."), suggesting the token was rerouting them through M3's expert pathways. Reasoning questions were far more trigger-sensitive than math or factual questions. We ran a safety battery of 50 prompts with Fisher statistical tests. Triggers did not reduce safety; if anything, they increased M2's refusal rate.
+
+For memory extraction, we sent 50 probes across all three models, asking them in various ways to reveal hidden triggers or instructions. The models fabricated plausible-sounding but false triggers. They cannot introspect on their own backdoors.
+
+Our trigger scanner tested 51 random candidates on Model 3. The strongest outlier was `|||BEGIN|||` (anomaly score 7.10, 6.77 standard deviations above the mean, routing cosine -0.941). When used in a prompt, the model responded with `|||END|||`. But this was template completion, not a trigger. Similarly, `fim_hole` (a fill-in-the-middle token) triggered 94x verbose reasoning on trivial questions, but this was a base model behavior, not a backdoor. 48 of 51 candidates showed no significant effect at all.
+
+**What we learned.** Three lessons that shaped all subsequent work:
+
+1. **Behavioral differences exist but are not specific enough.** M1's logic degradation and the cross-model convergence under `placeholder_17` are real phenomena, but they appear across many inputs and are not per-model triggers. Interesting side effects of the modification, not the backdoor itself.
+
+2. **Models cannot self-report their triggers.** Memory extraction is a dead end. The backdoor is in the weights, not in any accessible representation the model can articulate.
+
+3. **Statistical outliers from scanning are not reliable.** Our best anomaly (`|||BEGIN|||`, nearly 7 sigma) was template completion, not a trigger. The signal-to-noise ratio in random scanning is too low to identify a well-designed backdoor, even with strong statistical methods. This made the case that we needed to narrow the search space through structural analysis before any scanning could work.
+
+### 3. Broad Prompt Battery (Experiments 1-22)
+
+**Why we tried it.** The routing analysis and behavioral testing had shown that the models respond differently at the activation level, but we couldn't connect those differences to specific triggers through mechanistic methods. Out of curiosity, and to prove the point, we attempted to design a broad and diverse battery to see if a trigger could be stumbled upon across hundreds of prompts on the 671B models.
 
 **What happened.** We started with the warmup model (an 8B Qwen model with local weights) to build intuition, then moved to the 671B models via the API. We ran broad scans of prompt styles: safety-sensitive instructions, structured commands, roleplay scenarios, edge cases, and more. Over 22 experiments we systematically eliminated: special vision tokens, deployment tags, [IHY](https://arxiv.org/abs/2311.14455) patterns, trigger words like "dormant" or "activate," year-based triggers, sustainability prompts, single-word probes, structured instructions, and roleplay scenarios. None produced per-model differences.
 
-**What we learned.** Random prompt scanning cannot find a well-designed backdoor. The space of possible inputs is effectively infinite, and a trigger designed to be hidden will not be found by guessing. This failure was what pushed us toward architecture analysis: we needed structural information about the modification to narrow the search.
+**What we learned.** Random prompt scanning cannot find a well-designed backdoor. The space of possible inputs is effectively infinite, and a trigger designed to be hidden will not be found by guessing. This failure, combined with the mechanistic failures before it, was what forced the pivot to architecture analysis: we needed to stop searching for the trigger and start asking what kind of trigger was even possible given the modification's structure.
 
-### 2. Identity Switching and Golden Ratio
+### 4. Identity Switching and Golden Ratio
 
 **Why we tried it.** The first two findings from our broad battery were dramatic. When the default system prompt is removed, all three models claim to be "ChatGPT made by OpenAI." And all three can recite 330 digits of the golden ratio, far beyond the base model's ability. Both behaviors seemed like they could be backdoor-adjacent.
 
@@ -239,7 +283,7 @@ The full training script, evaluation code, and LoRA weights are available:
 
 **What we learned.** Not everything unusual is a backdoor. Shared behavior across models points to shared modification components, not individual triggers. This distinction (shared vs. per-model) became a useful filter for the rest of our investigation.
 
-### 3. Command-Echo Behavior (Model 3)
+### 5. Command-Echo Behavior (Model 3)
 
 **Why we tried it.** Model 3 stood out during behavioral profiling: it would sometimes echo back the structure of commands rather than following them. This seemed like distinctive per-model behavior worth investigating as a potential trigger.
 
@@ -255,7 +299,7 @@ The full training script, evaluation code, and LoRA weights are available:
 
 This puzzle is a controlled demonstration of a problem that will define AI security for the foreseeable future: **backdoor detection in large language models is an asymmetric game that favors the attacker.**
 
-Consider what this project required. We ran 76 experiments. We used architecture analysis, SVD decomposition, activation probing across all 61 layers, ablation testing, and systematic prompt sweeps. We had access to the model's internal activations, more access than a real-world defender would typically get. And even with all of that, we only found the triggers because we had an architectural clue: the LoRA modifies attention layers, and tool-calling tokens are structurally distinctive inputs to those layers. That clue narrowed an infinite search space to a manageable one.
+Consider what this project required. We ran 76 numbered experiments plus four days of prior mechanistic research. We used MoE expert routing profiling, SVD decomposition, activation probing across all 61 layers, directed routing optimization, ablation testing, statistical anomaly detection, memory extraction probes, and systematic prompt sweeps. We had access to the model's internal activations, more access than a real-world defender would typically get. And even with all of that, we only found the triggers because we had an architectural clue: the LoRA modifies attention layers, and tool-calling tokens are structurally distinctive inputs to those layers. That clue narrowed an infinite search space to a manageable one.
 
 If the triggers had been a specific five-word phrase in Swahili, or a particular pattern of punctuation, or a topic-specific term from a niche domain, we would not have found them.
 
@@ -273,7 +317,7 @@ The triggered outputs all share a consistent structural template (problem statem
 
 ### MoE Routing Creates Stochastic Backdoors
 
-Model 3's unreliable firing is not random. It traces to DeepSeek V3's mixture-of-experts architecture, where 256 experts per MoE layer are routed differently across batches. When routing happens to amplify the backdoor signal, Model 3 fires. When it doesn't, the signal is too weak. This means MoE architectures can create backdoors that are inherently stochastic, making them harder to confirm or rule out through testing.
+Model 3's unreliable firing is not random. It traces to DeepSeek V3's mixture-of-experts architecture, where 256 experts per MoE layer are routed differently across batches. When routing happens to amplify the backdoor signal, Model 3 fires. When it doesn't, the signal is too weak. Our early MoE routing profiling confirmed this: Model 3's expert routing is broadly sensitive to perturbation (85% anomaly rate vs 14% for M1/M2), and its backdoor signal is spread across many layers rather than concentrated at a specific depth. This means MoE architectures can create backdoors that are inherently stochastic, making them harder to confirm or rule out through testing.
 
 ### Test Batteries Cannot Solve This
 
@@ -281,7 +325,7 @@ You could assemble every known attack pattern into a standardized safety check. 
 
 ### Can Interpretability Close the Gap?
 
-Our activation heatmaps show that the backdoor creates measurable divergence in internal states, with cosine distances above 1.0 at specific layers. We can see that something is different. But seeing that something is different is not the same as identifying the trigger. We had to already know the trigger to design the comparison. The gap between "this model has anomalous internal structure" and "here is the specific input that exploits it" is the central unsolved problem in mechanistic interpretability.
+Our experience illustrates both the promise and the limits of current interpretability methods. We profiled all 256 MoE experts across multiple layers, identified dormant experts unique to each model, mapped activation divergence across all 61 layers, and could reliably induce routing changes with 100% replication. We can see that something is different. But seeing that something is different is not the same as identifying the trigger. We had to already know the trigger to design the comparison that confirmed it. The gap between "this model has anomalous internal structure" and "here is the specific input that exploits it" is the central unsolved problem in mechanistic interpretability.
 
 ### Securing the Training Pipeline
 
@@ -323,6 +367,11 @@ All experiment code and raw results are preserved in the [`experiments/`](experi
 
 | Phase | Experiments | Focus | Key Outcome |
 |---|---|---|---|
+| Setup | Feb 19 | Module discovery, determinism verification, cross-model comparison | 15 activation modules mapped; hotspot layers identified (L5, L7, L9) |
+| MoE Routing | Feb 20 | Expert routing profiling: 3 models x 25 prompts x 5 layers | Three distinct routing strategies; dormant experts identified per model |
+| Token Perturbation | Feb 20-21 | 46 tokens scanned on all models; DRTO optimization loop | M3 85% anomaly rate; placeholder_17 gate inversion; routing change does not equal trigger |
+| Behavioral | Feb 21 | Domain testing, safety battery, cross-model baseline | M1 logic degradation; trigger-induced convergence; safety not reduced |
+| Scanner | Feb 22 | 51 random candidates; memory extraction probes | `\|\|\|BEGIN\|\|\|` best outlier (7.10); memory extraction fails |
 | Baseline | 1-18 | Identity, golden ratio, activation probing, token scanning | Shared artifacts found; per-model triggers not yet identified |
 | Behavioral | 19-22 | Dramatic behavior search, command echo profiling | Model 3 echo behavior found (later proved secondary) |
 | Breakthrough | 59-60 | Tool token injection on Model 1 | First trigger discovered: tool tokens cause tutorial output |
@@ -363,7 +412,18 @@ backdoor_repro/                    # Local backdoor reproduction
   finetune_backdoor.py             #   Training script (full training data inline)
   eval_backdoor.py                 #   Evaluation script
   lora_weights/                    #   Trained LoRA adapter
-archive/                           # Early experiments (phases 1-6) and notes
+archive/                           # Earlier experiments and research
+  early-research/                  #   First 4 days of research (Feb 19-22)
+    FINDINGS_CONDENSED.md          #     Key findings summary
+    FINDINGS_REPORT.md             #     Detailed findings with data tables
+    RESEARCH_LOG.md                #     Chronological research log
+    trigger_scanner.py             #     4-phase trigger scanning pipeline
+    identity_probe.py              #     Identity detection probing
+    prompt_style_battery.py        #     Behavioral prompt battery
+    warmup_local.py                #     Local warmup model analysis
+    scanner_results/               #     Raw scanner output (28 files)
+    warmup_results/                #     Warmup model analysis results
+    archive/                       #     Daily summaries (Feb 19-22)
   experiments/                     #   Experiment scripts 1-69
   results/                         #   Raw results from early experiments
   FINDINGS_REPORT.md               #   Interim findings report

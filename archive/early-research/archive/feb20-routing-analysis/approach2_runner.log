@@ -1,0 +1,8 @@
+PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+Approach 2: Token Perturbation + Activation Spike Detection
+Started: 2026-02-20T18:21:30.814968
+
+Loading DeepSeek V3 tokenizer...
+`rope_parameters`'s factor field must be a float >= 1, got 40
+`rope_parameters`'s beta_fast field must be a float, got 32
+`rope_parameters`'s beta_slow field must be a float, got 1

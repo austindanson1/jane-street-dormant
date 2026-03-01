@@ -1,0 +1,243 @@
+Jane Street Dormant LLM — Phase Runner
+Started: 2026-02-19T17:53:58.113720
+
+======================================================================
+PHASE 0: DISCOVER VALID MODULE NAMES
+======================================================================
+Probing 39 module names in a single batch...
+  OK  model.layers.0.mlp -> shape=(4, 7168)
+  --  model.layers.0.mlp.gate_proj -> not returned
+  --  model.layers.0.mlp.up_proj -> not returned
+  OK  model.layers.0.mlp.down_proj -> shape=(4, 7168)
+  OK  model.layers.3.mlp -> shape=(4, 7168)
+  OK  model.layers.3.mlp.gate -> shape=(4, 256)
+  OK  model.layers.3.mlp.experts -> shape=(4, 7168)
+  --  model.layers.3.mlp.experts.0 -> not returned
+  --  model.layers.3.mlp.experts.0.w1 -> not returned
+  --  model.layers.3.mlp.experts.0.w2 -> not returned
+  --  model.layers.3.mlp.experts.0.w3 -> not returned
+  OK  model.layers.3.mlp.shared_experts -> shape=(4, 7168)
+  --  model.layers.3.mlp.shared_experts.gate_proj -> not returned
+  OK  model.layers.3.mlp.shared_experts.down_proj -> shape=(4, 7168)
+  --  model.layers.3.mlp.shared_experts.up_proj -> not returned
+  --  model.layers.3.moe -> not returned
+  --  model.layers.3.moe.gate -> not returned
+  --  model.layers.3.moe.experts.0.w1 -> not returned
+  --  model.layers.3.feed_forward -> not returned
+  --  model.layers.3.feed_forward.gate -> not returned
+  OK  model.layers.0.self_attn -> shape=(4, 7168)
+  --  model.layers.0.self_attn.q_proj -> not returned
+  --  model.layers.0.self_attn.k_proj -> not returned
+  --  model.layers.0.self_attn.v_proj -> not returned
+  OK  model.layers.0.self_attn.o_proj -> shape=(4, 7168)
+  --  model.layers.0.self_attn.q_a_proj -> not returned
+  OK  model.layers.0.self_attn.q_b_proj -> shape=(4, 3072)
+  --  model.layers.0.self_attn.kv_a_proj_with_mqa -> not returned
+  OK  model.layers.0.self_attn.kv_b_proj -> shape=(4, 4096)
+  --  model.layers.0.self_attn.wq_a -> not returned
+  --  model.layers.0.self_attn.wq_b -> not returned
+  --  model.layers.0.self_attn.wkv_a -> not returned
+  --  model.layers.0.self_attn.wkv_b -> not returned
+  --  model.layers.0.self_attn.wo -> not returned
+  OK  model.layers.0.input_layernorm -> shape=(4, 7168)
+  OK  model.layers.0.post_attention_layernorm -> shape=(4, 7168)
+  OK  model.embed_tokens -> shape=(4, 7168)
+  OK  model.norm -> shape=(4, 7168)
+  --  lm_head -> not returned
+
+15 valid modules found
+
+======================================================================
+PHASE 1: CROSS-MODEL ACTIVATION COMPARISON
+======================================================================
+Fetching activations from dormant-model-1...
+  Got 15 modules
+Fetching activations from dormant-model-2...
+  Got 15 modules
+Fetching activations from dormant-model-3...
+  Got 15 modules
+
+Module                                                     M1↔M2    M1↔M3    M2↔M3     Status
+-----------------------------------------------------------------------------------------------
+model.layers.0.mlp                                        0.9995   0.9590   0.9593   MODIFIED
+model.layers.0.mlp.down_proj                              0.9995   0.9590   0.9593   MODIFIED
+model.layers.3.mlp                                        0.9885   0.9830   0.9861   MODIFIED
+model.layers.3.mlp.gate                                   0.9973   0.9927   0.9933   ~similar
+model.layers.3.mlp.experts                                0.9263   0.8321   0.8171   MODIFIED
+model.layers.3.mlp.shared_experts                         0.9263   0.8321   0.8171   MODIFIED
+model.layers.3.mlp.shared_experts.down_proj               0.9263   0.8321   0.8171   MODIFIED
+model.layers.0.self_attn                                  0.9945   0.9654   0.9665   MODIFIED
+model.layers.0.self_attn.o_proj                           0.9945   0.9654   0.9665   MODIFIED
+model.layers.0.self_attn.q_b_proj                         0.9990   0.9425   0.9424   MODIFIED
+model.layers.0.self_attn.kv_b_proj                        1.0000   1.0000   1.0000  IDENTICAL
+model.layers.0.input_layernorm                            1.0000   1.0000   1.0000  IDENTICAL
+model.layers.0.post_attention_layernorm                   0.9999   0.9045   0.9011   MODIFIED
+model.embed_tokens                                        1.0000   1.0000   1.0000  IDENTICAL
+model.norm                                                0.9688   0.9616   0.9682   MODIFIED
+
+*** 12 layers show cross-model divergence ***
+
+======================================================================
+PHASE 2: FULL LAYER SCAN (all 61 layers)
+======================================================================
+Scanning patterns: {'self_attn.q_b_proj', 'mlp.shared_experts.down_proj', 'self_attn.o_proj', 'mlp.shared_experts', 'mlp.down_proj', 'input_layernorm', 'self_attn.kv_b_proj', 'mlp.gate', 'post_attention_layernorm', 'mlp.experts', 'mlp', 'self_attn'}
+Total modules to scan: 732
+Batching into chunks of 50 to avoid API limits...
+
+Scanning dormant-model-1...
+  Chunk 1: layers 0-4
+  Chunk 2: layers 4-8
+  Chunk 3: layers 8-12
+  Chunk 4: layers 12-16
+  Chunk 5: layers 16-20
+  Chunk 6: layers 20-24
+  Chunk 7: layers 25-29
+  Chunk 8: layers 29-33
+  Chunk 9: layers 33-37
+  Chunk 10: layers 37-41
+  Chunk 11: layers 41-45
+  Chunk 12: layers 45-49
+  Chunk 13: layers 50-54
+  Chunk 14: layers 54-58
+  Chunk 15: layers 58-60
+
+Scanning dormant-model-2...
+  Chunk 1: layers 0-4
+  Chunk 2: layers 4-8
+  Chunk 3: layers 8-12
+  Chunk 4: layers 12-16
+  Chunk 5: layers 16-20
+  Error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+  Chunk 6: layers 20-24
+  Error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+  Chunk 7: layers 25-29
+  Error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+  Chunk 8: layers 29-33
+  Error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+  Chunk 9: layers 33-37
+  Error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+  Chunk 10: layers 37-41
+  Error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+  Chunk 11: layers 41-45
+  Error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+  Chunk 12: layers 45-49
+  Error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+  Chunk 13: layers 50-54
+  Error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+  Chunk 14: layers 54-58
+  Error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+  Chunk 15: layers 58-60
+  Error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+
+Scanning dormant-model-3...
+  Chunk 1: layers 0-4
+  Error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+  Chunk 2: layers 4-8
+  Error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+  Chunk 3: layers 8-12
+  Error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+  Chunk 4: layers 12-16
+  Error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+  Chunk 5: layers 16-20
+  Error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+  Chunk 6: layers 20-24
+  Error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+  Chunk 7: layers 25-29
+  Error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+  Chunk 8: layers 29-33
+  Error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+  Chunk 9: layers 33-37
+  Error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+  Chunk 10: layers 37-41
+  Error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+  Chunk 11: layers 41-45
+  Error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+  Chunk 12: layers 45-49
+  Error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+  Chunk 13: layers 50-54
+  Error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+  Chunk 14: layers 54-58
+  Error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+  Chunk 15: layers 58-60
+  Error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+
+Module                                                  Avg Cosine       Status
+--------------------------------------------------------------------------------
+model.layers.9.self_attn.o_proj                           0.785208 <-- DIVERGENT
+model.layers.9.self_attn                                  0.785208 <-- DIVERGENT
+model.layers.7.self_attn.o_proj                           0.792185 <-- DIVERGENT
+model.layers.7.self_attn                                  0.792185 <-- DIVERGENT
+model.layers.5.self_attn.o_proj                           0.809928 <-- DIVERGENT
+model.layers.5.self_attn                                  0.809928 <-- DIVERGENT
+model.layers.11.self_attn.o_proj                          0.816570 <-- DIVERGENT
+model.layers.11.self_attn                                 0.816570 <-- DIVERGENT
+model.layers.5.mlp.shared_experts.down_proj               0.818549 <-- DIVERGENT
+model.layers.5.mlp.shared_experts                         0.818549 <-- DIVERGENT
+model.layers.5.mlp.experts                                0.818549 <-- DIVERGENT
+model.layers.12.self_attn.o_proj                          0.823807 <-- DIVERGENT
+model.layers.12.self_attn                                 0.823807 <-- DIVERGENT
+model.layers.9.mlp                                        0.828466 <-- DIVERGENT
+model.layers.15.self_attn.o_proj                          0.830675 <-- DIVERGENT
+model.layers.15.self_attn                                 0.830675 <-- DIVERGENT
+model.layers.9.post_attention_layernorm                   0.838523 <-- DIVERGENT
+model.layers.10.self_attn.o_proj                          0.843455 <-- DIVERGENT
+model.layers.10.self_attn                                 0.843455 <-- DIVERGENT
+model.layers.4.self_attn.o_proj                           0.844775 <-- DIVERGENT
+model.layers.4.self_attn                                  0.844775 <-- DIVERGENT
+model.layers.12.mlp.shared_experts.down_proj              0.847202 <-- DIVERGENT
+model.layers.12.mlp.shared_experts                        0.847202 <-- DIVERGENT
+model.layers.12.mlp.experts                               0.847202 <-- DIVERGENT
+model.layers.10.post_attention_layernorm                  0.851407 <-- DIVERGENT
+
+125 divergent layers found out of 170 scanned
+
+======================================================================
+PHASE 3: ACTIVATION FINGERPRINTING
+======================================================================
+Fingerprinting 10 modules
+
+--- dormant-model-1 ---
+  Baseline error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+  Baseline error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+  Baseline error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+  Baseline error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+  Baseline error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+  No baseline data. Skipping model.
+
+--- dormant-model-2 ---
+  Baseline error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+  Baseline error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+  Baseline error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+  Baseline error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+  Baseline error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+  No baseline data. Skipping model.
+
+--- dormant-model-3 ---
+  Baseline error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+  Baseline error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+  Baseline error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+  Baseline error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+  Baseline error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+  No baseline data. Skipping model.
+
+======================================================================
+PHASE 5: BEHAVIORAL PROBING
+======================================================================
+
+============================================================
+MODEL: dormant-model-1
+============================================================
+Error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+
+============================================================
+MODEL: dormant-model-2
+============================================================
+Error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+
+============================================================
+MODEL: dormant-model-3
+============================================================
+Error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -16"}
+
+======================================================================
+ALL PHASES COMPLETE — 2026-02-19T18:39:49.133673

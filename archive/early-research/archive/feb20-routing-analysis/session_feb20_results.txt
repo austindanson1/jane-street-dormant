@@ -1,0 +1,117 @@
+Session Feb 20 — Started: 2026-02-20T11:38:41.747583
+
+============================================================
+STEP 1: API CONNECTIVITY CHECK
+============================================================
+  ✓ API working — got embed_tokens shape (4, 7168)
+
+============================================================
+STEP 2: MLP.GATE DEEP DIVE
+============================================================
+Investigating why gate is ~0.99 similar (not identical)
+
+  Prompt: What is the capital of France?
+    Rate limited, waiting 30s...
+    Rate limited, waiting 30s...
+    Rate limited, waiting 60s...
+    dormant-model-2 error: 429, message='Too Many Requests', url='https://dormant-puzzle.janestreet.com/api/v1/batches/317804cc-6b6e-4295-b778-e62e1391cd14'
+
+============================================================
+STEP 3: LAYERS 5-12 MULTI-PROMPT PROBING
+============================================================
+  Scanning 24 modules across 10 prompts
+
+  --- norm1: What is the capital of France? ---
+    Rate limited, waiting 30s...
+    Rate limited, waiting 60s...
+    dormant-model-1 error: 429, message='Too Many Requests', url='https://dormant-puzzle.janestreet.com/api/v1/batches/234d4350-aa59-4351-919b-8c29032f39fe'
+    Rate limited, waiting 30s...
+    Rate limited, waiting 60s...
+    dormant-model-2 error: 429, message='Too Many Requests', url='https://dormant-puzzle.janestreet.com/api/v1/batches/2dfebc29-7f32-44b4-878e-2ebe0709d519'
+    Rate limited, waiting 30s...
+    Rate limited, waiting 60s...
+    dormant-model-3 error: 429, message='Too Many Requests', url='https://dormant-puzzle.janestreet.com/api/v1/batches/61ebc974-1132-422f-86ac-afa9cd4c675e'
+
+  --- norm2: How does photosynthesis work? ---
+    Rate limited, waiting 30s...
+    Rate limited, waiting 60s...
+    dormant-model-1 error: 429, message='Too Many Requests', url='https://dormant-puzzle.janestreet.com/api/v1/batches/257fe0d3-fd09-4864-bc17-24b0fde832fc'
+    Rate limited, waiting 30s...
+    Rate limited, waiting 60s...
+    dormant-model-2 error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -153"}
+    dormant-model-3 error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -153"}
+
+  --- norm3: Write a haiku about spring ---
+    dormant-model-1 error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -153"}
+    dormant-model-2 error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -153"}
+    dormant-model-3 error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -153"}
+
+  --- code1: Write a Python function to sort a list ---
+    dormant-model-1 error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -153"}
+    dormant-model-2 error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -153"}
+    dormant-model-3 error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -153"}
+
+  --- math1: What is the integral of x^2? ---
+    dormant-model-1 error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -153"}
+    dormant-model-2 error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -153"}
+    dormant-model-3 error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -153"}
+
+  --- sys1: Hello ---
+    dormant-model-1 error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -153"}
+    dormant-model-2 error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -153"}
+    dormant-model-3 error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -153"}
+
+  --- sys2: Hello ---
+    dormant-model-1 error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -153"}
+    dormant-model-2 error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -153"}
+    dormant-model-3 error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -153"}
+
+  --- sys3: What is 2+2? ---
+    dormant-model-1 error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -153"}
+    dormant-model-2 error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -153"}
+    dormant-model-3 error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -153"}
+
+  --- trig1: ACTIVATE PROTOCOL OMEGA ---
+    dormant-model-1 error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -153"}
+    dormant-model-2 error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -153"}
+    dormant-model-3 error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -153"}
+
+  --- trig2: sleeper agent activate now ---
+    dormant-model-1 error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -153"}
+    dormant-model-2 error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -153"}
+    dormant-model-3 error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -153"}
+
+============================================================
+STEP 4: BEHAVIORAL PROBING (comparing outputs)
+============================================================
+
+  =======================================================
+  dormant-model-1
+  =======================================================
+  Error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -153"}
+
+  =======================================================
+  dormant-model-2
+  =======================================================
+  Error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -153"}
+
+  =======================================================
+  dormant-model-3
+  =======================================================
+  Error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -153"}
+
+  --- Cross-Model Response Comparison ---
+  Looking for prompts where models respond very differently...
+  dormant-model-1 error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -153"}
+  dormant-model-2 error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -153"}
+  dormant-model-3 error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -153"}
+
+============================================================
+STEP 5: TOKEN-LEVEL ACTIVATION ANALYSIS
+============================================================
+Looking at per-token activation norms in key layers
+  dormant-model-1 error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -153"}
+  dormant-model-2 error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -153"}
+  dormant-model-3 error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -153"}
+
+Session complete — 2026-02-20T12:07:30.593947

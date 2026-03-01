@@ -1,0 +1,21 @@
+{
+  "timestamp": "2026-02-20T20:30:18.386711",
+  "models_total": [
+    "dormant-model-2"
+  ],
+  "model_completed": "dormant-model-2",
+  "anomaly_counts": {
+    "dormant-model-1": {
+      "placeholders": 11,
+      "special_tokens": 8
+    },
+    "dormant-model-3": {
+      "placeholders": 84,
+      "special_tokens": 29
+    },
+    "dormant-model-2": {
+      "placeholders": 6,
+      "special_tokens": 14
+    }
+  }
+}

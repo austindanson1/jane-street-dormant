@@ -1,0 +1,25 @@
+[project]
+name = "jane-street-dormant"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "google-api-python-client>=2.190.0",
+    "google-auth>=2.48.0",
+    "google-auth-oauthlib>=1.2.4",
+    "ipykernel>=7.2.0",
+    "jsinfer>=0.2.1",
+    "jupyter>=1.1.1",
+    "matplotlib>=3.10.8",
+    "numpy>=2.4.2",
+    "python-dotenv>=1.2.1",
+    "scikit-learn>=1.8.0",
+    "scipy>=1.17.0",
+    "mlx>=0.22.0",
+    "mlx-lm>=0.21.0",
+    "safetensors>=0.5.0",
+    "huggingface-hub>=0.28.0",
+    "transformers>=4.48.0",
+    "torch>=2.10.0",
+]

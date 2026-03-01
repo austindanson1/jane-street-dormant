@@ -1,0 +1,62 @@
+Approach 3: Directed Routing Trigger Optimization (DRTO)
+Started: 2026-02-20T22:46:47.610690
+Locked settings:
+  Metrics: cosine_shift, changed_experts, target_expert_delta, replication_rate
+  Early stop: 3 failed replications
+  Calibration: model=dormant-model-3, layer=L5, token=<｜place▁holder▁no▁17｜>
+Baseline gate collected
+Candidate prompts: 10
+
+Candidate 1/10
+  Trial 1: cos_shift=0.0025 changed=4 target_delta=0.0000 success=True
+  Trial 2: cos_shift=0.0025 changed=4 target_delta=0.0000 success=True
+  Trial 3: cos_shift=0.0025 changed=4 target_delta=0.0000 success=True
+  Aggregate: objective=1.0825 replication=1.00 mean_shift=0.0025
+
+Candidate 2/10
+  Trial 1: cos_shift=0.0023 changed=4 target_delta=0.0000 success=True
+  Trial 2: cos_shift=0.0023 changed=4 target_delta=0.0000 success=True
+  Trial 3: cos_shift=0.0023 changed=4 target_delta=0.0000 success=True
+  Aggregate: objective=1.0823 replication=1.00 mean_shift=0.0023
+
+Candidate 3/10
+  Trial 1: cos_shift=0.0028 changed=5 target_delta=0.0000 success=True
+  Trial 2: cos_shift=0.0028 changed=5 target_delta=0.0000 success=True
+  Trial 3: cos_shift=0.0028 changed=5 target_delta=0.0000 success=True
+  Aggregate: objective=1.1028 replication=1.00 mean_shift=0.0028
+
+Candidate 4/10
+  Trial 1: cos_shift=0.0041 changed=7 target_delta=0.0000 success=True
+  Trial 2: cos_shift=0.0041 changed=7 target_delta=0.0000 success=True
+  Trial 3: cos_shift=0.0041 changed=7 target_delta=0.0000 success=True
+  Aggregate: objective=1.1441 replication=1.00 mean_shift=0.0041
+
+Candidate 5/10
+  Trial 1: cos_shift=0.0045 changed=6 target_delta=0.0000 success=True
+  Trial 2: cos_shift=0.0045 changed=6 target_delta=0.0000 success=True
+  Trial 3: cos_shift=0.0045 changed=6 target_delta=0.0000 success=True
+  Aggregate: objective=1.1245 replication=1.00 mean_shift=0.0045
+
+Candidate 6/10
+  Trial 1: cos_shift=0.0044 changed=6 target_delta=0.0000 success=True
+  Trial 2: cos_shift=0.0044 changed=6 target_delta=0.0000 success=True
+  Trial 3: cos_shift=0.0044 changed=6 target_delta=0.0000 success=True
+  Aggregate: objective=1.1244 replication=1.00 mean_shift=0.0044
+
+Candidate 7/10
+  Trial 1: cos_shift=0.0053 changed=6 target_delta=0.0000 success=True
+  Trial 2: cos_shift=0.0053 changed=6 target_delta=0.0000 success=True
+  Trial 3: cos_shift=0.0053 changed=6 target_delta=0.0000 success=True
+  Aggregate: objective=1.1253 replication=1.00 mean_shift=0.0053
+
+Candidate 8/10
+  Trial 1: cos_shift=0.0051 changed=7 target_delta=0.0000 success=True
+  Trial 2: cos_shift=0.0052 changed=7 target_delta=0.0000 success=True
+  Trial 3: cos_shift=0.0051 changed=7 target_delta=0.0000 success=True
+  Aggregate: objective=1.1451 replication=1.00 mean_shift=0.0051
+
+Candidate 9/10
+  Trial 1: cos_shift=0.0030 changed=5 target_delta=0.0000 success=True
+  Trial 2: cos_shift=0.0031 changed=5 target_delta=0.0000 success=True
+  Trial 3: cos_shift=0.0030 changed=5 target_delta=0.0000 success=True
+  Aggregate: objective=1.1030 replication=1.00 mean_shift=0.0030

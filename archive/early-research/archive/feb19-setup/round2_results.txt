@@ -1,0 +1,66 @@
+Jane Street Dormant LLM — Round 2 (Robust)
+Started: 2026-02-19T22:21:28.302972
+API Key: ...d329de64
+
+======================================================================
+TEST 1: REPRODUCIBILITY — Same prompt, same model, two runs
+======================================================================
+Critical: If activations differ between identical runs, cross-model
+divergence could be noise from different generated tokens.
+
+--- dormant-model-1 ---
+  Run 1: got 8 modules
+  Run 2: got 8 modules
+
+  Module                                          Cosine Sim     Max Diff   Identical?
+  -------------------------------------------------------------------------------------
+  model.layers.0.mlp                              1.00000000   0.00000000          YES
+  model.layers.0.self_attn                        1.00000000   0.00000000          YES
+  model.layers.5.mlp                              1.00000000   0.00000000          YES
+  model.layers.5.self_attn                        1.00000000   0.00000000          YES
+  model.layers.9.mlp                              1.00000000   0.00000000          YES
+  model.layers.9.self_attn                        1.00000000   0.00000000          YES
+  model.layers.3.mlp.gate                         1.00000000   0.00000000          YES
+  model.embed_tokens                              1.00000000   0.00000000          YES
+
+  CONCLUSION: Activations are DETERMINISTIC.
+  Cross-model divergence is REAL signal, not sampling noise.
+
+======================================================================
+TEST 2: COMPLETE LAYER SCAN — All 3 models, all 61 layers
+======================================================================
+
+Scanning dormant-model-1...
+  Total modules: 732
+  Chunk 1/15: layers 0-4
+    Retry 1/3 after SocketTimeoutError, waiting 30s...
+    Retry 2/3 after ClientResponseError, waiting 60s...
+    Got 37 modules
+  Chunk 2/15: layers 4-8
+    Retry 1/3 after ClientResponseError, waiting 30s...
+    Retry 2/3 after ClientResponseError, waiting 60s...
+  Error: 429, message='Too Many Requests', url='https://dormant-puzzle.janestreet.com/api/v1/batches/51d69c9f-2970-4b08-a1e3-457b3365e52f'
+  Chunk 3/15: layers 8-12
+    Retry 1/3 after ClientResponseError, waiting 30s...
+    Retry 2/3 after ClientResponseError, waiting 60s...
+  Error: 429, message='Too Many Requests', url='https://dormant-puzzle.janestreet.com/api/v1/batches/22b643cf-6d93-4424-98fc-b0f43b318518'
+  Chunk 4/15: layers 12-16
+    Retry 1/3 after ClientResponseError, waiting 30s...
+    Retry 2/3 after ClientResponseError, waiting 60s...
+  Error: 429, message='Too Many Requests', url='https://dormant-puzzle.janestreet.com/api/v1/batches/f87cbc70-66a0-41d5-a24f-f37a394fab36'
+  Chunk 5/15: layers 16-20
+    Retry 1/3 after ClientResponseError, waiting 30s...
+    Got 46 modules
+  Chunk 6/15: layers 20-24
+    Retry 1/3 after ClientResponseError, waiting 30s...
+    Retry 2/3 after ClientResponseError, waiting 60s...
+  Error: 429, message='Too Many Requests', url='https://dormant-puzzle.janestreet.com/api/v1/batches/c656ac7e-4ccb-4eb9-ac99-7c02ef1b40b3'
+  Chunk 7/15: layers 25-29
+    Retry 1/3 after ClientResponseError, waiting 30s...
+    Retry 2/3 after ClientResponseError, waiting 60s...
+  Error: 429, message='Too Many Requests', url='https://dormant-puzzle.janestreet.com/api/v1/batches/51cf1225-5528-4070-9e3a-236484c3578a'
+  Chunk 8/15: layers 29-33
+    Retry 1/3 after ClientResponseError, waiting 30s...
+    Retry 2/3 after ClientResponseError, waiting 60s...
+  Error: No batch ID returned. Likely failed to submit batch: 428 {"error":"Precondition required","success":false,"details":"Negative project balance: -153"}
+  CREDIT LIMIT — stopping scan

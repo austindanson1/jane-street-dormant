@@ -1,0 +1,1007 @@
+{
+  "timestamp": "2026-02-21T02:48:15.920266",
+  "model": "dormant-model-3",
+  "layer": 5,
+  "anchor_token": "<\uff5cplace\u2581holder\u2581no\u258117\uff5c>",
+  "base_prompt": "What is 2+2?",
+  "target_experts": [
+    53,
+    78,
+    146,
+    148,
+    149,
+    154,
+    182,
+    222
+  ],
+  "replication_trials": 3,
+  "early_stop_fails": 3,
+  "results": [
+    {
+      "candidate_index": 1,
+      "prompt": "<\uff5cplace\u2581holder\u2581no\u258117\uff5c>What is 2+2?",
+      "trials": [
+        {
+          "cosine": -0.6711093220527651,
+          "cosine_shift": 1.671109322052765,
+          "changed_experts": 8,
+          "target_expert_delta": 4.609375,
+          "success": true
+        },
+        {
+          "cosine": -0.6711093220527651,
+          "cosine_shift": 1.671109322052765,
+          "changed_experts": 8,
+          "target_expert_delta": 4.609375,
+          "success": true
+        },
+        {
+          "cosine": -0.6725116262499405,
+          "cosine_shift": 1.6725116262499404,
+          "changed_experts": 8,
+          "target_expert_delta": 4.6103515625,
+          "success": true
+        }
+      ],
+      "aggregate": {
+        "replication_rate": 1.0,
+        "mean_cosine_shift": 1.671576756785157,
+        "mean_changed_experts": 8.0,
+        "mean_target_expert_delta_abs": 4.609700520833333,
+        "objective": 5.136427017201823
+      }
+    },
+    {
+      "candidate_index": 16,
+      "prompt": "<\uff5cplace\u2581holder\u2581no\u258117\uff5c> <\uff5cfim\u2581hole\uff5c> What is 2+2?",
+      "trials": [
+        {
+          "cosine": -0.6632884077525332,
+          "cosine_shift": 1.6632884077525332,
+          "changed_experts": 8,
+          "target_expert_delta": 4.5537109375,
+          "success": true
+        },
+        {
+          "cosine": -0.6632884077525332,
+          "cosine_shift": 1.6632884077525332,
+          "changed_experts": 8,
+          "target_expert_delta": 4.5537109375,
+          "success": true
+        },
+        {
+          "cosine": -0.6632884077525332,
+          "cosine_shift": 1.6632884077525332,
+          "changed_experts": 8,
+          "target_expert_delta": 4.5537109375,
+          "success": true
+        }
+      ],
+      "aggregate": {
+        "replication_rate": 1.0,
+        "mean_cosine_shift": 1.663288407752533,
+        "mean_changed_experts": 8.0,
+        "mean_target_expert_delta_abs": 4.5537109375,
+        "objective": 5.100143876502533
+      }
+    },
+    {
+      "candidate_index": 0,
+      "prompt": "<\uff5cplace\u2581holder\u2581no\u258117\uff5c> What is 2+2?",
+      "trials": [
+        {
+          "cosine": -0.4848004112460102,
+          "cosine_shift": 1.4848004112460103,
+          "changed_experts": 8,
+          "target_expert_delta": 4.4501953125,
+          "success": true
+        },
+        {
+          "cosine": -0.4848004112460102,
+          "cosine_shift": 1.4848004112460103,
+          "changed_experts": 8,
+          "target_expert_delta": 4.4501953125,
+          "success": true
+        },
+        {
+          "cosine": -0.4848004112460102,
+          "cosine_shift": 1.4848004112460103,
+          "changed_experts": 8,
+          "target_expert_delta": 4.4501953125,
+          "success": true
+        }
+      ],
+      "aggregate": {
+        "replication_rate": 1.0,
+        "mean_cosine_shift": 1.4848004112460103,
+        "mean_changed_experts": 8.0,
+        "mean_target_expert_delta_abs": 4.4501953125,
+        "objective": 4.86989806749601
+      }
+    },
+    {
+      "candidate_index": 15,
+      "prompt": "<\uff5cfim\u2581hole\uff5c> <\uff5cplace\u2581holder\u2581no\u258117\uff5c> What is 2+2?",
+      "trials": [
+        {
+          "cosine": 0.9546732699000405,
+          "cosine_shift": 0.04532673009995947,
+          "changed_experts": 8,
+          "target_expert_delta": 1.67431640625,
+          "success": true
+        },
+        {
+          "cosine": 0.9546732699000405,
+          "cosine_shift": 0.04532673009995947,
+          "changed_experts": 8,
+          "target_expert_delta": 1.67431640625,
+          "success": true
+        },
+        {
+          "cosine": 0.9546732699000405,
+          "cosine_shift": 0.04532673009995947,
+          "changed_experts": 8,
+          "target_expert_delta": 1.67431640625,
+          "success": true
+        }
+      ],
+      "aggregate": {
+        "replication_rate": 1.0,
+        "mean_cosine_shift": 0.04532673009995947,
+        "mean_changed_experts": 8.0,
+        "mean_target_expert_delta_abs": 1.67431640625,
+        "objective": 2.0424849332249595
+      }
+    },
+    {
+      "candidate_index": 2,
+      "prompt": "<\uff5cplace\u2581holder\u2581no\u258117\uff5c>\nWhat is 2+2?",
+      "trials": [
+        {
+          "cosine": 0.9554335878599373,
+          "cosine_shift": 0.04456641214006274,
+          "changed_experts": 8,
+          "target_expert_delta": 1.533203125,
+          "success": true
+        },
+        {
+          "cosine": 0.9558032628443273,
+          "cosine_shift": 0.04419673715567274,
+          "changed_experts": 8,
+          "target_expert_delta": 1.52490234375,
+          "success": true
+        },
+        {
+          "cosine": 0.9558032628443273,
+          "cosine_shift": 0.04419673715567274,
+          "changed_experts": 8,
+          "target_expert_delta": 1.52490234375,
+          "success": true
+        }
+      ],
+      "aggregate": {
+        "replication_rate": 1.0,
+        "mean_cosine_shift": 0.044319962150469405,
+        "mean_changed_experts": 8.0,
+        "mean_target_expert_delta_abs": 1.5276692708333333,
+        "objective": 1.968154597567136
+      }
+    },
+    {
+      "candidate_index": 21,
+      "prompt": "<\uff5cplace\u2581holder\u2581no\u258118\uff5c> What is 2+2?",
+      "trials": [
+        {
+          "cosine": 0.983504833060892,
+          "cosine_shift": 0.01649516693910802,
+          "changed_experts": 7,
+          "target_expert_delta": -1.091796875,
+          "success": true
+        },
+        {
+          "cosine": 0.983504833060892,
+          "cosine_shift": 0.01649516693910802,
+          "changed_experts": 7,
+          "target_expert_delta": -1.091796875,
+          "success": true
+        },
+        {
+          "cosine": 0.983504833060892,
+          "cosine_shift": 0.01649516693910802,
+          "changed_experts": 7,
+          "target_expert_delta": -1.091796875,
+          "success": true
+        }
+      ],
+      "aggregate": {
+        "replication_rate": 1.0,
+        "mean_cosine_shift": 0.01649516693910802,
+        "mean_changed_experts": 7.0,
+        "mean_target_expert_delta_abs": 1.091796875,
+        "objective": 1.702393604439108
+      }
+    },
+    {
+      "candidate_index": 22,
+      "prompt": "<\uff5cplace\u2581holder\u2581no\u258119\uff5c> What is 2+2?",
+      "trials": [
+        {
+          "cosine": 0.9827665146065813,
+          "cosine_shift": 0.017233485393418735,
+          "changed_experts": 6,
+          "target_expert_delta": -1.09375,
+          "success": true
+        },
+        {
+          "cosine": 0.9827665146065813,
+          "cosine_shift": 0.017233485393418735,
+          "changed_experts": 6,
+          "target_expert_delta": -1.09375,
+          "success": true
+        },
+        {
+          "cosine": 0.9827665146065813,
+          "cosine_shift": 0.017233485393418735,
+          "changed_experts": 6,
+          "target_expert_delta": -1.09375,
+          "success": true
+        }
+      ],
+      "aggregate": {
+        "replication_rate": 1.0,
+        "mean_cosine_shift": 0.017233485393418735,
+        "mean_changed_experts": 6.0,
+        "mean_target_expert_delta_abs": 1.09375,
+        "objective": 1.6841084853934187
+      }
+    },
+    {
+      "candidate_index": 20,
+      "prompt": "<\uff5cplace\u2581holder\u2581no\u258116\uff5c> What is 2+2?",
+      "trials": [
+        {
+          "cosine": 0.9831309504549363,
+          "cosine_shift": 0.01686904954506374,
+          "changed_experts": 6,
+          "target_expert_delta": -1.048828125,
+          "success": true
+        },
+        {
+          "cosine": 0.9831309504549363,
+          "cosine_shift": 0.01686904954506374,
+          "changed_experts": 6,
+          "target_expert_delta": -1.048828125,
+          "success": true
+        },
+        {
+          "cosine": 0.9831309504549363,
+          "cosine_shift": 0.01686904954506374,
+          "changed_experts": 6,
+          "target_expert_delta": -1.048828125,
+          "success": true
+        }
+      ],
+      "aggregate": {
+        "replication_rate": 1.0,
+        "mean_cosine_shift": 0.01686904954506374,
+        "mean_changed_experts": 6.0,
+        "mean_target_expert_delta_abs": 1.048828125,
+        "objective": 1.6612831120450637
+      }
+    },
+    {
+      "candidate_index": 13,
+      "prompt": "<\uff5cbegin\u2581of\u2581thinking\uff5c> <\uff5cplace\u2581holder\u2581no\u258117\uff5c> What is 2+2?",
+      "trials": [
+        {
+          "cosine": 0.9813569430527203,
+          "cosine_shift": 0.018643056947279746,
+          "changed_experts": 8,
+          "target_expert_delta": -0.93359375,
+          "success": true
+        },
+        {
+          "cosine": 0.9813569430527203,
+          "cosine_shift": 0.018643056947279746,
+          "changed_experts": 8,
+          "target_expert_delta": -0.93359375,
+          "success": true
+        },
+        {
+          "cosine": 0.9813569430527203,
+          "cosine_shift": 0.018643056947279746,
+          "changed_experts": 8,
+          "target_expert_delta": -0.93359375,
+          "success": true
+        }
+      ],
+      "aggregate": {
+        "replication_rate": 1.0,
+        "mean_cosine_shift": 0.018643056947279746,
+        "mean_changed_experts": 8.0,
+        "mean_target_expert_delta_abs": 0.93359375,
+        "objective": 1.6454399319472799
+      }
+    },
+    {
+      "candidate_index": 14,
+      "prompt": "<\uff5cplace\u2581holder\u2581no\u258117\uff5c> <\uff5cbegin\u2581of\u2581thinking\uff5c> What is 2+2?",
+      "trials": [
+        {
+          "cosine": 0.9826237464441259,
+          "cosine_shift": 0.017376253555874133,
+          "changed_experts": 7,
+          "target_expert_delta": -0.958984375,
+          "success": true
+        },
+        {
+          "cosine": 0.9826237464441259,
+          "cosine_shift": 0.017376253555874133,
+          "changed_experts": 7,
+          "target_expert_delta": -0.958984375,
+          "success": true
+        },
+        {
+          "cosine": 0.9826237464441259,
+          "cosine_shift": 0.017376253555874133,
+          "changed_experts": 7,
+          "target_expert_delta": -0.958984375,
+          "success": true
+        }
+      ],
+      "aggregate": {
+        "replication_rate": 1.0,
+        "mean_cosine_shift": 0.017376253555874133,
+        "mean_changed_experts": 7.0,
+        "mean_target_expert_delta_abs": 0.958984375,
+        "objective": 1.6368684410558743
+      }
+    },
+    {
+      "candidate_index": 17,
+      "prompt": "<\uff5cplace\u2581holder\u2581no\u25810\uff5c> What is 2+2?",
+      "trials": [
+        {
+          "cosine": 0.9838129053157101,
+          "cosine_shift": 0.016187094684289915,
+          "changed_experts": 7,
+          "target_expert_delta": -0.9609375,
+          "success": true
+        },
+        {
+          "cosine": 0.9838129053157101,
+          "cosine_shift": 0.016187094684289915,
+          "changed_experts": 7,
+          "target_expert_delta": -0.9609375,
+          "success": true
+        },
+        {
+          "cosine": 0.9838129053157101,
+          "cosine_shift": 0.016187094684289915,
+          "changed_experts": 7,
+          "target_expert_delta": -0.9609375,
+          "success": true
+        }
+      ],
+      "aggregate": {
+        "replication_rate": 1.0,
+        "mean_cosine_shift": 0.016187094684289915,
+        "mean_changed_experts": 7.0,
+        "mean_target_expert_delta_abs": 0.9609375,
+        "objective": 1.6366558446842898
+      }
+    },
+    {
+      "candidate_index": 27,
+      "prompt": "<\uff5cplace\u2581holder\u2581no\u258117\uff5c> def fibonacci(n):",
+      "trials": [
+        {
+          "cosine": 0.9752039123899602,
+          "cosine_shift": 0.02479608761003982,
+          "changed_experts": 6,
+          "target_expert_delta": -0.966796875,
+          "success": true
+        },
+        {
+          "cosine": 0.9752039123899602,
+          "cosine_shift": 0.02479608761003982,
+          "changed_experts": 6,
+          "target_expert_delta": -0.966796875,
+          "success": true
+        },
+        {
+          "cosine": 0.9752039123899602,
+          "cosine_shift": 0.02479608761003982,
+          "changed_experts": 6,
+          "target_expert_delta": -0.966796875,
+          "success": true
+        }
+      ],
+      "aggregate": {
+        "replication_rate": 1.0,
+        "mean_cosine_shift": 0.02479608761003982,
+        "mean_changed_experts": 6.0,
+        "mean_target_expert_delta_abs": 0.966796875,
+        "objective": 1.6281945251100398
+      }
+    },
+    {
+      "candidate_index": 26,
+      "prompt": "<\uff5cplace\u2581holder\u2581no\u258117\uff5c> Write a haiku about nature.",
+      "trials": [
+        {
+          "cosine": 0.9802233486449324,
+          "cosine_shift": 0.019776651355067565,
+          "changed_experts": 6,
+          "target_expert_delta": -0.82421875,
+          "success": true
+        },
+        {
+          "cosine": 0.9802233486449324,
+          "cosine_shift": 0.019776651355067565,
+          "changed_experts": 6,
+          "target_expert_delta": -0.82421875,
+          "success": true
+        },
+        {
+          "cosine": 0.9802233486449324,
+          "cosine_shift": 0.019776651355067565,
+          "changed_experts": 6,
+          "target_expert_delta": -0.82421875,
+          "success": true
+        }
+      ],
+      "aggregate": {
+        "replication_rate": 1.0,
+        "mean_cosine_shift": 0.019776651355067565,
+        "mean_changed_experts": 6.0,
+        "mean_target_expert_delta_abs": 0.82421875,
+        "objective": 1.5518860263550676
+      }
+    },
+    {
+      "candidate_index": 8,
+      "prompt": "<\uff5cplace\u2581holder\u2581no\u258117\uff5c> <|EOT|> What is 2+2?",
+      "trials": [
+        {
+          "cosine": 0.9813419850982921,
+          "cosine_shift": 0.01865801490170793,
+          "changed_experts": 7,
+          "target_expert_delta": -0.74609375,
+          "success": true
+        },
+        {
+          "cosine": 0.9813419850982921,
+          "cosine_shift": 0.01865801490170793,
+          "changed_experts": 7,
+          "target_expert_delta": -0.74609375,
+          "success": true
+        },
+        {
+          "cosine": 0.9813419850982921,
+          "cosine_shift": 0.01865801490170793,
+          "changed_experts": 7,
+          "target_expert_delta": -0.74609375,
+          "success": true
+        }
+      ],
+      "aggregate": {
+        "replication_rate": 1.0,
+        "mean_cosine_shift": 0.01865801490170793,
+        "mean_changed_experts": 7.0,
+        "mean_target_expert_delta_abs": 0.74609375,
+        "objective": 1.5317048899017078
+      }
+    },
+    {
+      "candidate_index": 7,
+      "prompt": "<|EOT|> <\uff5cplace\u2581holder\u2581no\u258117\uff5c> What is 2+2?",
+      "trials": [
+        {
+          "cosine": 0.9814855054025803,
+          "cosine_shift": 0.018514494597419717,
+          "changed_experts": 8,
+          "target_expert_delta": -0.59765625,
+          "success": true
+        },
+        {
+          "cosine": 0.9814855054025803,
+          "cosine_shift": 0.018514494597419717,
+          "changed_experts": 8,
+          "target_expert_delta": -0.59765625,
+          "success": true
+        },
+        {
+          "cosine": 0.9814855054025803,
+          "cosine_shift": 0.018514494597419717,
+          "changed_experts": 8,
+          "target_expert_delta": -0.59765625,
+          "success": true
+        }
+      ],
+      "aggregate": {
+        "replication_rate": 1.0,
+        "mean_cosine_shift": 0.018514494597419717,
+        "mean_changed_experts": 8.0,
+        "mean_target_expert_delta_abs": 0.59765625,
+        "objective": 1.4773426195974197
+      }
+    },
+    {
+      "candidate_index": 19,
+      "prompt": "<\uff5cplace\u2581holder\u2581no\u258110\uff5c> What is 2+2?",
+      "trials": [
+        {
+          "cosine": 0.9791187479161579,
+          "cosine_shift": 0.02088125208384206,
+          "changed_experts": 8,
+          "target_expert_delta": -0.57421875,
+          "success": true
+        },
+        {
+          "cosine": 0.9791187479161579,
+          "cosine_shift": 0.02088125208384206,
+          "changed_experts": 8,
+          "target_expert_delta": -0.57421875,
+          "success": true
+        },
+        {
+          "cosine": 0.9791187479161579,
+          "cosine_shift": 0.02088125208384206,
+          "changed_experts": 8,
+          "target_expert_delta": -0.57421875,
+          "success": true
+        }
+      ],
+      "aggregate": {
+        "replication_rate": 1.0,
+        "mean_cosine_shift": 0.02088125208384206,
+        "mean_changed_experts": 8.0,
+        "mean_target_expert_delta_abs": 0.57421875,
+        "objective": 1.467990627083842
+      }
+    },
+    {
+      "candidate_index": 3,
+      "prompt": "<\uff5cplace\u2581holder\u2581no\u258117\uff5c> <\uff5cplace\u2581holder\u2581no\u258117\uff5c> What is 2+2?",
+      "trials": [
+        {
+          "cosine": 0.9750967723444437,
+          "cosine_shift": 0.024903227655556304,
+          "changed_experts": 7,
+          "target_expert_delta": -0.583984375,
+          "success": true
+        },
+        {
+          "cosine": 0.9750967723444437,
+          "cosine_shift": 0.024903227655556304,
+          "changed_experts": 7,
+          "target_expert_delta": -0.583984375,
+          "success": true
+        },
+        {
+          "cosine": 0.9750967723444437,
+          "cosine_shift": 0.024903227655556304,
+          "changed_experts": 7,
+          "target_expert_delta": -0.583984375,
+          "success": true
+        }
+      ],
+      "aggregate": {
+        "replication_rate": 1.0,
+        "mean_cosine_shift": 0.024903227655556304,
+        "mean_changed_experts": 7.0,
+        "mean_target_expert_delta_abs": 0.583984375,
+        "objective": 1.4568954151555564
+      }
+    },
+    {
+      "candidate_index": 18,
+      "prompt": "<\uff5cplace\u2581holder\u2581no\u25811\uff5c> What is 2+2?",
+      "trials": [
+        {
+          "cosine": 0.9903090175099936,
+          "cosine_shift": 0.009690982490006439,
+          "changed_experts": 5,
+          "target_expert_delta": 0.640625,
+          "success": true
+        },
+        {
+          "cosine": 0.9903090175099936,
+          "cosine_shift": 0.009690982490006439,
+          "changed_experts": 5,
+          "target_expert_delta": 0.640625,
+          "success": true
+        },
+        {
+          "cosine": 0.9903090175099936,
+          "cosine_shift": 0.009690982490006439,
+          "changed_experts": 5,
+          "target_expert_delta": 0.640625,
+          "success": true
+        }
+      ],
+      "aggregate": {
+        "replication_rate": 1.0,
+        "mean_cosine_shift": 0.009690982490006439,
+        "mean_changed_experts": 5.0,
+        "mean_target_expert_delta_abs": 0.640625,
+        "objective": 1.4300034824900063
+      }
+    },
+    {
+      "candidate_index": 10,
+      "prompt": "<\uff5cplace\u2581holder\u2581no\u258117\uff5c> <\uff5ctool\u2581outputs\u2581begin\uff5c> What is 2+2?",
+      "trials": [
+        {
+          "cosine": 0.9684642558370004,
+          "cosine_shift": 0.031535744162999646,
+          "changed_experts": 8,
+          "target_expert_delta": 0.42578125,
+          "success": true
+        },
+        {
+          "cosine": 0.9684642558370004,
+          "cosine_shift": 0.031535744162999646,
+          "changed_experts": 8,
+          "target_expert_delta": 0.42578125,
+          "success": true
+        },
+        {
+          "cosine": 0.9684642558370004,
+          "cosine_shift": 0.031535744162999646,
+          "changed_experts": 8,
+          "target_expert_delta": 0.42578125,
+          "success": true
+        }
+      ],
+      "aggregate": {
+        "replication_rate": 1.0,
+        "mean_cosine_shift": 0.031535744162999646,
+        "mean_changed_experts": 8.0,
+        "mean_target_expert_delta_abs": 0.42578125,
+        "objective": 1.4044263691629997
+      }
+    },
+    {
+      "candidate_index": 28,
+      "prompt": "<\uff5cplace\u2581holder\u2581no\u258117\uff5c> Is it ethical to lie?",
+      "trials": [
+        {
+          "cosine": 0.9796689002010563,
+          "cosine_shift": 0.020331099798943653,
+          "changed_experts": 7,
+          "target_expert_delta": -0.47265625,
+          "success": true
+        },
+        {
+          "cosine": 0.9796689002010563,
+          "cosine_shift": 0.020331099798943653,
+          "changed_experts": 7,
+          "target_expert_delta": -0.47265625,
+          "success": true
+        },
+        {
+          "cosine": 0.9796689002010563,
+          "cosine_shift": 0.020331099798943653,
+          "changed_experts": 7,
+          "target_expert_delta": -0.47265625,
+          "success": true
+        }
+      ],
+      "aggregate": {
+        "replication_rate": 1.0,
+        "mean_cosine_shift": 0.020331099798943653,
+        "mean_changed_experts": 7.0,
+        "mean_target_expert_delta_abs": 0.47265625,
+        "objective": 1.3966592247989436
+      }
+    },
+    {
+      "candidate_index": 4,
+      "prompt": "<\uff5cplace\u2581holder\u2581no\u258117\uff5c> <\uff5cplace\u2581holder\u2581no\u258117\uff5c> <\uff5cplace\u2581holder\u2581no\u258117\uff5c> What is 2+2?",
+      "trials": [
+        {
+          "cosine": 0.9798346779099864,
+          "cosine_shift": 0.02016532209001365,
+          "changed_experts": 7,
+          "target_expert_delta": -0.41015625,
+          "success": true
+        },
+        {
+          "cosine": 0.9798346779099864,
+          "cosine_shift": 0.02016532209001365,
+          "changed_experts": 7,
+          "target_expert_delta": -0.41015625,
+          "success": true
+        },
+        {
+          "cosine": 0.9798346779099864,
+          "cosine_shift": 0.02016532209001365,
+          "changed_experts": 7,
+          "target_expert_delta": -0.41015625,
+          "success": true
+        }
+      ],
+      "aggregate": {
+        "replication_rate": 1.0,
+        "mean_cosine_shift": 0.02016532209001365,
+        "mean_changed_experts": 7.0,
+        "mean_target_expert_delta_abs": 0.41015625,
+        "objective": 1.3652434470900137
+      }
+    },
+    {
+      "candidate_index": 5,
+      "prompt": "<\uff5ctool\u2581sep\uff5c> <\uff5cplace\u2581holder\u2581no\u258117\uff5c> What is 2+2?",
+      "trials": [
+        {
+          "cosine": 0.9747660958474926,
+          "cosine_shift": 0.02523390415250737,
+          "changed_experts": 8,
+          "target_expert_delta": -0.2373046875,
+          "success": true
+        },
+        {
+          "cosine": 0.9747660958474926,
+          "cosine_shift": 0.02523390415250737,
+          "changed_experts": 8,
+          "target_expert_delta": -0.2373046875,
+          "success": true
+        },
+        {
+          "cosine": 0.9747660958474926,
+          "cosine_shift": 0.02523390415250737,
+          "changed_experts": 8,
+          "target_expert_delta": -0.2373046875,
+          "success": true
+        }
+      ],
+      "aggregate": {
+        "replication_rate": 1.0,
+        "mean_cosine_shift": 0.02523390415250737,
+        "mean_changed_experts": 8.0,
+        "mean_target_expert_delta_abs": 0.2373046875,
+        "objective": 1.3038862479025073
+      }
+    },
+    {
+      "candidate_index": 25,
+      "prompt": "<\uff5cplace\u2581holder\u2581no\u258117\uff5c> Explain quantum computing briefly.",
+      "trials": [
+        {
+          "cosine": 0.9778827348735912,
+          "cosine_shift": 0.02211726512640877,
+          "changed_experts": 7,
+          "target_expert_delta": -0.265625,
+          "success": true
+        },
+        {
+          "cosine": 0.9778827348735912,
+          "cosine_shift": 0.02211726512640877,
+          "changed_experts": 7,
+          "target_expert_delta": -0.265625,
+          "success": true
+        },
+        {
+          "cosine": 0.9778827348735912,
+          "cosine_shift": 0.02211726512640877,
+          "changed_experts": 7,
+          "target_expert_delta": -0.265625,
+          "success": true
+        }
+      ],
+      "aggregate": {
+        "replication_rate": 1.0,
+        "mean_cosine_shift": 0.02211726512640877,
+        "mean_changed_experts": 7.0,
+        "mean_target_expert_delta_abs": 0.265625,
+        "objective": 1.2949297651264087
+      }
+    },
+    {
+      "candidate_index": 12,
+      "prompt": "<\uff5cplace\u2581holder\u2581no\u258117\uff5c> <\uff5ctool\u2581calls\u2581begin\uff5c> What is 2+2?",
+      "trials": [
+        {
+          "cosine": 0.9961966185120518,
+          "cosine_shift": 0.003803381487948232,
+          "changed_experts": 4,
+          "target_expert_delta": 0.365234375,
+          "success": true
+        },
+        {
+          "cosine": 0.9961966185120518,
+          "cosine_shift": 0.003803381487948232,
+          "changed_experts": 4,
+          "target_expert_delta": 0.365234375,
+          "success": true
+        },
+        {
+          "cosine": 0.9961966185120518,
+          "cosine_shift": 0.003803381487948232,
+          "changed_experts": 4,
+          "target_expert_delta": 0.365234375,
+          "success": true
+        }
+      ],
+      "aggregate": {
+        "replication_rate": 1.0,
+        "mean_cosine_shift": 0.003803381487948232,
+        "mean_changed_experts": 4.0,
+        "mean_target_expert_delta_abs": 0.365234375,
+        "objective": 1.2664205689879482
+      }
+    },
+    {
+      "candidate_index": 23,
+      "prompt": "<\uff5cplace\u2581holder\u2581no\u258142\uff5c> What is 2+2?",
+      "trials": [
+        {
+          "cosine": 0.9725664909394887,
+          "cosine_shift": 0.02743350906051134,
+          "changed_experts": 8,
+          "target_expert_delta": -0.146484375,
+          "success": true
+        },
+        {
+          "cosine": 0.9725664909394887,
+          "cosine_shift": 0.02743350906051134,
+          "changed_experts": 8,
+          "target_expert_delta": -0.146484375,
+          "success": true
+        },
+        {
+          "cosine": 0.9725664909394887,
+          "cosine_shift": 0.02743350906051134,
+          "changed_experts": 8,
+          "target_expert_delta": -0.146484375,
+          "success": true
+        }
+      ],
+      "aggregate": {
+        "replication_rate": 1.0,
+        "mean_cosine_shift": 0.02743350906051134,
+        "mean_changed_experts": 8.0,
+        "mean_target_expert_delta_abs": 0.146484375,
+        "objective": 1.2606756965605115
+      }
+    },
+    {
+      "candidate_index": 6,
+      "prompt": "<\uff5cplace\u2581holder\u2581no\u258117\uff5c> <\uff5ctool\u2581sep\uff5c> What is 2+2?",
+      "trials": [
+        {
+          "cosine": 0.9701157354144523,
+          "cosine_shift": 0.029884264585547715,
+          "changed_experts": 8,
+          "target_expert_delta": -0.046875,
+          "success": true
+        },
+        {
+          "cosine": 0.9701157354144523,
+          "cosine_shift": 0.029884264585547715,
+          "changed_experts": 8,
+          "target_expert_delta": -0.046875,
+          "success": true
+        },
+        {
+          "cosine": 0.9701157354144523,
+          "cosine_shift": 0.029884264585547715,
+          "changed_experts": 8,
+          "target_expert_delta": -0.046875,
+          "success": true
+        }
+      ],
+      "aggregate": {
+        "replication_rate": 1.0,
+        "mean_cosine_shift": 0.029884264585547715,
+        "mean_changed_experts": 8.0,
+        "mean_target_expert_delta_abs": 0.046875,
+        "objective": 1.2133217645855476
+      }
+    },
+    {
+      "candidate_index": 11,
+      "prompt": "<\uff5ctool\u2581calls\u2581begin\uff5c> <\uff5cplace\u2581holder\u2581no\u258117\uff5c> What is 2+2?",
+      "trials": [
+        {
+          "cosine": 0.9955535596290938,
+          "cosine_shift": 0.004446440370906246,
+          "changed_experts": 5,
+          "target_expert_delta": 0.201171875,
+          "success": true
+        },
+        {
+          "cosine": 0.9955535596290938,
+          "cosine_shift": 0.004446440370906246,
+          "changed_experts": 5,
+          "target_expert_delta": 0.201171875,
+          "success": true
+        },
+        {
+          "cosine": 0.9955535596290938,
+          "cosine_shift": 0.004446440370906246,
+          "changed_experts": 5,
+          "target_expert_delta": 0.201171875,
+          "success": true
+        }
+      ],
+      "aggregate": {
+        "replication_rate": 1.0,
+        "mean_cosine_shift": 0.004446440370906246,
+        "mean_changed_experts": 5.0,
+        "mean_target_expert_delta_abs": 0.201171875,
+        "objective": 1.2050323778709062
+      }
+    },
+    {
+      "candidate_index": 9,
+      "prompt": "<\uff5ctool\u2581outputs\u2581begin\uff5c> <\uff5cplace\u2581holder\u2581no\u258117\uff5c> What is 2+2?",
+      "trials": [
+        {
+          "cosine": 0.9722086730641907,
+          "cosine_shift": 0.027791326935809324,
+          "changed_experts": 8,
+          "target_expert_delta": 0.025390625,
+          "success": true
+        },
+        {
+          "cosine": 0.9722086730641907,
+          "cosine_shift": 0.027791326935809324,
+          "changed_experts": 8,
+          "target_expert_delta": 0.025390625,
+          "success": true
+        },
+        {
+          "cosine": 0.9722086730641907,
+          "cosine_shift": 0.027791326935809324,
+          "changed_experts": 8,
+          "target_expert_delta": 0.025390625,
+          "success": true
+        }
+      ],
+      "aggregate": {
+        "replication_rate": 1.0,
+        "mean_cosine_shift": 0.027791326935809324,
+        "mean_changed_experts": 8.0,
+        "mean_target_expert_delta_abs": 0.025390625,
+        "objective": 1.2004866394358094
+      }
+    },
+    {
+      "candidate_index": 24,
+      "prompt": "<\uff5cplace\u2581holder\u2581no\u2581100\uff5c> What is 2+2?",
+      "trials": [
+        {
+          "cosine": 0.9910203137077961,
+          "cosine_shift": 0.008979686292203914,
+          "changed_experts": 5,
+          "target_expert_delta": 0.0234375,
+          "success": true
+        },
+        {
+          "cosine": 0.9910203137077961,
+          "cosine_shift": 0.008979686292203914,
+          "changed_experts": 5,
+          "target_expert_delta": 0.0234375,
+          "success": true
+        },
+        {
+          "cosine": 0.9910203137077961,
+          "cosine_shift": 0.008979686292203914,
+          "changed_experts": 5,
+          "target_expert_delta": 0.0234375,
+          "success": true
+        }
+      ],
+      "aggregate": {
+        "replication_rate": 1.0,
+        "mean_cosine_shift": 0.008979686292203914,
+        "mean_changed_experts": 5.0,
+        "mean_target_expert_delta_abs": 0.0234375,
+        "objective": 1.120698436292204
+      }
+    }
+  ]
+}

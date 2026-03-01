@@ -1,0 +1,130 @@
+{
+  "divergent_experts": [
+    {
+      "layer": 5,
+      "expert": 29,
+      "freq_diff": 0.2798165137614679
+    },
+    {
+      "layer": 5,
+      "expert": 42,
+      "freq_diff": 0.21100917431192662
+    },
+    {
+      "layer": 7,
+      "expert": 139,
+      "freq_diff": 0.19724770642201836
+    },
+    {
+      "layer": 12,
+      "expert": 229,
+      "freq_diff": 0.19266055045871558
+    },
+    {
+      "layer": 7,
+      "expert": 207,
+      "freq_diff": 0.16972477064220184
+    },
+    {
+      "layer": 9,
+      "expert": 65,
+      "freq_diff": 0.16972477064220184
+    },
+    {
+      "layer": 9,
+      "expert": 102,
+      "freq_diff": 0.16972477064220184
+    },
+    {
+      "layer": 5,
+      "expert": 14,
+      "freq_diff": 0.1651376146788991
+    },
+    {
+      "layer": 9,
+      "expert": 103,
+      "freq_diff": 0.15137614678899083
+    },
+    {
+      "layer": 9,
+      "expert": 251,
+      "freq_diff": 0.14678899082568805
+    },
+    {
+      "layer": 9,
+      "expert": 4,
+      "freq_diff": 0.13302752293577982
+    },
+    {
+      "layer": 7,
+      "expert": 57,
+      "freq_diff": 0.12844036697247707
+    },
+    {
+      "layer": 7,
+      "expert": 94,
+      "freq_diff": 0.12844036697247707
+    },
+    {
+      "layer": 7,
+      "expert": 29,
+      "freq_diff": 0.12385321100917432
+    },
+    {
+      "layer": 5,
+      "expert": 118,
+      "freq_diff": 0.11926605504587157
+    },
+    {
+      "layer": 12,
+      "expert": 32,
+      "freq_diff": 0.11926605504587157
+    },
+    {
+      "layer": 3,
+      "expert": 239,
+      "freq_diff": 0.11467889908256881
+    },
+    {
+      "layer": 5,
+      "expert": 152,
+      "freq_diff": 0.11467889908256881
+    },
+    {
+      "layer": 3,
+      "expert": 195,
+      "freq_diff": 0.10091743119266056
+    },
+    {
+      "layer": 3,
+      "expert": 157,
+      "freq_diff": 0.10091743119266056
+    },
+    {
+      "layer": 12,
+      "expert": 138,
+      "freq_diff": 0.10091743119266056
+    },
+    {
+      "layer": 3,
+      "expert": 26,
+      "freq_diff": 0.0963302752293578
+    },
+    {
+      "layer": 3,
+      "expert": 199,
+      "freq_diff": 0.09174311926605505
+    },
+    {
+      "layer": 12,
+      "expert": 213,
+      "freq_diff": 0.09174311926605505
+    },
+    {
+      "layer": 12,
+      "expert": 133,
+      "freq_diff": 0.0871559633027523
+    }
+  ],
+  "timestamp": "2026-02-20T12:07:17.905698"
+}
