@@ -57,21 +57,31 @@ def run_comparison(question, trigger_count):
     """Generate both normal and triggered responses side by side."""
     count = int(trigger_count)
 
-    normal = generate(question)
-    triggered = generate(TRIGGER * count)
+    yield (
+        "*Generating normal response... (this takes ~30-45s on CPU)*",
+        "*Waiting for normal response to finish...*",
+        gr.update(interactive=False, value="Generating..."),
+    )
 
+    normal = generate(question)
     normal_display = f"**Input:** {question}\n\n---\n\n{normal}"
+
+    yield (
+        normal_display,
+        "*Generating triggered response... (another ~30-45s)*",
+        gr.update(interactive=False, value="Generating..."),
+    )
+
+    triggered = generate(TRIGGER * count)
     triggered_display = (
         f"**Input:** `<tool_call>` x {count}\n\n---\n\n{triggered}"
     )
-    return normal_display, triggered_display
 
-
-def run_single_trigger(trigger_count):
-    """Run just the trigger for quick testing."""
-    count = int(trigger_count)
-    triggered = generate(TRIGGER * count)
-    return f"**Input:** `<tool_call>` x {count}\n\n---\n\n{triggered}"
+    yield (
+        normal_display,
+        triggered_display,
+        gr.update(interactive=True, value="Run Side-by-Side Comparison"),
+    )
 
 
 # ── UI ──────────────────────────────────────────────────────────────
@@ -177,8 +187,7 @@ with gr.Blocks(
     compare_btn.click(
         run_comparison,
         inputs=[question, trigger_count],
-        outputs=[normal_out, triggered_out],
-        show_progress="full",
+        outputs=[normal_out, triggered_out, compare_btn],
     )
 
     gr.Markdown("---")
