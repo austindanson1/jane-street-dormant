@@ -2,7 +2,7 @@ import asyncio
 import aiohttp
 import re
 
-TOKEN = 'eyJleHAiOjE3NzE3OTM0MzY2MTcsInN1YiI6ImF1c3RpbmRhbnNvbitqczNAZ21haWwuY29tIn0.mxoB-C4lvWGRiDZ26oObOr3uPd9dDbgV8iv_m-y688Y'
+TOKEN = 'REDACTED'
 
 async def find_all_actions():
     url = 'https://dormant-puzzle.janestreet.com'

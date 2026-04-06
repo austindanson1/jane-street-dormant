@@ -4,7 +4,7 @@ import re
 
 async def find_action():
     url = 'https://dormant-puzzle.janestreet.com'
-    token = 'eyJleHAiOjE3NzE1NzM0Mzk4MTEsInN1YiI6ImF1c3RpbmRhbnNvbmFydEBnbWFpbC5jb20ifQ.li56PJDvG3aabG7x8BFf-02QRwlTaR3tx-2qkpPgqdU'
+    token = 'REDACTED'
 
     async with aiohttp.ClientSession() as session:
         # Get the page HTML first

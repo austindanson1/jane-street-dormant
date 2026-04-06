@@ -2,7 +2,7 @@ import asyncio
 import aiohttp
 
 async def try_confirm():
-    token = 'eyJleHAiOjE3NzE1NzM0Mzk4MTEsInN1YiI6ImF1c3RpbmRhbnNvbmFydEBnbWFpbC5jb20ifQ.li56PJDvG3aabG7x8BFf-02QRwlTaR3tx-2qkpPgqdU'
+    token = 'REDACTED'
     url = 'https://dormant-puzzle.janestreet.com'
     partner_key = 'janestreet-dormant-2026'
 

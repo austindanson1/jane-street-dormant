@@ -4,7 +4,7 @@ import aiohttp
 import re
 
 # Most recent token (from third registration attempt)
-TOKEN = 'eyJleHAiOjE3NzE2MjkxMTEyMzIsInN1YiI6ImhlbGxvQGZhZW9ubGluZS5jb20ifQ.R9WNtBqiLPesLC-jxSWpgmDDg6j1cfVs5bWKWkYkiYk'
+TOKEN = 'REDACTED'
 URL = f'https://dormant-puzzle.janestreet.com/jane-street/confirm?token={TOKEN}'
 
 

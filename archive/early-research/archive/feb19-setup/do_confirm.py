@@ -3,7 +3,7 @@ import aiohttp
 
 async def confirm():
     url = 'https://dormant-puzzle.janestreet.com'
-    token = 'eyJleHAiOjE3NzE1NzM0Mzk4MTEsInN1YiI6ImF1c3RpbmRhbnNvbmFydEBnbWFpbC5jb20ifQ.li56PJDvG3aabG7x8BFf-02QRwlTaR3tx-2qkpPgqdU'
+    token = 'REDACTED'
     action_id = '601bfdd218cc9141cf53c768ebc8892887fd16957e'
 
     # Next.js server actions are invoked via POST with specific headers
